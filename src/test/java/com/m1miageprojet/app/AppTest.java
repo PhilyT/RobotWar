@@ -1,4 +1,4 @@
-package com.m1miageTp3.app;
+package com.m1miageprojet.app;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
