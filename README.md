@@ -1,5 +1,29 @@
 # RobotWar
 
+###Installation du projet
+>######Attention
+Le projet est en Java8
+
+Pour cloner le projet : 
+```
+git clone https://github.com/PhilyT/RobotWar.git
+```
+
+
+
+>Pour installer et tout lancer :
+```
+mvn compile
+```
+```
+mvn package
+```
+
+###Contributeurs
+Tom Phily  
+Nicolas Kircun  
+Mohammed Tanouti  
+
 ## Sujet 
 
 Le but de ce projet est de construire un jeu de combat virtuel de type RobotWar  
