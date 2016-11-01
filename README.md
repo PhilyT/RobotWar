@@ -12,16 +12,39 @@ git clone https://github.com/PhilyT/RobotWar.git
 
 
 >Pour installer et tout lancer :
+
+######Sous linux : 
 ```
-mvn compile
+build.sh
+```
+######Sous Mac OS : 
+```
+sh build.sh
+```
+######Sous Windows : 
+Si CigWin d'intallé :  
+```
+sh build.sh
+```
+Sinon :  
+```
+mvn clean
 ```
 ```
 mvn package
 ```
 
-###Contributeurs
-Tom Phily  
+### Commandes git
+
+### Documents
+
+Tous les documents de chaque groupe se trouve dans le repertoire doc à la racine.
+
+###Release  
+
+###Contributeurs  
 Nicolas Kircun  
+Tom Phily   
 Mohammed Tanouti  
 
 ## Sujet 
