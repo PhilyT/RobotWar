@@ -27,3 +27,6 @@ echo "|---------------------------------------|"
 echo "|----- MISE EN PRODUCTION TERMINÉE -----|"
 echo "|---------------------------------------|"
 echo ""
+
+echo "--- Lancement de RobotWar..."
+java -jar RobotWar-1.0.jar
