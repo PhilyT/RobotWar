@@ -85,6 +85,7 @@ public class PluginLoader extends SecureClassLoader
 		System.out.println(je);
 		InputStream is = jf.getInputStream(je);
 		result = getBytesFromInputStream(is);
+		jf.close();
 		return result;
 	}
 
