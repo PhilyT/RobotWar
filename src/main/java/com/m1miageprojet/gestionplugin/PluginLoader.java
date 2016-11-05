@@ -1,5 +1,5 @@
 package com.m1miageprojet.gestionplugin;
 
-public class URLClassLoader {
+public class PluginLoader {
 
 }

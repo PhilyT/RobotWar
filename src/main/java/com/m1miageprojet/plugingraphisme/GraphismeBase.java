@@ -1,5 +1,5 @@
 package com.m1miageprojet.plugingraphisme;
 
-public class GraphiqueBase {
+public class GraphismeBase {
 
 }
