@@ -78,11 +78,11 @@ public class PluginLoader extends SecureClassLoader
 	}
 
 	private byte[] loadClassJar(byte[] result, File file, String pathclass) throws ClassNotFoundException, IOException {
-		System.out.println("je passe bien ici");
+		//System.out.println("je passe bien ici");
 		JarFile jf = new JarFile(file.getPath());
 		
 		JarEntry je = jf.getJarEntry(pathclass);
-		System.out.println(je);
+		//System.out.println(je);
 		InputStream is = jf.getInputStream(je);
 		result = getBytesFromInputStream(is);
 		jf.close();
@@ -91,11 +91,11 @@ public class PluginLoader extends SecureClassLoader
 
 	public static void main(String[] args) {
 		PluginLoader myclassloader = new PluginLoader();
-		File f = new File("C://Users/Tom/Documents/Projet/RobotWar/RobotWar-1.0.jar");
+		File f = new File("RobotWar-1.0.jar");
 		myclassloader.getPath().add(f);
 		try {
 			Class<?> c = myclassloader.loadClass("com.m1miageprojet.gestionplugin.PluginLoader");
-			System.out.println(c.getName());
+			System.out.println("Classe chargé : " + c.getName());
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}

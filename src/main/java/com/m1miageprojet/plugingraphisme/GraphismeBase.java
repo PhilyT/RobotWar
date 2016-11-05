@@ -17,7 +17,7 @@ public class GraphismeBase extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 		
-		this.setContentPane(new Plateau());
+		//this.setContentPane(new Plateau());
 		this.setVisible(true);
 	}
 
