@@ -12,6 +12,8 @@
 
     <modules>
         <module>moteur</module>
+		<module>interfaces</module>
+		<module>plugins</module>
     </modules>
 
     <build>
