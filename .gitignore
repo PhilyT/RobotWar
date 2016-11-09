@@ -1,3 +1,21 @@
+moteur/target/
+moteur/pom.xml.tag
+moteur/pom.xml.releaseBackup
+moteur/pom.xml.versionsBackup
+moteur/pom.xml.next
+moteur/release.properties
+moteur/dependency-reduced-pom.xml
+moteur/buildNumber.properties
+moteur/.mvn/timing.properties
+moteur/bin
+moteur/target
+moteur/.project
+moteur/.classpath
+moteur/.idea/*
+moteur/.settings
+moteur/.idea
+moteur-1.0.jar
+
 target/
 pom.xml.tag
 pom.xml.releaseBackup
@@ -14,4 +32,3 @@ target
 .idea/*
 .settings
 .idea
-RobotWar-1.0.jar
