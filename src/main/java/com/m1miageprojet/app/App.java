@@ -16,18 +16,20 @@ public class App
 		File f = new File("RobotWar-1.0.jar");
 		myclassloader.getPath().add(f);
 		try {
-			Class<?> attaque = myclassloader.loadClass("com.m1miageprojet.pluginattaque.AttaqueCourte");
-			Class<?> deplacement = myclassloader.loadClass("com.m1miageprojet.plugindeplacement.DeplacementSimple");
-			Class<?> graphisme = myclassloader.loadClass("com.m1miageprojet.plugingraphisme.GraphismeFleur");
+			//Class<?> attaque = myclassloader.loadClass("com.m1miageprojet.pluginattaque.AttaqueCourte");
+			//Class<?> deplacement = myclassloader.loadClass("com.m1miageprojet.plugindeplacement.DeplacementSimple");
+			//Class<?> graphisme = myclassloader.loadClass("com.m1miageprojet.plugingraphisme.GraphismeFleur");
+			Class<?> test = myclassloader.loadClass("com.m1miageprojet.plugingraphisme.GraphismeBase");
 			try {
-				Object attaqueInstance = attaque.newInstance();
-				Object deplacementInstance = deplacement.newInstance();
-				Object graphismeInstance = graphisme.newInstance();
+				Object testInstance = test.newInstance();
+				//Object attaqueInstance = attaque.newInstance();
+				//Object deplacementInstance = deplacement.newInstance();
+				//Object graphismeInstance = graphisme.newInstance();
 				System.out.println("Chargement des plugins réussi !");
-				Robot imrobot = new Robot(attaqueInstance, deplacementInstance, graphismeInstance);
+				/*Robot imrobot = new Robot(attaqueInstance, deplacementInstance, graphismeInstance);
 				Plateau plateau = new Plateau();
 				plateau.getRobots().add(imrobot);
-				MySwingApp app = new MySwingApp(plateau);
+				MySwingApp app = new MySwingApp(plateau);*/
 			} catch (InstantiationException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
