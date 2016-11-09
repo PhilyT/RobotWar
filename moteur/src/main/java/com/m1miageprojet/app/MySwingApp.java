@@ -1,10 +1,11 @@
 package com.m1miageprojet.app;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 public class MySwingApp extends JFrame 
 {
-	public MySwingApp(Plateau pannel) 
+	public MySwingApp(JPanel pannel) 
 	{
 		// Création de la fenêtre
 		this.setTitle("Robot War");

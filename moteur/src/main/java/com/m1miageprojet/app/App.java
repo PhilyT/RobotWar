@@ -2,6 +2,7 @@ package com.m1miageprojet.app;
 
 import java.io.File;
 
+import com.m1miageproject.interfacesplugin.IGraphisme;
 import com.m1miageprojet.gestionplugin.PluginLoader;
 
 /**
@@ -19,9 +20,10 @@ public class App
 			//Class<?> attaque = myclassloader.loadClass("com.m1miageprojet.pluginattaque.AttaqueCourte");
 			//Class<?> deplacement = myclassloader.loadClass("com.m1miageprojet.plugindeplacement.DeplacementSimple");
 			//Class<?> graphisme = myclassloader.loadClass("com.m1miageprojet.plugingraphisme.GraphismeFleur");
-			Class<?> test = myclassloader.loadClass("com.m1miageprojet.plugingraphisme.GraphismeBase");
+			Class<?> graphisme = myclassloader.loadClass("com.m1miageprojet.plugingraphisme.Plateau");
 			try {
-				Object testInstance = test.newInstance();
+				IGraphisme testInstance = (IGraphisme) graphisme.newInstance();
+				MySwingApp fenetre = new MySwingApp();
 				//Object attaqueInstance = attaque.newInstance();
 				//Object deplacementInstance = deplacement.newInstance();
 				//Object graphismeInstance = graphisme.newInstance();

@@ -28,7 +28,6 @@ public class GraphismeBase extends JFrame {
 	private void go() {
 		for (int i = 0; i < 100; i++) {
 			
-			panel.moveRobot();
 			panel.repaint();
 			
 			try {
@@ -39,7 +38,7 @@ public class GraphismeBase extends JFrame {
 		}
 	}
 	
-	public static void main(String[] args) {
-		GraphismeBase gb = new GraphismeBase();
-	}
+//	public static void main(String[] args) {
+//		GraphismeBase gb = new GraphismeBase();
+//	}
 }
