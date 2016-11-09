@@ -1,9 +1,14 @@
 package com.m1miageprojet.app;
 
 import java.io.File;
+
 import javax.swing.JPanel;
 import com.m1miageprojet.gestionplugins.PluginsLoader;
 import com.m1miageprojet.interfacesplugins.IGraphisme;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+
 
 /**
  * Hello world!
@@ -11,7 +16,7 @@ import com.m1miageprojet.interfacesplugins.IGraphisme;
  */
 public class App 
 {
-    public static void main( String[] args )
+    public static void main( String[] args ) throws IllegalArgumentException, InvocationTargetException
     {
     	PluginsLoader myclassloader = new PluginsLoader();
 		File f = new File("plugins/plugins-1.0.jar");
@@ -24,9 +29,10 @@ public class App
 			Class<?> plateau = myclassloader.loadClass("com.m1miageprojet.plugingraphisme.Plateau");
 			System.out.println("je passe bine par là");
 			try {
-				IGraphisme plateauInstance = (IGraphisme) plateau.newInstance();
 				System.out.println("Chargement des plugins réussi !");
-				MySwingApp fenetre = new MySwingApp((JPanel)plateauInstance);
+				Constructor[] testConstruct = plateau.getConstructors();
+				IGraphisme testInstance = (IGraphisme) testConstruct[0].newInstance(null);
+				MySwingApp fenetre = new MySwingApp(testInstance);
 				//Object attaqueInstance = attaque.newInstance();
 				//Object deplacementInstance = deplacement.newInstance();
 				//Object graphismeInstance = graphisme.newInstance();
