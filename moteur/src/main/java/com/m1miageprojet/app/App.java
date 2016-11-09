@@ -13,7 +13,7 @@ public class App
     public static void main( String[] args )
     {
     	PluginLoader myclassloader = new PluginLoader();
-		File f = new File("../RobotWar-1.0.jar");
+		File f = new File("plugins/plugins-1.0.jar");
 		myclassloader.getPath().add(f);
 		try {
 			//Class<?> attaque = myclassloader.loadClass("com.m1miageprojet.pluginattaque.AttaqueCourte");
