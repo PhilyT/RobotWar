@@ -10,7 +10,7 @@ package com.m1miageprojet.plugingraphisme;
 import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.JPanel;
-import com.m1miageproject.interfacesplugin.IGraphisme;
+import com.m1miageprojet.interfacesplugins.IGraphisme;
 
 /**
  * @author Nicolas Kircun

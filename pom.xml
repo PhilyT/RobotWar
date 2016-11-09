@@ -11,9 +11,9 @@
     <name>RobotWar</name>
 
     <modules>
-        <module>moteur</module>
-		<module>interfaces</module>
+    	<module>interfaces</module>
 		<module>plugins</module>
+        <module>moteur</module>	
     </modules>
 
     <build>

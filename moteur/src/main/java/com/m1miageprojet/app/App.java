@@ -1,9 +1,9 @@
 package com.m1miageprojet.app;
 
 import java.io.File;
-
-import com.m1miageproject.interfacesplugin.IGraphisme;
-import com.m1miageprojet.gestionplugin.PluginLoader;
+import javax.swing.JPanel;
+import com.m1miageprojet.gestionplugins.PluginsLoader;
+import com.m1miageprojet.interfacesplugins.IGraphisme;
 
 /**
  * Hello world!
@@ -13,21 +13,24 @@ public class App
 {
     public static void main( String[] args )
     {
-    	PluginLoader myclassloader = new PluginLoader();
+    	PluginsLoader myclassloader = new PluginsLoader();
 		File f = new File("plugins/plugins-1.0.jar");
 		myclassloader.getPath().add(f);
 		try {
 			//Class<?> attaque = myclassloader.loadClass("com.m1miageprojet.pluginattaque.AttaqueCourte");
 			//Class<?> deplacement = myclassloader.loadClass("com.m1miageprojet.plugindeplacement.DeplacementSimple");
 			//Class<?> graphisme = myclassloader.loadClass("com.m1miageprojet.plugingraphisme.GraphismeFleur");
-			Class<?> graphisme = myclassloader.loadClass("com.m1miageprojet.plugingraphisme.Plateau");
+			System.out.println("jusqu'ici tout va bien");
+			Class<?> plateau = myclassloader.loadClass("com.m1miageprojet.plugingraphisme.Plateau");
+			System.out.println("je passe bine par là");
 			try {
-				IGraphisme testInstance = (IGraphisme) graphisme.newInstance();
-				MySwingApp fenetre = new MySwingApp();
+				IGraphisme plateauInstance = (IGraphisme) plateau.newInstance();
+				System.out.println("Chargement des plugins réussi !");
+				MySwingApp fenetre = new MySwingApp((JPanel)plateauInstance);
 				//Object attaqueInstance = attaque.newInstance();
 				//Object deplacementInstance = deplacement.newInstance();
 				//Object graphismeInstance = graphisme.newInstance();
-				System.out.println("Chargement des plugins réussi !");
+				
 				/*Robot imrobot = new Robot(attaqueInstance, deplacementInstance, graphismeInstance);
 				Plateau plateau = new Plateau();
 				plateau.getRobots().add(imrobot);

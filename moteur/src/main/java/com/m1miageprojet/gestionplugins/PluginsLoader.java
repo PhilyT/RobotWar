@@ -1,4 +1,4 @@
-package com.m1miageprojet.gestionplugin;
+package com.m1miageprojet.gestionplugins;
 
 import java.io.File;
 import java.io.IOException;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
-public class PluginLoader extends SecureClassLoader
+public class PluginsLoader extends SecureClassLoader
 {
 	private ArrayList<File> path = new ArrayList<File>();
 
@@ -90,7 +90,7 @@ public class PluginLoader extends SecureClassLoader
 	}
 
 	public static void main(String[] args) {
-		PluginLoader myclassloader = new PluginLoader();
+		PluginsLoader myclassloader = new PluginsLoader();
 		File f = new File("RobotWar-1.0.jar");
 		myclassloader.getPath().add(f);
 		try {

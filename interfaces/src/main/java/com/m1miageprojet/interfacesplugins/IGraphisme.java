@@ -5,7 +5,7 @@
  * com.m1miageproject.interfacesplugin - IGraphisme.java
  * Master 1 MIAGE - UNICE
  */
-package com.m1miageproject.interfacesplugin;
+package com.m1miageprojet.interfacesplugins;
 
 import java.awt.Graphics;
 
