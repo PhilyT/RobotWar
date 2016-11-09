@@ -3,11 +3,11 @@ package com.m1miageprojet.app;
 import java.awt.Container;
 import java.util.ArrayList;
 
-public class Plateau extends Container 
+public class GraphismeDeBase extends Container 
 {
 	ArrayList<Robot> robots;
 	
-	public Plateau()
+	public GraphismeDeBase()
 	{
 		robots = new ArrayList<Robot>();
 	}

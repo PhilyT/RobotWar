@@ -9,7 +9,7 @@ package com.m1miageprojet.plugingraphisme;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.Random;
+import com.m1miageproject.interfacesplugin.IGraphisme;
 
 /**
  * @author Nicolas Kircun
@@ -19,6 +19,7 @@ public class Robot  {
 	private int x;
 	private int y;
 	private Color color;
+	private IGraphisme graphisme;
 	
 	public Robot(int x, int y, Color c) {
 		this.x = x;
@@ -38,8 +39,7 @@ public class Robot  {
 		return color;
 	}
 	
-	public void draw(Graphics g) {
-		g.setColor(getColor());
-		g.fillRect(getX(), getY(), 50, 50);
+	public void afficheRobot(Graphics g) {
+		graphisme.draw(g);
 	}
 }

@@ -1,6 +1,8 @@
 package com.m1miageprojet.app;
 
 import java.io.File;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 
 import com.m1miageproject.interfacesplugin.IGraphisme;
 import com.m1miageprojet.gestionplugin.PluginLoader;
@@ -11,7 +13,7 @@ import com.m1miageprojet.gestionplugin.PluginLoader;
  */
 public class App 
 {
-    public static void main( String[] args )
+    public static void main( String[] args ) throws IllegalArgumentException, InvocationTargetException
     {
     	PluginLoader myclassloader = new PluginLoader();
 		File f = new File("../RobotWar-1.0.jar");
@@ -22,8 +24,9 @@ public class App
 			//Class<?> graphisme = myclassloader.loadClass("com.m1miageprojet.plugingraphisme.GraphismeFleur");
 			Class<?> graphisme = myclassloader.loadClass("com.m1miageprojet.plugingraphisme.Plateau");
 			try {
-				IGraphisme testInstance = (IGraphisme) graphisme.newInstance();
-				MySwingApp fenetre = new MySwingApp();
+				Constructor[] testConstruct = graphisme.getConstructors();
+				IGraphisme testInstance = (IGraphisme) testConstruct[0].newInstance(null);
+				MySwingApp fenetre = new MySwingApp(testInstance);
 				//Object attaqueInstance = attaque.newInstance();
 				//Object deplacementInstance = deplacement.newInstance();
 				//Object graphismeInstance = graphisme.newInstance();
