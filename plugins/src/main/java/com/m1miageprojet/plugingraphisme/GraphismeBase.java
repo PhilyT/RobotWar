@@ -19,16 +19,16 @@ public class GraphismeBase extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 		
-		this.setContentPane(panel);
+//		this.setContentPane(panel);
 		this.setVisible(true);
-		go();
+//		go();
 	}
 
 	
 	private void go() {
 		for (int i = 0; i < 100; i++) {
 			
-			panel.repaint();
+//			panel.repaint();
 			
 			try {
 				Thread.sleep(100);

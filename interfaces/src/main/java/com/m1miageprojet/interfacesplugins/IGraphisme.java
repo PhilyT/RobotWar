@@ -7,6 +7,7 @@
  */
 package com.m1miageprojet.interfacesplugins;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 /**
