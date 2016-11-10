@@ -66,3 +66,7 @@ target
 .idea/*
 .settings
 .idea
+RobotWar.iml
+interfaces/interfaces.iml
+moteur/moteur.iml
+plugins/plugins.iml
