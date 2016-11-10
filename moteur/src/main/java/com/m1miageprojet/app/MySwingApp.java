@@ -10,28 +10,18 @@ import com.m1miageprojet.interfacesplugins.IGraphisme;
 public class MySwingApp extends JFrame 
 {
 	
-	public MySwingApp(IGraphisme graphisme) 
+	public MySwingApp(Object graphisme) 
 	{
-		JPanel pannel = new JPanel();
+		MonPanel panel = new MonPanel(graphisme);		
 		
-		// Création de la fenêtre
+		// Crï¿½ation de la fenï¿½tre
 		this.setTitle("Robot War");
 		this.setSize(500, 500);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setResizable(false);		
-		System.out.println("Coucou");
-//		graphisme = new IGraphisme() {
-//			
-//			public void draw(Graphics g) {
-//				this.draw(g);				
-//			}
-//		};
+		this.setResizable(false);
 		
-		graphisme.draw(getGraphics());
-		
-		this.setContentPane(pannel);
+		this.setContentPane(panel);
 		this.setVisible(true);
-		
 	}
 }

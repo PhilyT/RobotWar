@@ -1,44 +1,15 @@
 package com.m1miageprojet.plugingraphisme;
 
-import java.awt.Color;
+import java.awt.Graphics;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import com.m1miageprojet.interfacesplugins.IGraphisme;
+import com.m1miageprojet.interfacesplugins.IRobot;
 
-import com.m1miageprojet.plugingraphisme.*;
+public class GraphismeBase implements IGraphisme {
 
-public class GraphismeBase extends JFrame {
-	private Plateau panel = new Plateau();
-	
-	public GraphismeBase() {
-		
-		// Création de la fenêtre
-		this.setTitle("Robot War");
-		this.setSize(500, 500);
-		this.setLocationRelativeTo(null);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setResizable(false);
-		
-//		this.setContentPane(panel);
-		this.setVisible(true);
-//		go();
-	}
-
-	
-	private void go() {
-		for (int i = 0; i < 100; i++) {
-			
-//			panel.repaint();
-			
-			try {
-				Thread.sleep(100);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+	public void draw(IRobot r, Graphics g) {
+		g.setColor(r.getColor());
+		g.fillRect(r.getX(), r.getY(), 50, 50);
 	}
 	
-//	public static void main(String[] args) {
-//		GraphismeBase gb = new GraphismeBase();
-//	}
 }

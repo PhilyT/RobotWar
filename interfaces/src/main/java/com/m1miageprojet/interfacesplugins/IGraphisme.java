@@ -15,5 +15,5 @@ import java.awt.Graphics;
  *
  */
 public interface IGraphisme {
-	public void draw(Graphics g);
+	public void draw(IRobot r, Graphics g);
 }

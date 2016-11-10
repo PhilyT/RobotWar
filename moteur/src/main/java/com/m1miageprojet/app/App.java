@@ -16,38 +16,33 @@ import java.lang.reflect.InvocationTargetException;
  */
 public class App 
 {
-    public static void main( String[] args ) throws IllegalArgumentException, InvocationTargetException
+    public static void main( String[] args ) throws IllegalArgumentException, InvocationTargetException, InstantiationException, IllegalAccessException
     {
     	PluginsLoader myclassloader = new PluginsLoader();
-		File f = new File("plugins/plugins-1.0.jar");
+		File f = new File("../plugins/plugins-1.0.jar");
 		myclassloader.getPath().add(f);
 		try {
 			//Class<?> attaque = myclassloader.loadClass("com.m1miageprojet.pluginattaque.AttaqueCourte");
 			//Class<?> deplacement = myclassloader.loadClass("com.m1miageprojet.plugindeplacement.DeplacementSimple");
 			//Class<?> graphisme = myclassloader.loadClass("com.m1miageprojet.plugingraphisme.GraphismeFleur");
 			System.out.println("jusqu'ici tout va bien");
-			Class<?> plateau = myclassloader.loadClass("com.m1miageprojet.plugingraphisme.Plateau");
-			System.out.println("je passe bine par là");
+			//Class<?> plateau = myclassloader.loadClass("com.m1miageprojet.plugingraphisme.Plateau");
+			Class<?> graphisme = myclassloader.loadClass("com.m1miageprojet.plugingraphisme.GraphismeBase");
 			try {
-				System.out.println("Chargement des plugins réussi !");
-				Constructor[] testConstruct = plateau.getConstructors();
-				IGraphisme testInstance = (IGraphisme) testConstruct[0].newInstance(null);
-				MySwingApp fenetre = new MySwingApp(testInstance);
-				//Object attaqueInstance = attaque.newInstance();
-				//Object deplacementInstance = deplacement.newInstance();
-				//Object graphismeInstance = graphisme.newInstance();
-				
-				/*Robot imrobot = new Robot(attaqueInstance, deplacementInstance, graphismeInstance);
-				Plateau plateau = new Plateau();
-				plateau.getRobots().add(imrobot);
-				MySwingApp app = new MySwingApp(plateau);*/
-			} catch (InstantiationException e) {
-				// TODO Auto-generated catch block
+				Constructor c = graphisme.getConstructor();
+				IGraphisme g = (IGraphisme) c.newInstance();
+				MySwingApp fenetre = new MySwingApp(g);
+				fenetre.repaint();
+			} catch (NoSuchMethodException e) {
 				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				// TODO Auto-generated catch block
+			} catch (SecurityException e) {
 				e.printStackTrace();
 			}
+			System.out.println("je passe bine par lï¿½");
+			System.out.println("Chargement des plugins rï¿½ussi !");
+			//Object attaqueInstance = attaque.newInstance();
+			//Object deplacementInstance = deplacement.newInstance();
+			//Object graphismeInstance = graphisme.newInstance();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
