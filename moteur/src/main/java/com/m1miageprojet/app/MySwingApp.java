@@ -10,7 +10,7 @@ import com.m1miageprojet.interfacesplugins.IGraphisme;
 public class MySwingApp extends JFrame 
 {
 	
-	public MySwingApp(Object graphisme) 
+	public MySwingApp(IGraphisme graphisme) 
 	{
 		MonPanel panel = new MonPanel(graphisme);		
 		
