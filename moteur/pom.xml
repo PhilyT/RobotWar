@@ -43,8 +43,6 @@
 					<outputDirectory>../</outputDirectory>
 					<archive>
 						<manifest>
-							<addClasspath>true</addClasspath>
-							<classpathPrefix>lib/</classpathPrefix>
 							<mainClass>com.m1miageprojet.app.App</mainClass>
 						</manifest>
 					</archive>
