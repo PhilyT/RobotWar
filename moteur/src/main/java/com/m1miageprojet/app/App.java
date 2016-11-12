@@ -20,7 +20,7 @@ public class App
     {
     	PluginsLoader myclassloader = new PluginsLoader();
 		File f = new File("../plugins/plugins-1.0.jar");
-		myclassloader.getPath().add(f);
+		//myclassloader.getPath().add(f);
 		try {
 			//Class<?> attaque = myclassloader.loadClass("com.m1miageprojet.pluginattaque.AttaqueCourte");
 			//Class<?> deplacement = myclassloader.loadClass("com.m1miageprojet.plugindeplacement.DeplacementSimple");

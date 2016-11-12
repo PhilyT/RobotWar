@@ -91,11 +91,11 @@ public class PluginsLoader extends SecureClassLoader
 
 	public static void main(String[] args) {
 		PluginsLoader myclassloader = new PluginsLoader();
-		File f = new File("RobotWar-1.0.jar");
+		File f = new File("moteur-1.0.jar");
 		myclassloader.getPath().add(f);
 		try {
 			Class<?> c = myclassloader.loadClass("com.m1miageprojet.gestionplugin.PluginLoader");
-			System.out.println("Classe chargé : " + c.getName());
+			System.out.println("Classe chargï¿½ : " + c.getName());
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}

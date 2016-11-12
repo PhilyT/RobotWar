@@ -20,7 +20,8 @@ public class MySwingApp extends JFrame
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
-		
+
+
 		this.setContentPane(panel);
 		this.setVisible(true);
 	}
