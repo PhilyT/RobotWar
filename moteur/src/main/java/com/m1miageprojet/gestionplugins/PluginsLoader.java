@@ -36,8 +36,12 @@ public class PluginsLoader extends SecureClassLoader
 
 		byte[] result = null;
 		for (File file : path) {
-			if (true) {
+			try{
 				return loadClassJar(result, file, pathclass);
+			}
+			catch(NullPointerException e)
+			{
+				
 			}
 		}
 		throw new ClassNotFoundException();

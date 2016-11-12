@@ -1,9 +1,7 @@
 package com.m1miageprojet.app;
 
-import java.awt.Graphics;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 import com.m1miageprojet.interfacesplugins.IGraphisme;
 
