@@ -38,8 +38,8 @@ public class App
 			} catch (SecurityException e) {
 				e.printStackTrace();
 			}
-			System.out.println("je passe bine par lï¿½");
-			System.out.println("Chargement des plugins rï¿½ussi !");
+			System.out.println("je passe bine par là");
+			System.out.println("Chargement des plugins réussi !");
 			//Object attaqueInstance = attaque.newInstance();
 			//Object deplacementInstance = deplacement.newInstance();
 			//Object graphismeInstance = graphisme.newInstance();
