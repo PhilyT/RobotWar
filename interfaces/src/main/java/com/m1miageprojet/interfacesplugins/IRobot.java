@@ -7,6 +7,7 @@
  */
 package com.m1miageprojet.interfacesplugins;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 /**
@@ -17,4 +18,7 @@ public interface IRobot {
 	public void drawRobot(Graphics g);
 	public int getX();
 	public int getY();
+	public Color getColor();
+	public void setX(int x);
+	public void setY(int y);
 }

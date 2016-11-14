@@ -1,11 +1,9 @@
 package com.m1miageprojet.app;
 
 import java.io.File;
-
-import javax.swing.JPanel;
 import com.m1miageprojet.gestionplugins.PluginsLoader;
+import com.m1miageprojet.interfacesplugins.IDeplacement;
 import com.m1miageprojet.interfacesplugins.IGraphisme;
-
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
@@ -28,14 +26,22 @@ public class App
 			System.out.println("jusqu'ici tout va bien");
 			//Class<?> plateau = myclassloader.loadClass("com.m1miageprojet.plugingraphisme.Plateau");
 			Class<?> graphisme = myclassloader.loadClass("com.m1miageprojet.plugingraphisme.GraphismeBase");
+			Class<?> deplacement = myclassloader.loadClass("com.m1miageprojet.plugindeplacement.DeplacementSimple");
 			try {
-				Constructor c = graphisme.getConstructor();
-				IGraphisme g = (IGraphisme) c.newInstance();
-				MySwingApp fenetre = new MySwingApp(g);
-				fenetre.repaint();
+				Constructor cGraph = graphisme.getConstructor();
+				Constructor cDep = deplacement.getConstructor();
+				IGraphisme g = (IGraphisme) cGraph.newInstance();
+				IDeplacement d = (IDeplacement) cDep.newInstance();
+				MySwingApp fenetre = new MySwingApp(g, d);
+				for(int i = 0; i < 50; i++) {
+					fenetre.repaint();
+					Thread.sleep(1000);
+				}
 			} catch (NoSuchMethodException e) {
 				e.printStackTrace();
 			} catch (SecurityException e) {
+				e.printStackTrace();
+			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 			System.out.println("je passe bine par là");

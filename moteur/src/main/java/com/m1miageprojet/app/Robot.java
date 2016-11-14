@@ -7,7 +7,10 @@
  */
 package com.m1miageprojet.app;
 
+import java.awt.Color;
 import java.awt.Graphics;
+
+import com.m1miageprojet.interfacesplugins.IDeplacement;
 import com.m1miageprojet.interfacesplugins.IGraphisme;
 import com.m1miageprojet.interfacesplugins.IRobot;
 
@@ -17,10 +20,14 @@ import com.m1miageprojet.interfacesplugins.IRobot;
  */
 public class Robot implements IRobot {
 	private int x, y, width, height;
+	private Color color;
 	private IGraphisme graphisme;
+	private IDeplacement deplacement;
 	
-	public Robot(int x, int y, IGraphisme graphisme) {
+	public Robot(int x, int y, Color c, IGraphisme graphisme, IDeplacement deplacement) {
 		this.graphisme = graphisme;
+		this.deplacement = deplacement;
+		this.color = c;
 		this.x = x;
 		this.y = y;
 		this.width = 50; this.height = 50;
@@ -32,6 +39,10 @@ public class Robot implements IRobot {
 	public void drawRobot(Graphics g) {
 		graphisme.draw(this, g);
 	}
+	
+	public void moveRobot() {
+		deplacement.move(this);
+	}
 
 	public int getX() {
 		return x;
@@ -40,4 +51,16 @@ public class Robot implements IRobot {
 	public int getY() {
 		return y;
 	}	
+	
+	public void setX(int x) {
+		this.x = x;
+	}
+	
+	public void setY(int y) {
+		this.y = y;
+	}
+
+	public Color getColor() {
+		return color;
+	}
 }
