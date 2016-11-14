@@ -1,9 +1,7 @@
 package com.m1miageprojet.app;
 
-import java.awt.Graphics;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 import com.m1miageprojet.interfacesplugins.IGraphisme;
 
@@ -20,7 +18,8 @@ public class MySwingApp extends JFrame
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
-		
+
+
 		this.setContentPane(panel);
 		this.setVisible(true);
 	}

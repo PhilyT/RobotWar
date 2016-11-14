@@ -36,8 +36,12 @@ public class PluginsLoader extends SecureClassLoader
 
 		byte[] result = null;
 		for (File file : path) {
-			if (true) {
+			try{
 				return loadClassJar(result, file, pathclass);
+			}
+			catch(NullPointerException e)
+			{
+				
 			}
 		}
 		throw new ClassNotFoundException();
@@ -91,11 +95,11 @@ public class PluginsLoader extends SecureClassLoader
 
 	public static void main(String[] args) {
 		PluginsLoader myclassloader = new PluginsLoader();
-		File f = new File("RobotWar-1.0.jar");
+		File f = new File("moteur-1.0.jar");
 		myclassloader.getPath().add(f);
 		try {
 			Class<?> c = myclassloader.loadClass("com.m1miageprojet.gestionplugin.PluginLoader");
-			System.out.println("Classe chargé : " + c.getName());
+			System.out.println("Classe chargï¿½ : " + c.getName());
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
