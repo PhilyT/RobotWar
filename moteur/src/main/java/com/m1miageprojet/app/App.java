@@ -17,8 +17,10 @@ public class App
     public static void main( String[] args ) throws IllegalArgumentException, InvocationTargetException, InstantiationException, IllegalAccessException
     {
     	PluginsLoader myclassloader = new PluginsLoader();
-		File f = new File("../plugins/plugins-1.0.jar");
+		File f = new File("plugins/plugins-1.0.jar");
+		File f2 = new File("interfaces/interfaces-1.0.jar");
 		myclassloader.getPath().add(f);
+		myclassloader.getPath().add(f2);
 		try {
 			//Class<?> attaque = myclassloader.loadClass("com.m1miageprojet.pluginattaque.AttaqueCourte");
 			//Class<?> deplacement = myclassloader.loadClass("com.m1miageprojet.plugindeplacement.DeplacementSimple");

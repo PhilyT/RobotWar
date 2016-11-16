@@ -56,7 +56,7 @@ public class SwingRepository {
             try {
 
 
-                PluginRepository repo = new PluginRepository(new File("plugins/")); //
+                PluginRepository repo = new PluginRepository(new File("../plugins/")); //
 
                 ArrayList<Class<?>> resultat = (ArrayList<Class<?>>) repo.load();
                 System.out.println(resultat.isEmpty());
