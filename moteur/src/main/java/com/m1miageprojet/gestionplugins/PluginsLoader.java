@@ -84,7 +84,6 @@ public class PluginsLoader extends SecureClassLoader
 	private byte[] loadClassJar(byte[] result, File file, String pathclass) throws ClassNotFoundException, IOException {
 		//System.out.println("je passe bien ici");
 		JarFile jf = new JarFile(file.getPath());
-		
 		JarEntry je = jf.getJarEntry(pathclass);
 		//System.out.println(je);
 		InputStream is = jf.getInputStream(je);
@@ -95,7 +94,7 @@ public class PluginsLoader extends SecureClassLoader
 
 	public static void main(String[] args) {
 		PluginsLoader myclassloader = new PluginsLoader();
-		File f = new File("moteur-1.0.jar");
+		File f = new File("../moteur-1.0.jar");
 		myclassloader.getPath().add(f);
 		try {
 			Class<?> c = myclassloader.loadClass("com.m1miageprojet.gestionplugin.PluginLoader");
