@@ -9,9 +9,11 @@ package com.m1miageprojet.app;
 
 import java.awt.Color;
 import java.awt.Graphics;
-
+import java.util.ArrayList;
+import com.m1miageprojet.interfacesplugins.IAttaque;
 import com.m1miageprojet.interfacesplugins.IDeplacement;
 import com.m1miageprojet.interfacesplugins.IGraphisme;
+import com.m1miageprojet.interfacesplugins.IProjectile;
 import com.m1miageprojet.interfacesplugins.IRobot;
 
 /**
@@ -23,14 +25,18 @@ public class Robot implements IRobot {
 	private Color color;
 	private IGraphisme graphisme;
 	private IDeplacement deplacement;
+	private IAttaque attaque;
+	private ArrayList<IProjectile> projectiles;
 	
-	public Robot(int x, int y, Color c, IGraphisme graphisme, IDeplacement deplacement) {
+	public Robot(int x, int y, Color c, IGraphisme graphisme, IDeplacement deplacement, IAttaque attaque) {
 		this.graphisme = graphisme;
 		this.deplacement = deplacement;
+		this.attaque = attaque;
 		this.color = c;
 		this.x = x;
 		this.y = y;
 		this.width = 50; this.height = 50;
+		projectiles = new ArrayList<IProjectile>();
 	}
 
 	/**
@@ -42,6 +48,16 @@ public class Robot implements IRobot {
 	
 	public void moveRobot() {
 		deplacement.move(this);
+	}
+	
+	public void tirer(Graphics g) {
+		IProjectile p = new Projectile(this.x + 50, this.y + 50);
+		projectiles.add(p);
+		attaque.tirer(p, g);
+		for (int i = 0; i < projectiles.size(); i++) {
+			projectiles.get(i).deplace();
+			attaque.deplace(projectiles.get(i), g);
+		}
 	}
 
 	public int getX() {
