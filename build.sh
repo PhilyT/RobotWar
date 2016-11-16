@@ -29,4 +29,4 @@ echo "|---------------------------------------|"
 echo ""
 
 echo "--- Lancement de RobotWar..."
-java -jar moteur-1.0.jar
+java -jar RobotWar-jar-with-dependencies.jar

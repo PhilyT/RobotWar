@@ -16,28 +16,22 @@
         <module>moteur</module>	
     </modules>
 
-    <!--<build>
+    <build>
         <pluginManagement>
             <plugins>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <configuration>
-                        <source>1.5</source>
-                        <target>1.5</target>
-                        <fork>true</fork>
-                        <executable>C:\Program Files\Java\jdk1.7.0_79\bin\javac</executable>
+                        <source>1.7</source>
+                        <target>1.7</target>
+
                     </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
-    </build>-->
-    <build>
-        <defaultGoal>
-            install
-        </defaultGoal>
     </build>
-    <url>http://maven.apache.org</url>
+
 
     <dependencies>
         <dependency>

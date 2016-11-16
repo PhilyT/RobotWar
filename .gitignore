@@ -14,6 +14,8 @@ moteur/.classpath
 moteur/.idea/*
 moteur/.settings
 moteur/.idea
+RobotWar-jar-with-dependencies.jar
+moteur/moteur-1.0.jar
 moteur-1.0.jar
 
 interfaces/target/
@@ -32,6 +34,7 @@ interfaces/.classpath
 interfaces/.idea/*
 interfaces/.settings
 interfaces/.idea
+interfaces/interfaces-1.0.jar
 
 plugins/target/
 plugins/pom.xml.tag
@@ -49,6 +52,8 @@ plugins/.classpath
 plugins/.idea/*
 plugins/.settings
 plugins/.idea
+plugins/plugins-1.0-jar-with-dependencies.jar
+plugins/plugins-1.0.jar
 
 target/
 pom.xml.tag

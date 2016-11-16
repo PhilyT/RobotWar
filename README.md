@@ -34,7 +34,7 @@ mvn clean
 mvn package
 ```
 ```
-java -jar RobotWar-1.0.jar
+java -jar RobotWar-jar-with-dependencies.jar
 ```
   
 ### Documents  

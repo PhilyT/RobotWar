@@ -12,6 +12,7 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
+import com.m1miageprojet.interfacesplugins.IAttaque;
 import com.m1miageprojet.interfacesplugins.IDeplacement;
 import com.m1miageprojet.interfacesplugins.IGraphisme;
 
@@ -26,9 +27,9 @@ public class MonPanel extends JPanel {
 	// Indice pour dire si on en est a la creation du panel ou simplement au rechargement
 	private int i;
 	
-	public MonPanel(IGraphisme graphisme, IDeplacement deplacement) {
-		r1 = new Robot(10, 10, Color.BLUE, graphisme, deplacement);
-		r2 = new Robot(430, 410, Color.RED, graphisme, deplacement);
+	public MonPanel(IGraphisme graphisme, IDeplacement deplacement, IAttaque attaque) {
+		r1 = new Robot(10, 10, Color.BLUE, graphisme, deplacement, attaque);
+		r2 = new Robot(430, 410, Color.RED, graphisme, deplacement, attaque);
 		i = 0;
 	}
 	
@@ -36,11 +37,15 @@ public class MonPanel extends JPanel {
 		if(i == 0) {
 			r1.drawRobot(g);
 			r2.drawRobot(g);
+			r1.tirer(g);
+			r2.tirer(g);
 		} else {
 			r1.moveRobot();
 			r2.moveRobot();
 			r1.drawRobot(g);
-			r2.drawRobot(g);	
+			r2.drawRobot(g);
+			r1.tirer(g);
+			r2.tirer(g);	
 		}
 		i++;
 	}

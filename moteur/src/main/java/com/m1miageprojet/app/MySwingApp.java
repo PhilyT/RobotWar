@@ -5,15 +5,16 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
+import com.m1miageprojet.interfacesplugins.IAttaque;
 import com.m1miageprojet.interfacesplugins.IDeplacement;
 import com.m1miageprojet.interfacesplugins.IGraphisme;
 
 public class MySwingApp extends JFrame 
 {
 	
-	public MySwingApp(IGraphisme graphisme, IDeplacement deplacement) 
+	public MySwingApp(IGraphisme graphisme, IDeplacement deplacement, IAttaque attaque) 
 	{
-		MonPanel panel = new MonPanel(graphisme, deplacement);
+		MonPanel panel = new MonPanel(graphisme, deplacement, attaque);
 		panel.setSize(new Dimension(500, 500));
 		// Creation de la fenetre
 		this.setTitle("Robot War");
