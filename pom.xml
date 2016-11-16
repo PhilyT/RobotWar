@@ -16,7 +16,7 @@
         <module>moteur</module>	
     </modules>
 
-    <build>
+    <!--<build>
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -31,7 +31,13 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+    </build>-->
+    <build>
+        <defaultGoal>
+            install
+        </defaultGoal>
     </build>
+    <url>http://maven.apache.org</url>
 
     <dependencies>
         <dependency>

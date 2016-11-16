@@ -17,7 +17,7 @@ public class App
     public static void main( String[] args ) throws IllegalArgumentException, InvocationTargetException, InstantiationException, IllegalAccessException
     {
     	PluginsLoader myclassloader = new PluginsLoader();
-		File f = new File("../plugins/plugins-1.0.jar");
+		File f = new File("plugins/plugins-1.0.jar");
 		myclassloader.getPath().add(f);
 		try {
 			//Class<?> attaque = myclassloader.loadClass("com.m1miageprojet.pluginattaque.AttaqueCourte");
@@ -44,8 +44,8 @@ public class App
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			System.out.println("je passe bine par là");
-			System.out.println("Chargement des plugins réussi !");
+			System.out.println("je passe bine par l");
+			System.out.println("Chargement des plugins reussi !");
 			//Object attaqueInstance = attaque.newInstance();
 			//Object deplacementInstance = deplacement.newInstance();
 			//Object graphismeInstance = graphisme.newInstance();

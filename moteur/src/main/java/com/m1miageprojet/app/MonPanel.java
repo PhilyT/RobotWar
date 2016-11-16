@@ -23,7 +23,7 @@ public class MonPanel extends JPanel {
 	private Robot r1;
 	private Robot r2;
 	
-	// Indice pour dire si on en est a la création du panel ou simplement au rechargement
+	// Indice pour dire si on en est a la creation du panel ou simplement au rechargement
 	private int i;
 	
 	public MonPanel(IGraphisme graphisme, IDeplacement deplacement) {
