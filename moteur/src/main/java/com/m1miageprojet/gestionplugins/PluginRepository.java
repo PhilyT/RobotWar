@@ -21,6 +21,10 @@ public class PluginRepository {
 
    public List<Class<?>> load() throws IOException {
        final PluginsLoader loaderClass = new PluginsLoader();
+       File fich1 = new File("plugins/plugins-1.0.jar");
+       File fich2 =new File("interfaces/interfaces-1.0.jar");
+       loaderClass.getPath().add(fich1);
+       loaderClass.getPath().add(fich2);
        final List<Class<?>> ListToReturn = new ArrayList<Class<?>>();
        Path p = Paths.get(folder.toString());
        return walk(folder);
