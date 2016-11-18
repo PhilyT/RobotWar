@@ -50,8 +50,8 @@ public class Robot implements IRobot {
 		deplacement.move(this);
 	}
 	
-	public void tirer(Graphics g) {
-		IProjectile p = new Projectile(this.x + 50, this.y + 50);
+	public void tirer(Graphics g, IRobot adversaire) {
+		IProjectile p = new Projectile(this.x + 50, this.y + 50, adversaire);
 		projectiles.add(p);
 		attaque.tirer(p, g);
 		for (int i = 0; i < projectiles.size(); i++) {

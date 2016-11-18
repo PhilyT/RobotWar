@@ -1,9 +1,16 @@
+/**
+ * @author Nicolas Kircun
+ * Date de creation 10 nov. 2016
+ * Nom du projet interfaces
+ * com.m1miageprojet.app - IProjectile.java
+ * Master 1 MIAGE - UNICE
+ */
 package com.m1miageprojet.interfacesplugins;
 
 public interface IProjectile {
 	public void deplace();
-	public int getX1();
-	public int getY1();
-	public int getX2();
-	public int getY2();
+	public double getX1();
+	public double getY1();
+	public double getX2();
+	public double getY2();
 }
