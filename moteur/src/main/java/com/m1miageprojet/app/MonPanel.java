@@ -33,6 +33,17 @@ public class MonPanel extends JPanel {
 		i = 0;
 	}
 	
+	public Robot getR1()
+	{
+		return r1;
+	}
+	
+	public Robot getR2()
+	{
+		return r2;
+	}
+	
+	@Override
 	public void paintComponent(Graphics g) {
 		if(i == 0) {
 			r1.drawRobot(g);

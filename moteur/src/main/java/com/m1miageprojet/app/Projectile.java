@@ -16,11 +16,12 @@ public class Projectile implements IProjectile {
 	private double y2;
 	private double x2;
 	private double coeffDir;
+	private Robot adversaire;
 	
-	public Projectile(int xDep, int yDep, IRobot adversaire) {
+	public Projectile(int xDep, int yDep, Robot adversaire) {
 		this.x1 = xDep;
 		this.y1 = yDep;
-		
+		this.adversaire = adversaire;
 		if(adversaire.getY() > this.y1 && adversaire.getX() > this.x1) {
 			coeffDir = ((adversaire.getY() - this.y1) / (adversaire.getX() - this.x1));
 		} else {
@@ -41,6 +42,10 @@ public class Projectile implements IProjectile {
 		this.y1 += 30 * rapportY;
 		this.x2 += 30 * rapportX;
 		this.y2 += 30 * rapportY;
+		if(adversaire.estTouche(x2, y2))
+		{
+			adversaire.subVie();
+		}
 	}
 
 	public double getX1() {

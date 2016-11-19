@@ -27,6 +27,7 @@ public class Robot implements IRobot {
 	private IDeplacement deplacement;
 	private IAttaque attaque;
 	private ArrayList<IProjectile> projectiles;
+	private int vie, energie;
 	
 	public Robot(int x, int y, Color c, IGraphisme graphisme, IDeplacement deplacement, IAttaque attaque) {
 		this.graphisme = graphisme;
@@ -37,6 +38,8 @@ public class Robot implements IRobot {
 		this.y = y;
 		this.width = 50; this.height = 50;
 		projectiles = new ArrayList<IProjectile>();
+		vie = 10;
+		energie = 10;
 	}
 
 	/**
@@ -50,7 +53,7 @@ public class Robot implements IRobot {
 		deplacement.move(this);
 	}
 	
-	public void tirer(Graphics g, IRobot adversaire) {
+	public void tirer(Graphics g, Robot adversaire) {
 		IProjectile p = new Projectile(this.x + 50, this.y + 50, adversaire);
 		projectiles.add(p);
 		attaque.tirer(p, g);
@@ -59,7 +62,20 @@ public class Robot implements IRobot {
 			attaque.deplace(projectiles.get(i), g);
 		}
 	}
-
+	
+	public boolean estTouche(double projectilX, double projectilY)
+	{
+		return ((projectilX <= (x + 25)) && (projectilX >= (x-25))) && ((projectilY <= (y+25)) && (projectilY >= (y+25)));
+	}
+	
+	public int getVie(){
+		return vie;
+	}
+	
+	public int getEnergie(){
+		return energie;
+	}
+	
 	public int getX() {
 		return x;
 	}
@@ -67,6 +83,14 @@ public class Robot implements IRobot {
 	public int getY() {
 		return y;
 	}	
+	
+	public void subVie() {
+		vie--;
+	}
+	
+	public void subEnergie(){
+		energie--;
+	}
 	
 	public void setX(int x) {
 		this.x = x;
