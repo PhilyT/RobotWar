@@ -37,15 +37,15 @@ public class MonPanel extends JPanel {
 		if(i == 0) {
 			r1.drawRobot(g);
 			r2.drawRobot(g);
-			r1.tirer(g);
-			r2.tirer(g);
+			r1.tirer(g, r2);
+			r2.tirer(g, r1);
 		} else {
 			r1.moveRobot();
 			r2.moveRobot();
 			r1.drawRobot(g);
 			r2.drawRobot(g);
-			r1.tirer(g);
-			r2.tirer(g);	
+			r1.tirer(g, r2);
+			r2.tirer(g, r1);	
 		}
 		i++;
 	}

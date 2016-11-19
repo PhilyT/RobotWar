@@ -1,23 +1,37 @@
+/**
+ * @author Nicolas Kircun
+ * Date de creation 10 nov. 2016
+ * Nom du projet plugins
+ * com.m1miageprojet.app - AttaqueCourte.java
+ * Master 1 MIAGE - UNICE
+ */
 package com.m1miageprojet.pluginattaque;
 
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Shape;
+import java.awt.geom.Line2D;
 
 import com.m1miageprojet.interfacesplugins.IAttaque;
 import com.m1miageprojet.interfacesplugins.IProjectile;
 
 public class AttaqueCourte implements IAttaque {
 
-	private int degats = 10, angle;
+//	private int degats = 10, angle;	
 	
-	private int x1 = 10, y1 = 10, midx = 50, midy = 200;
-	
-	
-	@Override
 	public void tirer(IProjectile p, Graphics g) {
-		g.drawLine(p.getX1(), p.getY1(), p.getX2(), p.getY2());
+		Graphics2D g2d = (Graphics2D) g;
+		Shape s = new Line2D.Double(p.getX1(), p.getY1(), p.getX2(), p.getY2());
+		g2d.setColor(Color.BLACK);
+		g2d.draw(s);
+//		g.drawLine(p.getX1(), p.getY1(), p.getX2(),  p.getY2());
 	}
 	
 	public void deplace(IProjectile p, Graphics g) {
-		g.drawLine(p.getX1(), p.getY1(), p.getX2(), p.getY2());
+		Graphics2D g2d = (Graphics2D) g;
+		Shape s = new Line2D.Double(p.getX1(), p.getY1(), p.getX2(), p.getY2());
+		g2d.setColor(Color.BLACK);
+		g2d.draw(s);
 	}
 }
