@@ -3,7 +3,7 @@ package com.m1miageprojet.app;
 
 import java.awt.Dimension;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 import com.m1miageprojet.interfacesplugins.IAttaque;
 import com.m1miageprojet.interfacesplugins.IDeplacement;
@@ -23,8 +23,9 @@ public class MySwingApp extends JFrame
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 
-
 		this.setContentPane(panel);
+
+
 		this.setVisible(true);
 	}
 }

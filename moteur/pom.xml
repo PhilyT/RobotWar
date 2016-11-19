@@ -18,11 +18,11 @@
 		</dependency>
 	</dependencies>
 	<build>
-<<<<<<< HEAD
 
-=======
+
+
 		<finalName>RobotWar</finalName>
->>>>>>> 1a90c265efbe983711852c6abe24d2d2798d188b
+
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

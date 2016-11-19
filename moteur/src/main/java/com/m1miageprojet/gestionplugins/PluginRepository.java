@@ -13,26 +13,25 @@ import java.util.List;
 public class PluginRepository {
     final List<Class<?>> ListToReturn = new ArrayList<Class<?>>();
     private final File folder;
-
+    private String finalFolder="";
     public PluginRepository(File folder) {
+        finalFolder =folder.toString();
         this.folder = folder;
 
     }
 
    public List<Class<?>> load() throws IOException {
-       final PluginsLoader loaderClass = new PluginsLoader();
-       File fich1 = new File("plugins/plugins-1.0.jar");
-       File fich2 = new File("interfaces/interfaces-1.0.jar");
-       loaderClass.getPath().add(fich1);
-       loaderClass.getPath().add(fich2);
-       final List<Class<?>> ListToReturn = new ArrayList<Class<?>>();
+
        Path p = Paths.get(folder.toString());
        return walk(folder);
    }
        //debut ajout
-  public List<Class<?>> walk( File folder ) {
-
-               final PluginsLoader loaderClass = new PluginsLoader();
+  public List<Class<?>> walk( File folder ) throws IOException {
+      final PluginsLoader loaderClass = new PluginsLoader();
+      File fich1= new File ("plugins/plugins-1.0.jar");
+      File fich2 = new File("interfaces/interfaces-1.0.jar");
+      loaderClass.getPath().add(fich1);
+      loaderClass.getPath().add(fich2);
                if (!folder.exists()){System.out.println("n'existe pas");}
                File[] list = folder.listFiles();
 
@@ -41,14 +40,14 @@ public class PluginRepository {
                for ( File f : list ) {
                    if ( f.isDirectory() ) {
                        walk( f );
-                     // System.out.println( "Dir:" + f.getAbsoluteFile() );
                    }
                    else {
                        if (f.toString().endsWith(".class")) {
-                           System.out.println("valable a charger "+folder.toString());
+                           System.out.println("valable a charger "+f.getAbsolutePath());
                            //get the name of file
+                           System.out.println(folder.toString());
 
-                           String classVisitedName = f.toString().substring(folder.toString().length() + 3);
+                           String classVisitedName = f.toString().substring(finalFolder.toString().length()+1);
                            System.out.println("apres premier traitement "+classVisitedName);
                            //On enlève l'extention (".class")
                            classVisitedName = classVisitedName.substring(0, classVisitedName.length() - 6);
@@ -63,8 +62,9 @@ public class PluginRepository {
                                e.printStackTrace();
                            }
                        }
+
                    }
-               } //ajouter
+               }
        return ListToReturn;
            }
 
