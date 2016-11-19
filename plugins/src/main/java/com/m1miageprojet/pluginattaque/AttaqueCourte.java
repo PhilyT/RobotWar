@@ -15,6 +15,7 @@ import java.awt.geom.Line2D;
 
 import com.m1miageprojet.interfacesplugins.IAttaque;
 import com.m1miageprojet.interfacesplugins.IProjectile;
+import com.m1miageprojet.interfacesplugins.IRobot;
 
 public class AttaqueCourte implements IAttaque {
 
@@ -33,5 +34,11 @@ public class AttaqueCourte implements IAttaque {
 		Shape s = new Line2D.Double(p.getX1(), p.getY1(), p.getX2(), p.getY2());
 		g2d.setColor(Color.BLACK);
 		g2d.draw(s);
+	}
+
+	@Override
+	public void touche(IProjectile p) {
+		// TODO Auto-generated method stub
+		p.getAdversaire().subVie(1);
 	}
 }

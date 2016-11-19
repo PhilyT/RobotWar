@@ -7,6 +7,7 @@
  */
 package com.m1miageprojet.app;
 
+import com.m1miageprojet.interfacesplugins.IAttaque;
 import com.m1miageprojet.interfacesplugins.IProjectile;
 import com.m1miageprojet.interfacesplugins.IRobot;
 
@@ -16,12 +17,14 @@ public class Projectile implements IProjectile {
 	private double y2;
 	private double x2;
 	private double coeffDir;
-	private Robot adversaire;
+	private IRobot adversaire;
+	private IAttaque attaque;
 	
-	public Projectile(int xDep, int yDep, Robot adversaire) {
+	public Projectile(int xDep, int yDep, IRobot adversaire, IAttaque attaque) {
+		this.attaque = attaque;
+		this.adversaire = adversaire;
 		this.x1 = xDep;
 		this.y1 = yDep;
-		this.adversaire = adversaire;
 		if(adversaire.getY() > this.y1 && adversaire.getX() > this.x1) {
 			coeffDir = ((adversaire.getY() - this.y1) / (adversaire.getX() - this.x1));
 		} else {
@@ -44,7 +47,7 @@ public class Projectile implements IProjectile {
 		this.y2 += 30 * rapportY;
 		if(adversaire.estTouche(x2, y2))
 		{
-			adversaire.subVie();
+			attaque.touche(this);
 		}
 	}
 
@@ -62,5 +65,11 @@ public class Projectile implements IProjectile {
 
 	public double getY2() {
 		return y2;
+	}
+
+	@Override
+	public IRobot getAdversaire() {
+		// TODO Auto-generated method stub
+		return adversaire;
 	}
 }

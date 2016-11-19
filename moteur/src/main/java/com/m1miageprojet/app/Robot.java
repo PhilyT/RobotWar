@@ -54,7 +54,7 @@ public class Robot implements IRobot {
 	}
 	
 	public void tirer(Graphics g, Robot adversaire) {
-		IProjectile p = new Projectile(this.x + 50, this.y + 50, adversaire);
+		IProjectile p = new Projectile(this.x + 50, this.y + 50, adversaire, attaque);
 		projectiles.add(p);
 		attaque.tirer(p, g);
 		for (int i = 0; i < projectiles.size(); i++) {
@@ -84,12 +84,12 @@ public class Robot implements IRobot {
 		return y;
 	}	
 	
-	public void subVie() {
-		vie--;
+	public void subVie(int degas) {
+		vie = vie - degas;
 	}
 	
-	public void subEnergie(){
-		energie--;
+	public void subEnergie(int consum){
+		energie = energie - consum;
 	}
 	
 	public void setX(int x) {
