@@ -32,7 +32,7 @@ public class MySwingApp extends JFrame
 	
 	public void run()
 	{
-		while(panel.getR1().getVie() > 0 || panel.getR2().getVie() >= 0) {
+		while(panel.getR1().getVie() > 0 && panel.getR2().getVie() > 0) {
 			this.repaint();
 			try {
 				Thread.sleep(200);
@@ -40,6 +40,14 @@ public class MySwingApp extends JFrame
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}
+		if(panel.getR1().getVie() > 0)
+		{
+			System.out.println("Robot r1 win !");
+		}
+		else
+		{
+			System.out.println("Robot r2 win !");
 		}
 	}
 }

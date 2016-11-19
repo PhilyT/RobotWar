@@ -65,7 +65,7 @@ public class Robot implements IRobot {
 	
 	public boolean estTouche(double projectilX, double projectilY)
 	{
-		return ((projectilX <= (x + 25)) && (projectilX >= (x-25))) && ((projectilY <= (y+25)) && (projectilY >= (y+25)));
+		return ((projectilX <= (x + 50)) && (projectilX >= (x-50))) && ((projectilY <= (y+50)) && (projectilY >= (y-50)));
 	}
 	
 	public int getVie(){
