@@ -30,10 +30,16 @@ public class Projectile implements IProjectile {
 		}
 }
 
-	public void deplace() {
+	public void deplace(boolean a) {
 		
-		this.x = this.x + 30;
-		this.y = (this.y + 30) * this.coeffDir;
+		if(a) {
+			this.x = this.x + 30;
+			this.y = (this.y + 30) * this.coeffDir;
+		} else {
+			this.x = this.x - 30;
+			this.y = (this.y - 30) * this.coeffDir;
+		}
+		
 		
 //		double rapportX = this.x / this.x2;
 //		double rapportY = this.y / this.y2;
