@@ -39,6 +39,10 @@ public class Projectile implements IProjectile {
 			this.x = this.x - 30;
 			this.y = (this.y - 30) * this.coeffDir;
 		}
+		if(adversaire.estTouche(x, y))
+		{
+			attaque.touche(this);
+		}
 		
 		
 //		double rapportX = this.x / this.x2;
@@ -47,10 +51,7 @@ public class Projectile implements IProjectile {
 //		this.y += 30 * rapportY;
 //		this.x2 += 30 * rapportX;
 //		this.y2 += 30 * rapportY;
-//		if(adversaire.estTouche(x2, y2))
-//		{
-//			attaque.touche(this);
-//		}
+//		
 	}
 
 	public double getX() {
