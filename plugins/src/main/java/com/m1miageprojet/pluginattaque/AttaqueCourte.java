@@ -22,18 +22,27 @@ public class AttaqueCourte implements IAttaque {
 //	private int degats = 10, angle;	
 	
 	public void tirer(IProjectile p, Graphics g) {
-		Graphics2D g2d = (Graphics2D) g;
-		Shape s = new Line2D.Double(p.getX1(), p.getY1(), p.getX2(), p.getY2());
-		g2d.setColor(Color.BLACK);
-		g2d.draw(s);
+		
+		g.setColor(Color.GREEN);
+		g.fillRect((int) p.getX(), (int) p.getY(), 5, 5);
+		
+		
+//		Graphics2D g2d = (Graphics2D) g;
+//		Shape s = new Line2D.Double(p.getX1(), p.getY1(), p.getX2(), p.getY2());
+//		g2d.setColor(Color.BLACK);
+//		g2d.draw(s);
 //		g.drawLine(p.getX1(), p.getY1(), p.getX2(),  p.getY2());
 	}
 	
 	public void deplace(IProjectile p, Graphics g) {
-		Graphics2D g2d = (Graphics2D) g;
-		Shape s = new Line2D.Double(p.getX1(), p.getY1(), p.getX2(), p.getY2());
-		g2d.setColor(Color.BLACK);
-		g2d.draw(s);
+		
+		g.setColor(Color.GREEN);
+		g.fillRect((int) p.getX(), (int) p.getY(), 5, 5);
+		
+//		Graphics2D g2d = (Graphics2D) g;
+//		Shape s = new Line2D.Double(p.getX1(), p.getY1(), p.getX2(), p.getY2());
+//		g2d.setColor(Color.BLACK);
+//		g2d.draw(s);
 	}
 
 	@Override

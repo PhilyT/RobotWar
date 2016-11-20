@@ -54,10 +54,20 @@ public class Robot implements IRobot {
 	}
 	
 	public void tirer(Graphics g, Robot adversaire) {
-		IProjectile p = new Projectile(this.x + 50, this.y + 50, adversaire, attaque);
+		IProjectile p;
+		if(this.x < adversaire.getX() && this.y < adversaire.getY()) {
+			p = new Projectile(this.x + 55, this.y + 55, adversaire, attaque);
+		} else if(this.x < adversaire.getX() && this.y > adversaire.getY()) {
+			p = new Projectile(this.x + 55, this.y - 10, adversaire, attaque);
+		} else if(this.x > adversaire.getX() && this.y < adversaire.getY()) {
+			p = new Projectile(this.x - 10, this.y + 55, adversaire, attaque);
+		} else {
+			p = new Projectile(this.x - 10, this.y - 10, adversaire, attaque);
+		}
+
 		projectiles.add(p);
 		attaque.tirer(p, g);
-		for (int i = 0; i < projectiles.size(); i++) {
+		for (int i = 1; i < projectiles.size(); i++) {
 			projectiles.get(i).deplace();
 			attaque.deplace(projectiles.get(i), g);
 		}

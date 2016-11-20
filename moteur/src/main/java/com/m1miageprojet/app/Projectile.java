@@ -13,9 +13,7 @@ import com.m1miageprojet.interfacesplugins.IRobot;
 
 public class Projectile implements IProjectile {
 	
-	private double x1, y1;
-	private double y2;
-	private double x2;
+	private double x, y;
 	private double coeffDir;
 	private IRobot adversaire;
 	private IAttaque attaque;
@@ -23,53 +21,41 @@ public class Projectile implements IProjectile {
 	public Projectile(int xDep, int yDep, IRobot adversaire, IAttaque attaque) {
 		this.attaque = attaque;
 		this.adversaire = adversaire;
-		this.x1 = xDep;
-		this.y1 = yDep;
-		if(adversaire.getY() > this.y1 && adversaire.getX() > this.x1) {
-			coeffDir = ((adversaire.getY() - this.y1) / (adversaire.getX() - this.x1));
+		this.x = xDep;
+		this.y = yDep;
+		if(adversaire.getY() > this.y && adversaire.getX() > this.x) {
+			coeffDir = ((adversaire.getY() - this.y) / (adversaire.getX() - this.x));
 		} else {
-			coeffDir = ((this.y1 - adversaire.getY()) / (this.x1 - adversaire.getX()));
+			coeffDir = ((this.y - adversaire.getY()) / (this.x - adversaire.getX()));
 		}
-		
-		double milieuX = (this.x1 + adversaire.getX()) / 2;
-		double milieuY = (this.y1 + adversaire.getY()) / 2;
-
-		this.x2 = milieuX - 30;
-		this.y2 = (milieuY - 30) * coeffDir;
-	}
+}
 
 	public void deplace() {
-		double rapportX = this.x1 / this.x2;
-		double rapportY = this.y1 / this.y2;
-		this.x1 += 30 * rapportX;
-		this.y1 += 30 * rapportY;
-		this.x2 += 30 * rapportX;
-		this.y2 += 30 * rapportY;
-		if(adversaire.estTouche(x2, y2))
-		{
-			attaque.touche(this);
-		}
+		
+		this.x = this.x + 30;
+		this.y = (this.y + 30) * this.coeffDir;
+		
+//		double rapportX = this.x / this.x2;
+//		double rapportY = this.y / this.y2;
+//		this.x += 30 * rapportX;
+//		this.y += 30 * rapportY;
+//		this.x2 += 30 * rapportX;
+//		this.y2 += 30 * rapportY;
+//		if(adversaire.estTouche(x2, y2))
+//		{
+//			attaque.touche(this);
+//		}
 	}
 
-	public double getX1() {
-		return x1;
+	public double getX() {
+		return x;
 	}
 
-	public double getY1() {
-		return y1;
+	public double getY() {
+		return y;
 	}
-
-	public double getX2() {
-		return x2;
-	}
-
-	public double getY2() {
-		return y2;
-	}
-
-	@Override
+	
 	public IRobot getAdversaire() {
-		// TODO Auto-generated method stub
 		return adversaire;
 	}
 }

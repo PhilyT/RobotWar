@@ -35,7 +35,8 @@ public class MySwingApp extends JFrame
 		while(panel.getR1().getVie() > 0 && panel.getR2().getVie() > 0) {
 			this.repaint();
 			try {
-				Thread.sleep(200);
+				// TODO A modifier
+				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
