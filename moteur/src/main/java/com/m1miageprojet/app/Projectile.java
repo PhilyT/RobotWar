@@ -31,25 +31,21 @@ public class Projectile implements IProjectile {
 		case 0:
 			this.x = r.getX() + 50;
 			this.y = r.getY() + 25;
-			System.out.println("1/ \nx tir : " + this.x + "\ny tir : " + this.y + "\nx robot : " + r.getX() + "\ny robot : " + r.getY());
 			break;
 		// attaque vers le bas
 		case 1:
 			this.x = r.getX() + 25;
 			this.y = r.getY() + 50;
-			System.out.println("2/ \nx tir : " + this.x + "\ny tir : " + this.y + "\nx robot : " + r.getX() + "\ny robot : " + r.getY());
 			break;
 		// attaque vers la gauche	
 		case 2:
 			this.x = r.getX();
 			this.y = r.getY() + 25;
-			System.out.println("3/ \nx tir : " + this.x + "\ny tir : " + this.y + "\nx robot : " + r.getX() + "\ny robot : " + r.getY());
 			break;
 		// attaque vers le haut
 		case 3:
 			this.x = r.getX() + 25;
 			this.y = r.getY();
-			System.out.println("4/ \nx tir : " + this.x + "\ny tir : " + this.y + "\nx robot : " + r.getX() + "\ny robot : " + r.getY());
 			break;
 		default:
 			break;

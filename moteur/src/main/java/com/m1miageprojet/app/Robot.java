@@ -64,22 +64,22 @@ public class Robot implements IRobot {
 		 */
 		int direction;
 		
-		if(adversaire.getX() >= this.x && adversaire.getX() < this.x + 25) {
-			if(adversaire.getY() <= this.y + 200) {
+		if(adversaire.getX() >= this.x - 50 && adversaire.getX() < this.x + 50) {
+			if(adversaire.getY() <= this.y + 200 && adversaire.getY() > this.y - 50) {
 				direction = 1;
 				projectile.attaque(direction, this);
 				attaque.attaque(projectile, g, direction);
-			} else if(adversaire.getY() < this.y - 150) {
+			} else if(adversaire.getY() > this.y - 150 && adversaire.getY() < this.y) {
 				direction = 3;
 				projectile.attaque(direction, this);
 				attaque.attaque(projectile, g, direction);
 			}
-		} else if(adversaire.getY() >= this.y && adversaire.getY() < this.y + 25) {
-			if(adversaire.getX() <= this.x + 200) {
+		} else if(adversaire.getY() >= this.y - 50 && adversaire.getY() < this.y + 50) {
+			if(adversaire.getX() <= this.x + 200 && adversaire.getX() > this.x + 50) {
 				direction = 0;
 				projectile.attaque(direction, this);
 				attaque.attaque(projectile, g, direction);
-			} else if(adversaire.getY() < this.y - 150) {
+			} else if(adversaire.getX() > this.x - 150 && adversaire.getX() < this.x) {
 				direction = 2;
 				projectile.attaque(direction, this);
 				attaque.attaque(projectile, g, direction);

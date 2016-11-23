@@ -29,7 +29,7 @@ public class MonPanel extends JPanel {
 	
 	public MonPanel(IGraphisme graphisme, IDeplacement deplacement, IAttaque attaque) {
 		r1 = new Robot(10, 10, Color.BLUE, graphisme, deplacement, attaque);
-		r2 = new Robot(430, 410, Color.RED, graphisme, deplacement, attaque);
+		r2 = new Robot(100, 100, Color.RED, graphisme, deplacement, attaque);
 		i = 0;
 	}
 	
