@@ -45,7 +45,6 @@ public class AttaqueCourte implements IAttaque {
 //		g2d.draw(s);
 	}
 
-	@Override
 	public void touche(IProjectile p) {
 		// TODO Auto-generated method stub
 		p.getAdversaire().subVie(5);

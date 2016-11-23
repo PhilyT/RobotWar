@@ -21,6 +21,7 @@ public class Projectile implements IProjectile {
 	
 	public Projectile(int xDep, int yDep, IRobot adversaire, IRobot tireur, IAttaque attaque) {
 		this.attaque = attaque;
+		this.tireur = tireur;
 		this.adversaire = adversaire;
 		this.x = xDep;
 		this.y = yDep;
@@ -67,7 +68,6 @@ public class Projectile implements IProjectile {
 		return adversaire;
 	}
 
-	@Override
 	public IRobot getTireur() {
 		// TODO Auto-generated method stub
 		return tireur;
