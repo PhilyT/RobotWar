@@ -25,7 +25,6 @@ public class Projectile implements IProjectile {
 	public Projectile(IRobot tireur) {
 		this.taille = 150;
 		this.tireur = tireur;
-//		this.adversaire = adversaire;
 }
 
 	public void attaque(Graphics gr, IRobot adversaire, IGraphisme g, IAttaque a) {	
