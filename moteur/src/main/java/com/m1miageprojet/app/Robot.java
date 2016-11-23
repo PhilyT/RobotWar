@@ -26,7 +26,8 @@ public class Robot implements IRobot {
 	private IGraphisme graphisme;
 	private IDeplacement deplacement;
 	private IAttaque attaque;
-	private ArrayList<IProjectile> projectiles;
+//	private ArrayList<IProjectile> projectiles;
+	private IProjectile projectile;
 	private int vie, energie;
 	
 	public Robot(int x, int y, Color c, IGraphisme graphisme, IDeplacement deplacement, IAttaque attaque) {
@@ -37,7 +38,7 @@ public class Robot implements IRobot {
 		this.x = x;
 		this.y = y;
 		this.width = 50; this.height = 50;
-		projectiles = new ArrayList<IProjectile>();
+		projectile = new Projectile();
 		vie = 10;
 		energie = 10;
 	}
@@ -54,27 +55,32 @@ public class Robot implements IRobot {
 	}
 	
 	public void tirer(Graphics g, Robot adversaire) {
-		IProjectile p;
-		boolean advDevant;
-		if(this.x < adversaire.getX() && this.y < adversaire.getY()) {
-			p = new Projectile(this.x + 55, this.y + 55, adversaire, attaque);
-			advDevant = true;
-		} else if(this.x < adversaire.getX() && this.y > adversaire.getY()) {
-			p = new Projectile(this.x + 55, this.y - 10, adversaire, attaque);
-			advDevant = true;
-		} else if(this.x > adversaire.getX() && this.y < adversaire.getY()) {
-			p = new Projectile(this.x - 10, this.y + 55, adversaire, attaque);
-			advDevant = false;
-		} else {
-			p = new Projectile(this.x - 10, this.y - 10, adversaire, attaque);
-			advDevant = false;
-		}
-
-		projectiles.add(p);
-		attaque.tirer(p, g);
-		for (int i = 1; i < projectiles.size(); i++) {
-			projectiles.get(i).deplace(advDevant);
-			attaque.deplace(projectiles.get(i), g);
+		
+		/**
+		 * indique la direction de l'attaque : 0 pour droite, 1 pour en bas, 2 pour gauche, 3 pour en haut
+		 */
+		int direction;
+		
+		if(adversaire.getX() >= this.x && adversaire.getX() < this.x + 25) {
+			if(adversaire.getY() <= this.y + 200) {
+				direction = 1;
+				projectile.attaque(direction, this);
+				attaque.attaque(projectile, g, direction);
+			} else if(adversaire.getY() < this.y - 150) {
+				direction = 3;
+				projectile.attaque(direction, this);
+				attaque.attaque(projectile, g, direction);
+			}
+		} else if(adversaire.getY() >= this.y && adversaire.getY() < this.y + 25) {
+			if(adversaire.getX() <= this.x + 200) {
+				direction = 0;
+				projectile.attaque(direction, this);
+				attaque.attaque(projectile, g, direction);
+			} else if(adversaire.getY() < this.y - 150) {
+				direction = 2;
+				projectile.attaque(direction, this);
+				attaque.attaque(projectile, g, direction);
+			}
 		}
 	}
 	

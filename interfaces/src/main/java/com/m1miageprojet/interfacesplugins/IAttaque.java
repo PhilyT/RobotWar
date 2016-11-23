@@ -8,7 +8,7 @@ import java.awt.Graphics;
 public interface IAttaque {
 //    public int degats();
 //    public int getNbrArme();
-	public void tirer(IProjectile p, Graphics g);
+	public void attaque(IProjectile p, Graphics g, int direction);
 	public void deplace(IProjectile p, Graphics g);
 	public void touche(IProjectile p);
 }

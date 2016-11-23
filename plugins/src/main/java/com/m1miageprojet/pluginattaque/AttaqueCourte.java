@@ -21,17 +21,31 @@ public class AttaqueCourte implements IAttaque {
 
 //	private int degats = 10, angle;	
 	
-	public void tirer(IProjectile p, Graphics g) {
+	public void attaque(IProjectile p, Graphics g, int direction) {
 		
 		g.setColor(Color.GREEN);
-		g.fillRect((int) p.getX(), (int) p.getY(), 5, 5);
 		
 		
-//		Graphics2D g2d = (Graphics2D) g;
-//		Shape s = new Line2D.Double(p.getX1(), p.getY1(), p.getX2(), p.getY2());
-//		g2d.setColor(Color.BLACK);
-//		g2d.draw(s);
-//		g.drawLine(p.getX1(), p.getY1(), p.getX2(),  p.getY2());
+		switch (direction) {
+		// attaque vers la droite
+		case 0:
+			g.drawLine(p.getX(), p.getY(), p.getX() + p.getTaille(), p.getY());
+			break;
+		// attaque vers le bas
+		case 1:
+			g.drawLine(p.getX(), p.getY(), p.getX(), p.getY() + p.getTaille());
+			break;
+		// attaque vers la gauche	
+		case 2:
+			g.drawLine(p.getX(), p.getY(), p.getX() - p.getTaille(), p.getY());
+			break;
+		// attaque vers le haut
+		case 3:
+			g.drawLine(p.getX(), p.getY(), p.getX(), p.getY() - p.getTaille());
+			break;
+		default:
+			break;
+		}
 	}
 	
 	public void deplace(IProjectile p, Graphics g) {

@@ -8,8 +8,9 @@
 package com.m1miageprojet.interfacesplugins;
 
 public interface IProjectile {
-	public void deplace(boolean a);
-	public double getX();
-	public double getY();
+	public void attaque(int direction, IRobot r);
+	public int getX();
+	public int getY();
+	public int getTaille();
 	public IRobot getAdversaire();
 }

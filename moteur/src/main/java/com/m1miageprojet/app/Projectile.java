@@ -13,53 +13,58 @@ import com.m1miageprojet.interfacesplugins.IRobot;
 
 public class Projectile implements IProjectile {
 	
-	private double x, y;
-	private double coeffDir;
+	private int x, y;
 	private IRobot adversaire;
 	private IAttaque attaque;
+	private int taille;
 	
-	public Projectile(int xDep, int yDep, IRobot adversaire, IAttaque attaque) {
-		this.attaque = attaque;
-		this.adversaire = adversaire;
-		this.x = xDep;
-		this.y = yDep;
-		if(adversaire.getY() > this.y && adversaire.getX() > this.x) {
-			coeffDir = ((adversaire.getY() - this.y) / (adversaire.getX() - this.x));
-		} else {
-			coeffDir = ((this.y - adversaire.getY()) / (this.x - adversaire.getX()));
-		}
+	public Projectile() {
+		this.taille = 150;
+//		this.adversaire = adversaire;
 }
 
-	public void deplace(boolean a) {
+	public void attaque(int direction, IRobot r) {
 		
-		if(a) {
-			this.x = this.x + 30;
-			this.y = (this.y + 30) * this.coeffDir;
-		} else {
-			this.x = this.x - 30;
-			this.y = (this.y - 30) * this.coeffDir;
+		switch (direction) {
+		// attaque vers la droite
+		case 0:
+			this.x = r.getX() + 50;
+			this.y = r.getY() + 25;
+			System.out.println("1/ \nx tir : " + this.x + "\ny tir : " + this.y + "\nx robot : " + r.getX() + "\ny robot : " + r.getY());
+			break;
+		// attaque vers le bas
+		case 1:
+			this.x = r.getX() + 25;
+			this.y = r.getY() + 50;
+			System.out.println("2/ \nx tir : " + this.x + "\ny tir : " + this.y + "\nx robot : " + r.getX() + "\ny robot : " + r.getY());
+			break;
+		// attaque vers la gauche	
+		case 2:
+			this.x = r.getX();
+			this.y = r.getY() + 25;
+			System.out.println("3/ \nx tir : " + this.x + "\ny tir : " + this.y + "\nx robot : " + r.getX() + "\ny robot : " + r.getY());
+			break;
+		// attaque vers le haut
+		case 3:
+			this.x = r.getX() + 25;
+			this.y = r.getY();
+			System.out.println("4/ \nx tir : " + this.x + "\ny tir : " + this.y + "\nx robot : " + r.getX() + "\ny robot : " + r.getY());
+			break;
+		default:
+			break;
 		}
-		if(adversaire.estTouche(x, y))
-		{
-			attaque.touche(this);
-		}
-		
-		
-//		double rapportX = this.x / this.x2;
-//		double rapportY = this.y / this.y2;
-//		this.x += 30 * rapportX;
-//		this.y += 30 * rapportY;
-//		this.x2 += 30 * rapportX;
-//		this.y2 += 30 * rapportY;
-//		
 	}
 
-	public double getX() {
+	public int getX() {
 		return x;
 	}
 
-	public double getY() {
+	public int getY() {
 		return y;
+	}
+	
+	public int getTaille() {
+		return taille;
 	}
 	
 	public IRobot getAdversaire() {
