@@ -34,8 +34,8 @@ public class PluginRepository {
        //debut ajout
   public List<Class<?>> walk( File folder ) throws IOException {
       final PluginsLoader loaderClass = new PluginsLoader();
-      File fich1= new File ("plugins/plugins-1.0.jar");
-      File fich2 = new File("interfaces/interfaces-1.0.jar");
+      File fich1= new File ("../plugins/plugins-1.0-jar-with-dependencies.jar");
+      File fich2 = new File("../interfaces/interfaces.jar");
       loaderClass.getPath().add(fich1);
       loaderClass.getPath().add(fich2);
                if (!folder.exists()){System.out.println("n'existe pas");}

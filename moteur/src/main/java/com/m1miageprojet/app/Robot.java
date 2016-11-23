@@ -38,7 +38,6 @@ public class Robot implements IRobot {
 		this.x = x;
 		this.y = y;
 		this.width = 50; this.height = 50;
-		projectile = new Projectile();
 		vie = 10;
 		energie = 10;
 	}
@@ -63,7 +62,7 @@ public class Robot implements IRobot {
 		 * indique la direction de l'attaque : 0 pour droite, 1 pour en bas, 2 pour gauche, 3 pour en haut
 		 */
 		int direction;
-		
+		projectile = new Projectile(adversaire, this);
 		if(adversaire.getX() >= this.x - 50 && adversaire.getX() < this.x + 50) {
 			if(adversaire.getY() <= this.y + 200 && adversaire.getY() > this.y - 50) {
 				direction = 1;
@@ -87,9 +86,37 @@ public class Robot implements IRobot {
 		}
 	}
 	
+	/**
+	 * Methode pour savoir si le robot est touché par un projectil en mouvement.
+	 */
 	public boolean estTouche(double projectilX, double projectilY)
 	{
 		return ((projectilX <= (x + 50)) && (projectilX >= (x))) && ((projectilY <= (y+50)) && (projectilY >= (y)));
+	}
+	
+	/**
+	 * Methode pour savoir si le robot est touché par un projectil en ligne.
+	 */
+	@Override
+	public boolean estTouche(double posXProjectilInit, double posYProjectilInit, double posXProjectilFin,
+			double posYProjctilFin, int direction) {
+			boolean result = false;
+			switch(direction)
+			{
+				// attaque vers la droite
+				case 0:
+					result = (((x+50) <= posXProjectilFin) && (x >= posXProjectilInit)) && ((y <= posYProjctilFin) && ((y+50) >= posYProjctilFin));
+				// attaque vers le bas
+				case 1:
+					result = ((posXProjectilFin <= (x + 50)) && (posXProjectilFin >= (x))) && (((y+50) <= posYProjctilFin) && (y >= posYProjectilInit));
+				// attaque vers la gauche	
+				case 2:
+					result = (((x+50) <= posXProjectilInit) && (x >= posXProjectilFin)) && ((y <= posYProjctilFin) && ((y+50) >= posYProjctilFin));
+				// attaque vers le haut
+				case 3:
+					result = ((posXProjectilFin <= (x + 50)) && (posXProjectilFin >= (x))) && ((y >= posYProjctilFin) && ((y+50) <= posYProjectilInit));
+			}
+			return result;
 	}
 	
 	public int getVie(){
@@ -127,4 +154,6 @@ public class Robot implements IRobot {
 	public Color getColor() {
 		return color;
 	}
+
+	
 }

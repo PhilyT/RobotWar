@@ -7,7 +7,7 @@
  */
 package com.m1miageprojet.app;
 
-import com.m1miageprojet.interfacesplugins.IAttaque;
+//import com.m1miageprojet.interfacesplugins.IAttaque;
 import com.m1miageprojet.interfacesplugins.IProjectile;
 import com.m1miageprojet.interfacesplugins.IRobot;
 
@@ -16,12 +16,13 @@ public class Projectile implements IProjectile {
 	private int x, y;
 	private IRobot adversaire;
 	private IRobot tireur;
-	private IAttaque attaque;
+//	private IAttaque attaque;
 	private int taille;
 	
-	public Projectile() {
+	public Projectile(IRobot adversaire, IRobot tireur) {
 		this.taille = 150;
-//		this.adversaire = adversaire;
+		this.adversaire = adversaire;
+		this.tireur = tireur;
 }
 
 	public void attaque(int direction, IRobot r) {

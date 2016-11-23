@@ -24,24 +24,38 @@ public class AttaqueCourte implements IAttaque {
 	public void attaque(IProjectile p, Graphics g, int direction) {
 		
 		g.setColor(Color.GREEN);
-		
-		
 		switch (direction) {
 		// attaque vers la droite
 		case 0:
 			g.drawLine(p.getX(), p.getY(), p.getX() + p.getTaille(), p.getY());
+			if(p.getAdversaire().estTouche(p.getX(), p.getY(), p.getX() + p.getTaille(), p.getY(), direction))
+			{
+				touche(p);
+			}
 			break;
 		// attaque vers le bas
 		case 1:
 			g.drawLine(p.getX(), p.getY(), p.getX(), p.getY() + p.getTaille());
+			if(p.getAdversaire().estTouche(p.getX(), p.getY(), p.getX(), p.getY() + p.getTaille(), direction))
+			{
+				touche(p);
+			}
 			break;
 		// attaque vers la gauche	
 		case 2:
 			g.drawLine(p.getX(), p.getY(), p.getX() - p.getTaille(), p.getY());
+			if(p.getAdversaire().estTouche(p.getX(), p.getY(), p.getX() - p.getTaille(), p.getY(), direction))
+			{
+				touche(p);
+			}
 			break;
 		// attaque vers le haut
 		case 3:
 			g.drawLine(p.getX(), p.getY(), p.getX(), p.getY() - p.getTaille());
+			if(p.getAdversaire().estTouche(p.getX(), p.getY(), p.getX(), p.getY() - p.getTaille(), direction))
+			{
+				touche(p);
+			}
 			break;
 		default:
 			break;
