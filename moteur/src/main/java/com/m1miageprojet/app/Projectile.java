@@ -16,9 +16,10 @@ public class Projectile implements IProjectile {
 	private double x, y;
 	private double coeffDir;
 	private IRobot adversaire;
+	private IRobot tireur;
 	private IAttaque attaque;
 	
-	public Projectile(int xDep, int yDep, IRobot adversaire, IAttaque attaque) {
+	public Projectile(int xDep, int yDep, IRobot adversaire, IRobot tireur, IAttaque attaque) {
 		this.attaque = attaque;
 		this.adversaire = adversaire;
 		this.x = xDep;
@@ -64,5 +65,11 @@ public class Projectile implements IProjectile {
 	
 	public IRobot getAdversaire() {
 		return adversaire;
+	}
+
+	@Override
+	public IRobot getTireur() {
+		// TODO Auto-generated method stub
+		return tireur;
 	}
 }

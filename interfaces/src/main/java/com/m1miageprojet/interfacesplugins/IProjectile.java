@@ -12,4 +12,5 @@ public interface IProjectile {
 	public double getX();
 	public double getY();
 	public IRobot getAdversaire();
+	public IRobot getTireur();
 }

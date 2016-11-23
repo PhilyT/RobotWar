@@ -48,6 +48,8 @@ public class AttaqueCourte implements IAttaque {
 	@Override
 	public void touche(IProjectile p) {
 		// TODO Auto-generated method stub
-		p.getAdversaire().subVie(1);
+		p.getAdversaire().subVie(5);
+		p.getTireur().subEnergie(1);
+		System.out.println("Robot touché { vie : " + p.getAdversaire().getVie() + " energie : " + p.getAdversaire().getEnergie());
 	}
 }

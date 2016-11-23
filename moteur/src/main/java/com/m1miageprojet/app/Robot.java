@@ -51,22 +51,25 @@ public class Robot implements IRobot {
 	
 	public void moveRobot() {
 		deplacement.move(this);
+		if(energie <10){
+			energie++;
+		}
 	}
 	
 	public void tirer(Graphics g, Robot adversaire) {
 		IProjectile p;
 		boolean advDevant;
 		if(this.x < adversaire.getX() && this.y < adversaire.getY()) {
-			p = new Projectile(this.x + 55, this.y + 55, adversaire, attaque);
+			p = new Projectile(this.x + 55, this.y + 55, adversaire, this, attaque);
 			advDevant = true;
 		} else if(this.x < adversaire.getX() && this.y > adversaire.getY()) {
-			p = new Projectile(this.x + 55, this.y - 10, adversaire, attaque);
+			p = new Projectile(this.x + 55, this.y - 10, adversaire, this, attaque);
 			advDevant = true;
 		} else if(this.x > adversaire.getX() && this.y < adversaire.getY()) {
-			p = new Projectile(this.x - 10, this.y + 55, adversaire, attaque);
+			p = new Projectile(this.x - 10, this.y + 55, adversaire, this, attaque);
 			advDevant = false;
 		} else {
-			p = new Projectile(this.x - 10, this.y - 10, adversaire, attaque);
+			p = new Projectile(this.x - 10, this.y - 10, adversaire, this, attaque);
 			advDevant = false;
 		}
 
@@ -80,7 +83,7 @@ public class Robot implements IRobot {
 	
 	public boolean estTouche(double projectilX, double projectilY)
 	{
-		return ((projectilX <= (x + 50)) && (projectilX >= (x-50))) && ((projectilY <= (y+50)) && (projectilY >= (y-50)));
+		return ((projectilX <= (x + 50)) && (projectilX >= (x))) && ((projectilY <= (y+50)) && (projectilY >= (y)));
 	}
 	
 	public int getVie(){
