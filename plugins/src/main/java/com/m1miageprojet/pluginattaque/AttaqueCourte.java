@@ -14,63 +14,55 @@ import java.awt.Shape;
 import java.awt.geom.Line2D;
 
 import com.m1miageprojet.interfacesplugins.IAttaque;
+import com.m1miageprojet.interfacesplugins.IGraphisme;
 import com.m1miageprojet.interfacesplugins.IProjectile;
 import com.m1miageprojet.interfacesplugins.IRobot;
 
 public class AttaqueCourte implements IAttaque {
 
-//	private int degats = 10, angle;	
-	
-	public void attaque(IProjectile p, Graphics g, int direction) {
-		
-		g.setColor(Color.GREEN);
-		switch (direction) {
-		// attaque vers la droite
-		case 0:
-			g.drawLine(p.getX(), p.getY(), p.getX() + p.getTaille(), p.getY());
-			if(p.getAdversaire().estTouche(p.getX(), p.getY(), p.getX() + p.getTaille(), p.getY(), direction))
-			{
-				touche(p);
+	public void attaque(Graphics gr, IGraphisme g, IRobot adversaire, IProjectile p) {
+		int direction;
+		if(adversaire.getX() >= p.getTireur().getX() - 50 && adversaire.getX() < p.getTireur().getX() + 50) {
+			if(adversaire.getY() <= p.getTireur().getY() + 200 && adversaire.getY() > p.getTireur().getY() - 50) {
+				direction = 1;
+				p.setX(p.getTireur().getX() + 25);
+				p.setY(p.getTireur().getY() + 50);
+				g.drawWeapon(p, gr, direction);
+				if(p.getAdversaire().estTouche(p.getX(), p.getY(), p.getX(), p.getY() + p.getTaille(), direction))
+				{
+					touche(p);
+				}
+			} else if(adversaire.getY() > p.getTireur().getY() - 150 && adversaire.getY() < p.getTireur().getY()) {
+				direction = 3;
+				p.setX(p.getTireur().getX() + 25);
+				p.setY(p.getTireur().getY());
+				g.drawWeapon(p, gr, direction);
+				if(p.getAdversaire().estTouche(p.getX(), p.getY(), p.getX(), p.getY() - p.getTaille(), direction))
+				{
+					touche(p);
+				}
 			}
-			break;
-		// attaque vers le bas
-		case 1:
-			g.drawLine(p.getX(), p.getY(), p.getX(), p.getY() + p.getTaille());
-			if(p.getAdversaire().estTouche(p.getX(), p.getY(), p.getX(), p.getY() + p.getTaille(), direction))
-			{
-				touche(p);
+		} else if(adversaire.getY() >= p.getTireur().getY() - 50 && adversaire.getY() < p.getTireur().getY() + 50) {
+			if(adversaire.getX() <= p.getTireur().getX() + 200 && adversaire.getX() > p.getTireur().getX() + 50) {
+				direction = 0;
+				p.setX(p.getTireur().getX() + 50);
+				p.setY(p.getTireur().getY() + 25);
+				g.drawWeapon(p, gr, direction);
+				if(p.getAdversaire().estTouche(p.getX(), p.getY(), p.getX() + p.getTaille(), p.getY(), direction))
+				{
+					touche(p);
+				}
+			} else if(adversaire.getX() > p.getTireur().getX() - 150 && adversaire.getX() < p.getTireur().getX()) {
+				direction = 2;
+				p.setX(p.getTireur().getX());
+				p.setY(p.getTireur().getY() + 25);
+				g.drawWeapon(p, gr, direction);
+				if(p.getAdversaire().estTouche(p.getX(), p.getY(), p.getX() - p.getTaille(), p.getY(), direction))
+				{
+					touche(p);
+				}
 			}
-			break;
-		// attaque vers la gauche	
-		case 2:
-			g.drawLine(p.getX(), p.getY(), p.getX() - p.getTaille(), p.getY());
-			if(p.getAdversaire().estTouche(p.getX(), p.getY(), p.getX() - p.getTaille(), p.getY(), direction))
-			{
-				touche(p);
-			}
-			break;
-		// attaque vers le haut
-		case 3:
-			g.drawLine(p.getX(), p.getY(), p.getX(), p.getY() - p.getTaille());
-			if(p.getAdversaire().estTouche(p.getX(), p.getY(), p.getX(), p.getY() - p.getTaille(), direction))
-			{
-				touche(p);
-			}
-			break;
-		default:
-			break;
 		}
-	}
-	
-	public void deplace(IProjectile p, Graphics g) {
-		
-		g.setColor(Color.GREEN);
-		g.fillRect((int) p.getX(), (int) p.getY(), 5, 5);
-		
-//		Graphics2D g2d = (Graphics2D) g;
-//		Shape s = new Line2D.Double(p.getX1(), p.getY1(), p.getX2(), p.getY2());
-//		g2d.setColor(Color.BLACK);
-//		g2d.draw(s);
 	}
 
 	public void touche(IProjectile p) {
