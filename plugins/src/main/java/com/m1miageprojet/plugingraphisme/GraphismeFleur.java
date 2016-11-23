@@ -1,6 +1,8 @@
 package com.m1miageprojet.plugingraphisme;
 
-public class GraphismeFleur 
+import com.m1miageprojet.interfacesplugins.IGraphisme;
+
+public class GraphismeFleur
 {
 
 }

@@ -1,5 +1,7 @@
 package com.m1miageprojet.gestionplugins;
 
+import com.m1miageprojet.interfacesplugins.IAttaque;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
@@ -14,6 +16,10 @@ public class PluginRepository {
     final List<Class<?>> ListToReturn = new ArrayList<Class<?>>();
     private final File folder;
     private String finalFolder="";
+    List<Class<?>> pluginsGraphisme= new ArrayList<>();
+    List<Class<?>> pluginsAttaque= new ArrayList<>();
+    List<Class<?>> pluginsDeplacment = new ArrayList<>();
+
     public PluginRepository(File folder) {
         finalFolder =folder.toString();
         this.folder = folder;
@@ -45,8 +51,6 @@ public class PluginRepository {
                        if (f.toString().endsWith(".class")) {
                            System.out.println("valable a charger "+f.getAbsolutePath());
                            //get the name of file
-                           System.out.println(folder.toString());
-
                            String classVisitedName = f.toString().substring(finalFolder.toString().length()+1);
                            System.out.println("apres premier traitement "+classVisitedName);
                            //On enlève l'extention (".class")
@@ -57,7 +61,22 @@ public class PluginRepository {
                            classVisitedName = classVisitedName.replace("/", ".");
                            System.out.println("apres premier traitement 3 "+classVisitedName);
                            try {
-                               ListToReturn.add(loaderClass.loadClass(classVisitedName));
+                               //ajout
+
+                               Class c =loaderClass.loadClass(classVisitedName);
+                               Class<?>[] interfaces=c.getInterfaces();
+                             
+                               for (int i=0;i<interfaces.length;i++){
+                                   switch (interfaces[i].getSimpleName()){
+                                       case "IAttaque": pluginsAttaque.add(c); break;
+                                       case "IDeplacement" : pluginsDeplacment.add(c); break;
+                                       case "IGraphisme" : pluginsGraphisme.add(c); break;
+                                   }
+                               }
+                               ListToReturn.add(c);
+
+                               //fin ajout
+                             //  ListToReturn.add(loaderClass.loadClass(classVisitedName));
                            } catch (ClassNotFoundException e) {
                                e.printStackTrace();
                            }
@@ -67,6 +86,18 @@ public class PluginRepository {
                }
        return ListToReturn;
            }
+    public List<Class<?>> getPluginsGraphisme()
+       {
+           return pluginsGraphisme;
+       }
+    public List<Class<?>> getPluginsDeplacment()
+    {
+        return pluginsDeplacment;
+    }
+    public List<Class<?>> getPluginsAttaque()
+    {
+        return pluginsAttaque;
+    }
 
        }
 

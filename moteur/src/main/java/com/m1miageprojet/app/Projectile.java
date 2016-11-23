@@ -15,6 +15,7 @@ public class Projectile implements IProjectile {
 	
 	private int x, y;
 	private IRobot adversaire;
+	private IRobot tireur;
 	private IAttaque attaque;
 	private int taille;
 	
@@ -69,5 +70,10 @@ public class Projectile implements IProjectile {
 	
 	public IRobot getAdversaire() {
 		return adversaire;
+	}
+
+	public IRobot getTireur() {
+		// TODO Auto-generated method stub
+		return tireur;
 	}
 }
