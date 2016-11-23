@@ -38,7 +38,7 @@ public class Robot implements IRobot {
 		this.x = x;
 		this.y = y;
 		this.width = 50; this.height = 50;
-		projectile = new Projectile();
+		projectile = new Projectile(this);
 		vie = 10;
 		energie = 10;
 	}
@@ -59,32 +59,34 @@ public class Robot implements IRobot {
 	
 	public void tirer(Graphics g, Robot adversaire) {
 		
-		/**
+		/*
 		 * indique la direction de l'attaque : 0 pour droite, 1 pour en bas, 2 pour gauche, 3 pour en haut
 		 */
-		int direction;
+//		int direction;
+//		
+//		if(adversaire.getX() >= this.x - 50 && adversaire.getX() < this.x + 50) {
+//			if(adversaire.getY() <= this.y + 200 && adversaire.getY() > this.y - 50) {
+//				direction = 1;
+//				projectile.attaque(direction, this);
+//				attaque.attaque(projectile, g, direction);
+//			} else if(adversaire.getY() > this.y - 150 && adversaire.getY() < this.y) {
+//				direction = 3;
+//				projectile.attaque(direction, this);
+//				attaque.attaque(projectile, g, direction);
+//			}
+//		} else if(adversaire.getY() >= this.y - 50 && adversaire.getY() < this.y + 50) {
+//			if(adversaire.getX() <= this.x + 200 && adversaire.getX() > this.x + 50) {
+//				direction = 0;
+//				projectile.attaque(direction, this);
+//				attaque.attaque(projectile, g, direction);
+//			} else if(adversaire.getX() > this.x - 150 && adversaire.getX() < this.x) {
+//				direction = 2;
+//				projectile.attaque(direction, this);
+//				attaque.attaque(projectile, g, direction);
+//			}
+//		}
 		
-		if(adversaire.getX() >= this.x - 50 && adversaire.getX() < this.x + 50) {
-			if(adversaire.getY() <= this.y + 200 && adversaire.getY() > this.y - 50) {
-				direction = 1;
-				projectile.attaque(direction, this);
-				attaque.attaque(projectile, g, direction);
-			} else if(adversaire.getY() > this.y - 150 && adversaire.getY() < this.y) {
-				direction = 3;
-				projectile.attaque(direction, this);
-				attaque.attaque(projectile, g, direction);
-			}
-		} else if(adversaire.getY() >= this.y - 50 && adversaire.getY() < this.y + 50) {
-			if(adversaire.getX() <= this.x + 200 && adversaire.getX() > this.x + 50) {
-				direction = 0;
-				projectile.attaque(direction, this);
-				attaque.attaque(projectile, g, direction);
-			} else if(adversaire.getX() > this.x - 150 && adversaire.getX() < this.x) {
-				direction = 2;
-				projectile.attaque(direction, this);
-				attaque.attaque(projectile, g, direction);
-			}
-		}
+		projectile.attaque(g, adversaire, graphisme, attaque);
 	}
 	
 	public boolean estTouche(double projectilX, double projectilY)

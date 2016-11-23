@@ -7,7 +7,10 @@
  */
 package com.m1miageprojet.app;
 
+import java.awt.Graphics;
+
 import com.m1miageprojet.interfacesplugins.IAttaque;
+import com.m1miageprojet.interfacesplugins.IGraphisme;
 import com.m1miageprojet.interfacesplugins.IProjectile;
 import com.m1miageprojet.interfacesplugins.IRobot;
 
@@ -19,37 +22,14 @@ public class Projectile implements IProjectile {
 	private IAttaque attaque;
 	private int taille;
 	
-	public Projectile() {
+	public Projectile(IRobot tireur) {
 		this.taille = 150;
+		this.tireur = tireur;
 //		this.adversaire = adversaire;
 }
 
-	public void attaque(int direction, IRobot r) {
-		
-		switch (direction) {
-		// attaque vers la droite
-		case 0:
-			this.x = r.getX() + 50;
-			this.y = r.getY() + 25;
-			break;
-		// attaque vers le bas
-		case 1:
-			this.x = r.getX() + 25;
-			this.y = r.getY() + 50;
-			break;
-		// attaque vers la gauche	
-		case 2:
-			this.x = r.getX();
-			this.y = r.getY() + 25;
-			break;
-		// attaque vers le haut
-		case 3:
-			this.x = r.getX() + 25;
-			this.y = r.getY();
-			break;
-		default:
-			break;
-		}
+	public void attaque(Graphics gr, IRobot adversaire, IGraphisme g, IAttaque a) {	
+		a.attaque(gr, g, adversaire, this);
 	}
 
 	public int getX() {
@@ -69,7 +49,14 @@ public class Projectile implements IProjectile {
 	}
 
 	public IRobot getTireur() {
-		// TODO Auto-generated method stub
 		return tireur;
+	}
+
+	public void setX(int x) {
+		this.x = x;		
+	}
+
+	public void setY(int y) {
+		this.y = y;		
 	}
 }
