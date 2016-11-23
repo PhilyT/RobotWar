@@ -11,10 +11,11 @@ import com.m1miageprojet.interfacesplugins.IGraphisme;
 
 public class MySwingApp extends JFrame 
 {
+	private MonPanel panel;
 	
 	public MySwingApp(IGraphisme graphisme, IDeplacement deplacement, IAttaque attaque) 
 	{
-		MonPanel panel = new MonPanel(graphisme, deplacement, attaque);
+		panel = new MonPanel(graphisme, deplacement, attaque);
 		panel.setSize(new Dimension(500, 500));
 		// Creation de la fenetre
 		this.setTitle("Robot War");
@@ -27,5 +28,27 @@ public class MySwingApp extends JFrame
 
 
 		this.setVisible(true);
+	}
+	
+	public void run()
+	{
+		while(panel.getR1().getVie() > 0 && panel.getR2().getVie() > 0) {
+			this.repaint();
+			try {
+				// TODO A modifier
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		if(panel.getR1().getVie() > 0)
+		{
+			System.out.println("Robot r1 win !");
+		}
+		else
+		{
+			System.out.println("Robot r2 win !");
+		}
 	}
 }

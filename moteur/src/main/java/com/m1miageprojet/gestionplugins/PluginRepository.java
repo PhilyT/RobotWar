@@ -65,12 +65,12 @@ public class PluginRepository {
 
                                Class c =loaderClass.loadClass(classVisitedName);
                                Class<?>[] interfaces=c.getInterfaces();
-                              System.out.println(" toul dyal " +c.getSimpleName()+"hpwa " +interfaces.length);
+                             
                                for (int i=0;i<interfaces.length;i++){
                                    switch (interfaces[i].getSimpleName()){
-                                       case "IAttaque": System.out.println("R attaque");pluginsAttaque.add(c); break;
-                                       case "IDeplacement" : System.out.println("R depl");pluginsDeplacment.add(c); break;
-                                       case "IGraphisme" : System.out.println("R f graphism");pluginsGraphisme.add(c); break;
+                                       case "IAttaque": pluginsAttaque.add(c); break;
+                                       case "IDeplacement" : pluginsDeplacment.add(c); break;
+                                       case "IGraphisme" : pluginsGraphisme.add(c); break;
                                    }
                                }
                                ListToReturn.add(c);

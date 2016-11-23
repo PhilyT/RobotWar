@@ -27,6 +27,7 @@ public class Robot implements IRobot {
 	private IDeplacement deplacement;
 	private IAttaque attaque;
 	private ArrayList<IProjectile> projectiles;
+	private int vie, energie;
 	
 	public Robot(int x, int y, Color c, IGraphisme graphisme, IDeplacement deplacement, IAttaque attaque) {
 		this.graphisme = graphisme;
@@ -37,6 +38,8 @@ public class Robot implements IRobot {
 		this.y = y;
 		this.width = 50; this.height = 50;
 		projectiles = new ArrayList<IProjectile>();
+		vie = 10;
+		energie = 10;
 	}
 
 	/**
@@ -50,16 +53,44 @@ public class Robot implements IRobot {
 		deplacement.move(this);
 	}
 	
-	public void tirer(Graphics g, IRobot adversaire) {
-		IProjectile p = new Projectile(this.x + 50, this.y + 50, adversaire);
+	public void tirer(Graphics g, Robot adversaire) {
+		IProjectile p;
+		boolean advDevant;
+		if(this.x < adversaire.getX() && this.y < adversaire.getY()) {
+			p = new Projectile(this.x + 55, this.y + 55, adversaire, attaque);
+			advDevant = true;
+		} else if(this.x < adversaire.getX() && this.y > adversaire.getY()) {
+			p = new Projectile(this.x + 55, this.y - 10, adversaire, attaque);
+			advDevant = true;
+		} else if(this.x > adversaire.getX() && this.y < adversaire.getY()) {
+			p = new Projectile(this.x - 10, this.y + 55, adversaire, attaque);
+			advDevant = false;
+		} else {
+			p = new Projectile(this.x - 10, this.y - 10, adversaire, attaque);
+			advDevant = false;
+		}
+
 		projectiles.add(p);
 		attaque.tirer(p, g);
-		for (int i = 0; i < projectiles.size(); i++) {
-			projectiles.get(i).deplace();
+		for (int i = 1; i < projectiles.size(); i++) {
+			projectiles.get(i).deplace(advDevant);
 			attaque.deplace(projectiles.get(i), g);
 		}
 	}
-
+	
+	public boolean estTouche(double projectilX, double projectilY)
+	{
+		return ((projectilX <= (x + 50)) && (projectilX >= (x-50))) && ((projectilY <= (y+50)) && (projectilY >= (y-50)));
+	}
+	
+	public int getVie(){
+		return vie;
+	}
+	
+	public int getEnergie(){
+		return energie;
+	}
+	
 	public int getX() {
 		return x;
 	}
@@ -67,6 +98,14 @@ public class Robot implements IRobot {
 	public int getY() {
 		return y;
 	}	
+	
+	public void subVie(int degas) {
+		vie = vie - degas;
+	}
+	
+	public void subEnergie(int consum){
+		energie = energie - consum;
+	}
 	
 	public void setX(int x) {
 		this.x = x;

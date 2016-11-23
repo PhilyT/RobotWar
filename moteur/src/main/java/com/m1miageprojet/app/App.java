@@ -18,19 +18,13 @@ public class App
     public static void main( String[] args ) throws IllegalArgumentException, InvocationTargetException, InstantiationException, IllegalAccessException
     {
     	PluginsLoader myclassloader = new PluginsLoader();
-
-
 		File f = new File("plugins/plugins-1.0-jar-with-dependencies.jar");
 		File f2 = new File("interfaces/interfaces-1.0.jar");
-
+		//File f = new File("../plugins/plugins-1.0-jar-with-dependencies.jar");
+		//File f2 = new File("../interfaces/interfaces-1.0.jar");
 		myclassloader.getPath().add(f);
 		myclassloader.getPath().add(f2);
 		try {
-			//Class<?> attaque = myclassloader.loadClass("com.m1miageprojet.pluginattaque.AttaqueCourte");
-			//Class<?> deplacement = myclassloader.loadClass("com.m1miageprojet.plugindeplacement.DeplacementSimple");
-			//Class<?> graphisme = myclassloader.loadClass("com.m1miageprojet.plugingraphisme.GraphismeFleur");
-			System.out.println("jusqu'ici tout va bien");
-			//Class<?> plateau = myclassloader.loadClass("com.m1miageprojet.plugingraphisme.Plateau");
 			Class<?> graphisme = myclassloader.loadClass("com.m1miageprojet.plugingraphisme.GraphismeBase");
 			Class<?> deplacement = myclassloader.loadClass("com.m1miageprojet.plugindeplacement.DeplacementSimple");
 			Class<?> attaque = myclassloader.loadClass("com.m1miageprojet.pluginattaque.AttaqueCourte");
@@ -42,26 +36,12 @@ public class App
 				IDeplacement d = (IDeplacement) cDep.newInstance();
 				IAttaque a = (IAttaque) cAtt.newInstance();
 				MySwingApp fenetre = new MySwingApp(g, d, a);
-				for(int i = 0; i < 50; i++) {
-					fenetre.repaint();
-					Thread.sleep(1000);
-				}
+				fenetre.run();
 			} catch (NoSuchMethodException e) {
 				e.printStackTrace();
 			} catch (SecurityException e) {
 				e.printStackTrace();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-
-			System.out.println("je passe bine par l");
-
-			System.out.println("je passe bine par la");
-
-			System.out.println("Chargement des plugins reussi !");
-			//Object attaqueInstance = attaque.newInstance();
-			//Object deplacementInstance = deplacement.newInstance();
-			//Object graphismeInstance = graphisme.newInstance();
+			} 
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
