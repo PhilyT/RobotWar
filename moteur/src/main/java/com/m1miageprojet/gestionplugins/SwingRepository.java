@@ -15,6 +15,7 @@ import java.util.*;
 /**
  * Created by deptinfo on 12/11/2016.
  */
+
 public class SwingRepository {
     String selectedpath="";
 
@@ -27,8 +28,8 @@ public class SwingRepository {
             JButton button = new JButton("charger");
             JFileChooser fc = new JFileChooser();
             fc.setCurrentDirectory(new File("."));
-            fc.setDialogTitle("cherger plugins");
-            fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            fc.setDialogTitle("charger plugins");
+            fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
             if(fc.showOpenDialog(button)==JFileChooser.APPROVE_OPTION){
 
             }
@@ -53,6 +54,9 @@ public class SwingRepository {
         JMenuBar bar = new JMenuBar();
         frame.setJMenuBar(bar);
         JMenu fileM = new JMenu("plugins");
+        //JMenuItem chargerPlugins=new JMenuItem();
+        //chargerPlugins.setText("charger Plugins");
+        //fileM.add(chargerPlugins);
         bar.add(fileM);
         fileM.add(new AbstractAction("Save", new ImageIcon("res/save-icon16.png")) {
             @Override
@@ -73,11 +77,11 @@ public class SwingRepository {
         try {
 
              System.out.println("swing repository : " +selectedpath);
-            PluginRepository repo = new PluginRepository(new File(selectedpath)); //
+             PluginRepository repo = new PluginRepository(new File(selectedpath)); //
 
-            ArrayList<Class<?>> resultat = (ArrayList<Class<?>>) repo.load();
-           System.out.println("Teeeeest "+repo.getPluginsDeplacment().get(0).getName());
-            System.out.println(resultat.isEmpty());
+          ArrayList<Class<?>> resultat = (ArrayList<Class<?>>) repo.load();
+           System.out.println("Teeeeest "+repo.getPluginsAttaque().get(0).getName());
+          //  System.out.println(resultat.isEmpty());
 
             for (Class<?> c : resultat) {
                 // System.out.println(c.getName());
