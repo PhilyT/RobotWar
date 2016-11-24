@@ -29,8 +29,9 @@ public class Robot implements IRobot {
 //	private ArrayList<IProjectile> projectiles;
 	private IProjectile projectile;
 	private int vie, energie;
+	private String nom;	//pour test
 	
-	public Robot(int x, int y, Color c, IGraphisme graphisme, IDeplacement deplacement, IAttaque attaque) {
+	public Robot(int x, int y, Color c, IGraphisme graphisme, IDeplacement deplacement, IAttaque attaque, String nom) {
 		this.graphisme = graphisme;
 		this.deplacement = deplacement;
 		this.attaque = attaque;
@@ -40,6 +41,7 @@ public class Robot implements IRobot {
 		this.width = 50; this.height = 50;
 		vie = 10;
 		energie = 10;
+		this.nom = nom;
 	}
 
 	/**
@@ -81,15 +83,19 @@ public class Robot implements IRobot {
 				// attaque vers la droite
 				case 0:
 					result = (((x+50) <= posXProjectilFin) && (x >= posXProjectilInit)) && ((y <= posYProjctilFin) && ((y+50) >= posYProjctilFin));
+					break;
 				// attaque vers le bas
 				case 1:
 					result = ((posXProjectilFin <= (x + 50)) && (posXProjectilFin >= (x))) && (((y+50) <= posYProjctilFin) && (y >= posYProjectilInit));
+					break;
 				// attaque vers la gauche	
 				case 2:
 					result = (((x+50) <= posXProjectilInit) && (x >= posXProjectilFin)) && ((y <= posYProjctilFin) && ((y+50) >= posYProjctilFin));
+					break;
 				// attaque vers le haut
 				case 3:
 					result = ((posXProjectilFin <= (x + 50)) && (posXProjectilFin >= (x))) && ((y >= posYProjctilFin) && ((y+50) <= posYProjectilInit));
+					break;
 			}
 			return result;
 	}
@@ -108,7 +114,11 @@ public class Robot implements IRobot {
 
 	public int getY() {
 		return y;
-	}	
+	}
+	
+	public String getNom(){
+		return nom;
+	}
 	
 	public void subVie(int degas) {
 		vie = vie - degas;
