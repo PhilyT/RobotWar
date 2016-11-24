@@ -83,6 +83,7 @@ public class SwingRepository {
            System.out.println("Teeeeest "+repo.getPluginsAttaque().get(0).getName());
           //  System.out.println(resultat.isEmpty());
 
+
             for (Class<?> c : resultat) {
                 // System.out.println(c.getName());
                 dynamicM.add(c.getName());

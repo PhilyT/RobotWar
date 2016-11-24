@@ -26,4 +26,5 @@ public interface IRobot {
 	public void subVie(int degas);
 	public void subEnergie(int consum);
 	public boolean estTouche(double posXProjectil, double posYProjectil);
+	public boolean estTouche(double posXProjectilInit, double posYProjectilInit, double posXProjectilFin, double posYProjctilFin, int direction);
 }

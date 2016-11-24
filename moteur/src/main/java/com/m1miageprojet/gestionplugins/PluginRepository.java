@@ -32,10 +32,8 @@ public class PluginRepository {
 
     }
 
-    public List<Class<?>> load() throws IOException {
-
+   public List<Class<?>> load() throws IOException {
         loaderClass.getPath().add(new File(finalFolder));
-        //  return walk(folder);
         return walk(folder);
     }
 

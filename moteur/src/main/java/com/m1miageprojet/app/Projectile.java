@@ -7,62 +7,58 @@
  */
 package com.m1miageprojet.app;
 
+
+import java.awt.Graphics;
+
 import com.m1miageprojet.interfacesplugins.IAttaque;
+import com.m1miageprojet.interfacesplugins.IGraphisme;
 import com.m1miageprojet.interfacesplugins.IProjectile;
 import com.m1miageprojet.interfacesplugins.IRobot;
 
 public class Projectile implements IProjectile {
 	
-	private double x, y;
-	private double coeffDir;
+	private int x, y;
 	private IRobot adversaire;
-	private IAttaque attaque;
+	private IRobot tireur;
+//	private IAttaque attaque;
+	private int taille;
 	
-	public Projectile(int xDep, int yDep, IRobot adversaire, IAttaque attaque) {
-		this.attaque = attaque;
+
+	public Projectile(IRobot adversaire, IRobot tireur) {
+		this.taille = 150;
 		this.adversaire = adversaire;
-		this.x = xDep;
-		this.y = yDep;
-		if(adversaire.getY() > this.y && adversaire.getX() > this.x) {
-			coeffDir = ((adversaire.getY() - this.y) / (adversaire.getX() - this.x));
-		} else {
-			coeffDir = ((this.y - adversaire.getY()) / (this.x - adversaire.getX()));
-		}
+		this.tireur = tireur;
 }
 
-	public void deplace(boolean a) {
-		
-		if(a) {
-			this.x = this.x + 30;
-			this.y = (this.y + 30) * this.coeffDir;
-		} else {
-			this.x = this.x - 30;
-			this.y = (this.y - 30) * this.coeffDir;
-		}
-		if(adversaire.estTouche(x, y))
-		{
-			attaque.touche(this);
-		}
-		
-		
-//		double rapportX = this.x / this.x2;
-//		double rapportY = this.y / this.y2;
-//		this.x += 30 * rapportX;
-//		this.y += 30 * rapportY;
-//		this.x2 += 30 * rapportX;
-//		this.y2 += 30 * rapportY;
-//		
+	public void attaque(Graphics gr, IRobot adversaire, IGraphisme g, IAttaque a) {	
+		a.attaque(gr, g, adversaire, this);
 	}
 
-	public double getX() {
+	public int getX() {
 		return x;
 	}
 
-	public double getY() {
+	public int getY() {
 		return y;
+	}
+	
+	public int getTaille() {
+		return taille;
 	}
 	
 	public IRobot getAdversaire() {
 		return adversaire;
+	}
+
+	public IRobot getTireur() {
+		return tireur;
+	}
+
+	public void setX(int x) {
+		this.x = x;		
+	}
+
+	public void setY(int y) {
+		this.y = y;		
 	}
 }
