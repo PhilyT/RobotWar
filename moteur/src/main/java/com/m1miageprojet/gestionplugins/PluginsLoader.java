@@ -8,6 +8,11 @@ import java.util.ArrayList;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
+/**
+ * 
+ * @author Tom
+ *
+ */
 public class PluginsLoader extends SecureClassLoader
 {
 	private ArrayList<File> path = new ArrayList<File>();
