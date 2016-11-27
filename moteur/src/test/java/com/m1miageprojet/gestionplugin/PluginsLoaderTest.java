@@ -8,6 +8,11 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
+/**
+ * 
+ * @author Tom
+ *
+ */
 public class PluginsLoaderTest extends TestCase{
 	/**
      * Create the test case
@@ -35,6 +40,9 @@ public class PluginsLoaderTest extends TestCase{
         assertTrue( true );
     }
     
+    /**
+     * Test si attaque coute implemente bien l'interface Iattaque apres avoir ete charge.
+     */
     public void testPluginLoaderAttaqueCourteImplementInterface()
     {
     	PluginsLoader testLoader = new PluginsLoader();

@@ -10,11 +10,20 @@ import java.lang.reflect.InvocationTargetException;
 
 
 /**
- * Hello world!
+ * 
+ * @author Tom
  *
  */
 public class App 
 {
+	/**
+	 * 
+	 * @param args
+	 * @throws IllegalArgumentException
+	 * @throws InvocationTargetException
+	 * @throws InstantiationException
+	 * @throws IllegalAccessException
+	 */
     public static void main( String[] args ) throws IllegalArgumentException, InvocationTargetException, InstantiationException, IllegalAccessException
     {
     	PluginsLoader myclassloader = new PluginsLoader();

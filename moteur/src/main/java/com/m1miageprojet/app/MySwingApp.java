@@ -30,6 +30,9 @@ public class MySwingApp extends JFrame
 		this.setVisible(true);
 	}
 	
+	/**
+	 * Lance la partie.
+	 */
 	public void run()
 	{
 		while(panel.getR1().getVie() > 0 && panel.getR2().getVie() > 0) {

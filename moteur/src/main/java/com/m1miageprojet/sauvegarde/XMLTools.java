@@ -9,6 +9,11 @@ import java.util.ArrayList;
 
 import com.m1miageprojet.app.Robot;
 
+/**
+ * 
+ * @author Tom
+ *
+ */
 public class XMLTools 
 {	
     /**

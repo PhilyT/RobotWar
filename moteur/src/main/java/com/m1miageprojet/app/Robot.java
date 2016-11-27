@@ -31,6 +31,50 @@ public class Robot implements IRobot {
 	private int vie, energie;
 	private String nom;	//pour test
 	
+	/**
+	 * Constructeur par default pour la serialization
+	 */
+	public Robot()
+	{
+		this(50, 50, Color.BLACK, new IGraphisme() {
+
+					@Override
+					public void draw(IRobot r, Graphics g) {
+						// TODO Auto-generated method stub
+						
+					}
+
+					@Override
+					public void drawWeapon(IProjectile p, Graphics g, int direction) {
+						// TODO Auto-generated method stub
+						
+					} 
+			
+				}, new IDeplacement() {
+
+					@Override
+					public void move(IRobot r) {
+						// TODO Auto-generated method stub
+						
+					}
+					
+				}, new IAttaque() {
+
+					@Override
+					public void attaque(Graphics gr, IGraphisme g, IRobot adversaire, IProjectile p) {
+						// TODO Auto-generated method stub
+						
+					}
+
+					@Override
+					public void touche(IProjectile p) {
+						// TODO Auto-generated method stub
+						
+					}
+					
+				}, "serialisation");
+	}
+	
 	public Robot(int x, int y, Color c, IGraphisme graphisme, IDeplacement deplacement, IAttaque attaque, String nom) {
 		this.graphisme = graphisme;
 		this.deplacement = deplacement;
@@ -108,6 +152,14 @@ public class Robot implements IRobot {
 		return energie;
 	}
 	
+	public void setVie(int v){
+		vie = v;
+	}
+	
+	public void setEnergie(int e){
+		energie = e;
+	}
+	
 	public int getX() {
 		return x;
 	}
@@ -140,5 +192,7 @@ public class Robot implements IRobot {
 		return color;
 	}
 
-	
+	public void setColor(Color c) {
+		color = c;
+	}
 }
