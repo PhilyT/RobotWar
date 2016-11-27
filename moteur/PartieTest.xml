@@ -11,6 +11,18 @@
       <int>255</int>
      </object>
     </void>
+    <void property="nom">
+     <string>r1</string>
+    </void>
+    <void property="nomAttaque">
+     <string>com.m1miageprojet.pluginattaque.AttaqueCourte</string>
+    </void>
+    <void property="nomDeplacement">
+     <string>com.m1miageprojet.plugindeplacement.DeplacementSimple</string>
+    </void>
+    <void property="nomGraphisme">
+     <string>com.m1miageprojet.plugingraphisme.GraphismeBase</string>
+    </void>
     <void property="x">
      <int>150</int>
     </void>
@@ -28,6 +40,18 @@
       <int>0</int>
       <int>255</int>
      </object>
+    </void>
+    <void property="nom">
+     <string>r2</string>
+    </void>
+    <void property="nomAttaque">
+     <string>com.m1miageprojet.pluginattaque.AttaqueCourte</string>
+    </void>
+    <void property="nomDeplacement">
+     <string>com.m1miageprojet.plugindeplacement.DeplacementSimple</string>
+    </void>
+    <void property="nomGraphisme">
+     <string>com.m1miageprojet.plugingraphisme.GraphismeBase</string>
     </void>
     <void property="x">
      <int>350</int>

@@ -37,7 +37,7 @@ public class MySwingApp
 	 */
 	public void run()
 	{
-		while(panel.getR1().getVie() > 0 && panel.getR2().getVie() > 0) {
+		while(panel.getR1().getV() > 0 && panel.getR2().getV() > 0) {
 			parent.repaint();
 			try {
 				// TODO A modifier
@@ -47,7 +47,7 @@ public class MySwingApp
 				e.printStackTrace();
 			}
 		}
-		if(panel.getR1().getVie() > 0)
+		if(panel.getR1().getV() > 0)
 		{
 			System.out.println("Robot r1 win !");
 		}

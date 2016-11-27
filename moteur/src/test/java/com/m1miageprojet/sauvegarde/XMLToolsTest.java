@@ -64,8 +64,8 @@ public class XMLToolsTest extends TestCase
 			IAttaque a = (IAttaque)attaqueplugin.newInstance();
 			IDeplacement d = (IDeplacement)deplacementplugin.newInstance();
 			ArrayList<Robot> partie = new ArrayList<Robot>();
-			partie.add(new Robot(150, 150, Color.BLUE, g, d, a, "r1"));
-			partie.add(new Robot(350, 350, Color.RED, g, d, a, "r2"));
+			partie.add(new Robot(150, 150, 10, 10, Color.BLUE, g, d, a, "r1"));
+			partie.add(new Robot(350, 350, 10, 10, Color.RED, g, d, a, "r2"));
 			// Test la serialisation
 			outil.encodeToFile(partie, "PartieTest.xml");
 			

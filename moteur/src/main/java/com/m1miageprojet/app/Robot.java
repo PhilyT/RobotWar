@@ -9,7 +9,7 @@ package com.m1miageprojet.app;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import com.m1miageprojet.interfacesplugins.IAttaque;
 import com.m1miageprojet.interfacesplugins.IDeplacement;
 import com.m1miageprojet.interfacesplugins.IGraphisme;
@@ -21,22 +21,24 @@ import com.m1miageprojet.interfacesplugins.IRobot;
  *
  */
 public class Robot implements IRobot {
-	private int x, y, width, height;
+	private int x, y,v, e, width, height ;
 	private Color color;
 	private IGraphisme graphisme;
 	private IDeplacement deplacement;
 	private IAttaque attaque;
 //	private ArrayList<IProjectile> projectiles;
 	private IProjectile projectile;
-	private int vie, energie;
 	private String nom;	//pour test
+	private String nomGraphisme;
+	private String nomAttaque;
+	private String nomDeplacement;
 	
 	/**
 	 * Constructeur par default pour la serialization
 	 */
 	public Robot()
 	{
-		this(50, 50, Color.BLACK, new IGraphisme() {
+		this(50, 50, 10, 10, Color.BLACK, new IGraphisme() {
 
 					@Override
 					public void draw(IRobot r, Graphics g) {
@@ -75,16 +77,19 @@ public class Robot implements IRobot {
 				}, "serialisation");
 	}
 	
-	public Robot(int x, int y, Color c, IGraphisme graphisme, IDeplacement deplacement, IAttaque attaque, String nom) {
+	public Robot(int x, int y, int v, int e, Color c, IGraphisme graphisme, IDeplacement deplacement, IAttaque attaque, String nom) {
 		this.graphisme = graphisme;
 		this.deplacement = deplacement;
 		this.attaque = attaque;
 		this.color = c;
 		this.x = x;
 		this.y = y;
-		this.width = 50; this.height = 50;
-		vie = 10;
-		energie = 10;
+		setV(v);
+		setE(e);
+		this.setWidth(50); this.setHeight(50);
+		nomAttaque = attaque.getClass().getName();
+		nomDeplacement = deplacement.getClass().getName();
+		nomGraphisme = graphisme.getClass().getName();
 		this.nom = nom;
 	}
 
@@ -97,8 +102,8 @@ public class Robot implements IRobot {
 	
 	public void moveRobot() {
 		deplacement.move(this);
-		if(energie <10){
-			energie++;
+		if(getE() <10){
+			setE(getE()+1);
 		}
 	}
 	
@@ -144,21 +149,38 @@ public class Robot implements IRobot {
 			return result;
 	}
 	
-	public int getVie(){
-		return vie;
+	public void soustrairedelavie(int degas) {
+		setV(getV() - degas);
 	}
 	
-	public int getEnergie(){
-		return energie;
+	public void soustrairedelenergie(int consum){
+		setE(getE() - consum);
 	}
 	
-	public void setVie(int v){
-		vie = v;
+	public String getNomGraphisme()
+	{
+		return nomGraphisme;
 	}
 	
-	public void setEnergie(int e){
-		energie = e;
+	public void setNomGraphisme(String graphisme) {
+		this.nomGraphisme = graphisme;
 	}
+	
+	public String getNomDeplacement() {
+		return nomDeplacement;
+	}
+
+	public void setNomDeplacement(String deplacement) {
+		this.nomDeplacement = deplacement;
+	}
+
+	public String getNomAttaque() {
+		return nomAttaque;
+	}
+
+	public void setNomAttaque(String attaque) {
+		this.nomAttaque = attaque;
+	}	
 	
 	public int getX() {
 		return x;
@@ -168,16 +190,41 @@ public class Robot implements IRobot {
 		return y;
 	}
 	
+	public int getV(){
+		return v;
+	}
+	
+	public int getE(){
+		return e;
+	}
+	
 	public String getNom(){
 		return nom;
 	}
 	
-	public void subVie(int degas) {
-		vie = vie - degas;
+	public Color getColor() {
+		return color;
 	}
 	
-	public void subEnergie(int consum){
-		energie = energie - consum;
+	public int getWidth() {
+		return width;
+	}
+	
+	public int getHeight() {
+		return height;
+	}
+	
+	public void setNom(String nom)
+	{
+		this.nom = nom;
+	}
+	
+	public void setV(int v){
+		this.v = v;
+	}
+	
+	public void setE(int e){
+		this.e = e;
 	}
 	
 	public void setX(int x) {
@@ -188,11 +235,15 @@ public class Robot implements IRobot {
 		this.y = y;
 	}
 
-	public Color getColor() {
-		return color;
-	}
-
 	public void setColor(Color c) {
 		color = c;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
 	}
 }
