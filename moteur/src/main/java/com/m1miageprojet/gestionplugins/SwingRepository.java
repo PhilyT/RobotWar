@@ -25,12 +25,15 @@ import com.m1miageprojet.interfacesplugins.IDeplacement;
 import com.m1miageprojet.interfacesplugins.IGraphisme;
 import com.m1miageprojet.interfacesplugins.IProjectile;
 import com.m1miageprojet.interfacesplugins.IRobot;
+import com.m1miageprojet.sauvegarde.XMLTools;
 /**
  * Created by deptinfo on 12/11/2016.
  */
 
 public class SwingRepository {
     String selectedpath="";
+    private XMLTools outils = new XMLTools();
+    private MySwingApp app;
 
     public void showFrame() {
         if (frame == null) {
@@ -57,7 +60,7 @@ public class SwingRepository {
     void buildMenu() {
         JMenuBar bar = new JMenuBar();
         frame.setJMenuBar(bar);
-        JMenu fileM = new JMenu("plugins");
+        JMenu fileM = new JMenu("Menu");
         //JMenuItem chargerPlugins=new JMenuItem();
         //chargerPlugins.setText("charger Plugins");
         //fileM.add(chargerPlugins);
@@ -66,7 +69,7 @@ public class SwingRepository {
             @Override
             public void actionPerformed(ActionEvent arg0) {
 
-                System.out.println("DoSaveAction:" + arg0);
+                //outils.encodeToFile(partie, "Sauvegarde.xml");
             }
 
             @Override
@@ -76,9 +79,9 @@ public class SwingRepository {
                 return super.getValue(arg0);
             }
         });
-        JMenu Attaque = new JMenu("Attaque");
-        JMenu graphisme= new JMenu("graphisme");
-        JMenu deplacement= new JMenu("deplacement");
+        JMenu Attaque = new JMenu("Attaques");
+        JMenu graphisme= new JMenu("Graphismes");
+        JMenu deplacement= new JMenu("Deplacements");
         bar.add(Attaque);
         bar.add(graphisme);
         bar.add(deplacement);
@@ -103,7 +106,7 @@ public class SwingRepository {
             });
             IDeplacement d = (IDeplacement)repo.getPluginsDeplacment().get(0).newInstance();
             IAttaque a = (IAttaque)repo.getPluginsAttaque().get(0).newInstance();
-            MySwingApp app = new MySwingApp(frame,g,d,a);
+            app = new MySwingApp(frame,g,d,a);
 
             for (Class<?> c : repo.getPluginsDeplacment()) {
 
