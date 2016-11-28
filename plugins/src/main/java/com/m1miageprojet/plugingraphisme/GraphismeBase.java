@@ -25,31 +25,4 @@ public class GraphismeBase implements IGraphisme {
 			graphisme.draw(r, g);
 		}
 	}
-
-	public void drawWeapon(IProjectile p, Graphics g, int direction) {
-		
-		g.setColor(Color.GREEN);
-				
-		switch (direction) {
-		// attaque vers la droite
-		case 0:
-			g.drawLine(p.getX(), p.getY(), p.getX() + p.getTaille(), p.getY());
-			break;
-		// attaque vers le bas
-		case 1:
-			g.drawLine(p.getX(), p.getY(), p.getX(), p.getY() + p.getTaille());
-			break;
-		// attaque vers la gauche	
-		case 2:
-			g.drawLine(p.getX(), p.getY(), p.getX() - p.getTaille(), p.getY());
-			break;
-		// attaque vers le haut
-		case 3:
-			g.drawLine(p.getX(), p.getY(), p.getX(), p.getY() - p.getTaille());
-			break;
-		default:
-			break;
-		}
-	}
-	
 }
