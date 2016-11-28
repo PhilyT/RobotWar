@@ -24,58 +24,5 @@ public class GraphismeBase implements IGraphisme {
 		{
 			graphisme.draw(r, g);
 		}
-		
-		if(r.getV() > 5) {
-			g.setColor(Color.GREEN);
-			switch(r.getV()) {
-			case 10:
-				g.fillRect(r.getX(), r.getY() - 10, 50, 5);
-				break;
-			case 9:
-				g.fillRect(r.getX(), r.getY() - 10, 45, 5);
-				break;
-			case 8:
-				g.fillRect(r.getX(), r.getY() - 10, 40, 5);
-				break;
-			case 7:
-				g.fillRect(r.getX(), r.getY() - 10, 35, 5);
-				break;
-			case 6:
-				g.fillRect(r.getX(), r.getY() - 10, 30, 5);
-				break;
-			default:
-				break;
-			}
-			
-		} else if(r.getV() <= 5 && r.getV() > 3) {
-			g.setColor(Color.YELLOW);
-			
-			switch (r.getV()) {
-			case 5:
-				g.fillRect(r.getX(), r.getY() - 10, 25, 5);
-				break;
-			case 4:
-				g.fillRect(r.getX(), r.getY() - 10, 20, 5);
-				break;
-			default:
-				break;
-			}
-		} else {
-			g.setColor(Color.RED);
-			
-			switch (r.getV()) {
-			case 3:
-				g.fillRect(r.getX(), r.getY() - 10, 15, 5);
-				break;
-			case 2:
-				g.fillRect(r.getX(), r.getY() - 10, 10, 5);
-				break;
-			case 1:
-				g.fillRect(r.getX(), r.getY() - 10, 5, 5);
-				break;
-			default:
-				break;
-			}
-		}
 	}
 }
