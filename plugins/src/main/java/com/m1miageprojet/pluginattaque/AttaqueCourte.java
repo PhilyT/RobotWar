@@ -69,6 +69,6 @@ public class AttaqueCourte implements IAttaque {
 		// TODO Auto-generated method stub
 		p.getAdversaire().subVie(5);
 		p.getTireur().subEnergie(1);
-		System.out.println("Robot touché { vie : " + p.getAdversaire().getVie() + " energie : " + p.getAdversaire().getEnergie());
+		System.out.println("Robot touche { vie : " + p.getAdversaire().getVie() + " energie : " + p.getAdversaire().getEnergie());
 	}
 }

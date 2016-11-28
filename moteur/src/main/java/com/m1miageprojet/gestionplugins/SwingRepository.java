@@ -80,7 +80,7 @@ public class SwingRepository {
              PluginRepository repo = new PluginRepository(new File(selectedpath)); //
 
           ArrayList<Class<?>> resultat = (ArrayList<Class<?>>) repo.load();
-           System.out.println("Teeeeest "+repo.getPluginsAttaque().get(0).getName());
+          System.out.println("Teeeeest "+repo.getPluginsDeplacment().get(1).getName());
           //  System.out.println(resultat.isEmpty());
 
 

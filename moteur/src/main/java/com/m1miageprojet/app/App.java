@@ -25,8 +25,10 @@ public class App
 		myclassloader.getPath().add(f);
 		myclassloader.getPath().add(f2);
 		try {
-			Class<?> graphisme = myclassloader.loadClass("com.m1miageprojet.plugingraphisme.GraphismeBase");
+			Class<?> graphisme = myclassloader.loadClass("com.m1miageprojet.plugingraphisme.GraphismeFleur");
+//			Class<?> graphisme = myclassloader.loadClass("com.m1miageprojet.plugingraphisme.GraphismeBase");
 			Class<?> deplacement = myclassloader.loadClass("com.m1miageprojet.plugindeplacement.DeplacementSimple");
+			//Class<?> deplacement = myclassloader.loadClass("com.m1miageprojet.plugindeplacement.DisplacementVeersAvaunt");
 			Class<?> attaque = myclassloader.loadClass("com.m1miageprojet.pluginattaque.AttaqueCourte");
 			try {
 				Constructor cGraph = graphisme.getConstructor();

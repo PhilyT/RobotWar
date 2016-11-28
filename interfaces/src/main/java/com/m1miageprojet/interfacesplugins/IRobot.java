@@ -7,8 +7,7 @@
  */
 package com.m1miageprojet.interfacesplugins;
 
-import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.*;
 
 /**
  * @author Nico
@@ -27,4 +26,5 @@ public interface IRobot {
 	public void subEnergie(int consum);
 	public boolean estTouche(double posXProjectil, double posYProjectil);
 	public boolean estTouche(double posXProjectilInit, double posYProjectilInit, double posXProjectilFin, double posYProjctilFin, int direction);
+
 }

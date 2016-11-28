@@ -29,6 +29,7 @@ public class Robot implements IRobot {
 //	private ArrayList<IProjectile> projectiles;
 	private IProjectile projectile;
 	private int vie, energie;
+	private Robot adversaire;
 	
 	public Robot(int x, int y, Color c, IGraphisme graphisme, IDeplacement deplacement, IAttaque attaque) {
 		this.graphisme = graphisme;
@@ -57,12 +58,13 @@ public class Robot implements IRobot {
 	}
 	
 	public void tirer(Graphics g, Robot adversaire) {
+		this.adversaire=adversaire;
 		projectile = new Projectile(adversaire, this);
 		projectile.attaque(g, adversaire, graphisme, attaque);
 	}
 	
 	/**
-	 * Methode pour savoir si le robot est touché par un projectil en mouvement.
+	 * Methode pour savoir si le robot est touchï¿½ par un projectil en mouvement.
 	 */
 	public boolean estTouche(double projectilX, double projectilY)
 	{
@@ -70,7 +72,7 @@ public class Robot implements IRobot {
 	}
 	
 	/**
-	 * Methode pour savoir si le robot est touché par un projectil en ligne.
+	 * Methode pour savoir si le robot est touchï¿½ par un projectil en ligne.
 	 */
 	@Override
 	public boolean estTouche(double posXProjectilInit, double posYProjectilInit, double posXProjectilFin,
@@ -129,6 +131,7 @@ public class Robot implements IRobot {
 	public Color getColor() {
 		return color;
 	}
+
 
 	
 }
