@@ -2,8 +2,9 @@ package com.m1miageprojet.app;
 
 
 import java.awt.Dimension;
+import java.util.ArrayList;
 
-import javax.swing.*;
+import javax.swing.JFrame;
 
 import com.m1miageprojet.interfacesplugins.IAttaque;
 import com.m1miageprojet.interfacesplugins.IDeplacement;
@@ -30,6 +31,11 @@ public class MySwingApp
 
 
 		parent.setVisible(true);
+	}
+	
+	public ArrayList<Robot> getRobots()
+	{
+		return panel.getRobots();
 	}
 	
 	/**

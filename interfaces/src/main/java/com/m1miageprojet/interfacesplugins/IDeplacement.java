@@ -15,5 +15,5 @@ import java.util.List;
  *
  */
 public interface IDeplacement {
-	public void move(IRobot r, List<IRobot> adversaires);
+	public void move(IRobot r, ArrayList<IRobot> adversaires);
 }
