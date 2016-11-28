@@ -53,7 +53,11 @@ public class MySwingApp
 				e.printStackTrace();
 			}
 		}
-		if(panel.getR1().getV() > 0)
+		if(panel.getR1().getV() <= 0 && panel.getR2().getV() <= 0)
+		{
+			System.out.println("execo");
+		}
+		else if(panel.getR1().getV() > 0)
 		{
 			System.out.println("Robot r1 win !");
 		}

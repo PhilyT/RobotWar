@@ -41,6 +41,7 @@ public class SwingRepository {
     public SwingRepository()
     {
     	nomPluginsGraphismesSelectionne.add("com.m1miageprojet.plugingraphisme.GraphismeBase");
+    	nomPluginsGraphismesSelectionne.add("com.m1miageprojet.plugingraphisme.BarreDeVie");
     }
 
     public void showFrame() {
@@ -109,7 +110,7 @@ public class SwingRepository {
             IAttaque a = (IAttaque)repo.getPluginsAttaquebyName(nomPluginAttaqueSelectionne).newInstance();
             for(String s : nomPluginsGraphismesSelectionne)
             {
-            	Constructor gconstruct = repo.getPluginsGraphisme().get(0).getConstructors()[0];
+            	Constructor gconstruct = repo.getPluginsGraphismebyName(s).getConstructors()[0];
             	g = (IGraphisme) gconstruct.newInstance(g);
             }
             app = new MySwingApp(frame,g,d,a);
