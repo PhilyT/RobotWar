@@ -1,5 +1,6 @@
 package com.m1miageprojet.plugindeplacement;
 
+import java.util.List;
 import java.util.Random;
 
 import com.m1miageprojet.interfacesplugins.IDeplacement;
@@ -7,7 +8,17 @@ import com.m1miageprojet.interfacesplugins.IRobot;
 
 public class DeplacementSimple implements IDeplacement {
 	
-	public void move(IRobot r) {
+
+	/**
+	 * Necessaire pour la serialisation
+	 */
+	public DeplacementSimple()
+	{
+		
+	}
+	
+	public void move(IRobot r, List<IRobot> adversaires) {
+
 		Random rnd = new Random();
 		int moveX = rnd.nextInt(50);
 		int moveY = rnd.nextInt(50);
