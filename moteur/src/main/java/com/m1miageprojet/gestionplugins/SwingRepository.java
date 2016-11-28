@@ -71,20 +71,33 @@ public class SwingRepository {
                 return super.getValue(arg0);
             }
         });
-        JMenu dynamicM = new JMenu("Dynamic");
-        bar.add(dynamicM);
+        JMenu Attaque = new JMenu("Attaque");
+        JMenu graphisme= new JMenu("graphisme");
+        JMenu deplacement= new JMenu("deplacement");
+        bar.add(Attaque);
+        bar.add(graphisme);
+        bar.add(deplacement);
         try {
-        	
         	PluginRepository repo = new PluginRepository(new File(selectedpath)); //
             ArrayList<Class<?>> resultat = (ArrayList<Class<?>>) repo.load();
             IGraphisme g = (IGraphisme)repo.getPluginsGraphisme().get(0).newInstance();
             IDeplacement d = (IDeplacement)repo.getPluginsDeplacment().get(0).newInstance();
             IAttaque a = (IAttaque)repo.getPluginsAttaque().get(0).newInstance();
             MySwingApp app = new MySwingApp(frame,g,d,a);
-            for (Class<?> c : resultat) {
-                // System.out.println(c.getName());
-                dynamicM.add(c.getName());
+
+            for (Class<?> c : repo.getPluginsDeplacment()) {
+
+                deplacement.add(c.getName());
             }
+            for (Class<?> c : repo.getPluginsAttaque()) {
+
+                Attaque.add(c.getName());
+            }
+            for (Class<?> c : repo.getPluginsGraphisme()) {
+
+                graphisme.add(c.getName());
+            }
+
             app.run();
         } catch (IOException e) {
             // TODO Auto-generated catch block

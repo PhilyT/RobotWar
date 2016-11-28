@@ -2,6 +2,7 @@ package com.m1miageprojet.app;
 
 import java.lang.reflect.InvocationTargetException;
 
+import com.m1miageprojet.gestionplugins.PluginsLoader;
 import com.m1miageprojet.gestionplugins.SwingRepository;
 
 
@@ -24,5 +25,6 @@ public class App
     {
     	SwingRepository gestionnaireplugins = new SwingRepository();
     	gestionnaireplugins.showFrame();
+
     }
 }

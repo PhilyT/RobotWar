@@ -32,7 +32,7 @@ public class AttaqueCourte implements IAttaque {
 				if(p.getAdversaire().estTouche(p.getX(), p.getY(), p.getX(), p.getY() + p.getTaille(), direction))
 				{
 					touche(p);
-					System.out.println("Robot touché dans la direction "+ direction +" { nom : "+ p.getAdversaire().getNom() +" vie : " + p.getAdversaire().getV() + " energie : " + p.getAdversaire().getE());
+					System.out.println("Robot touche dans la direction "+ direction +" { nom : "+ p.getAdversaire().getNom() +" vie : " + p.getAdversaire().getV() + " energie : " + p.getAdversaire().getE());
 				}
 			} else if(adversaire.getY() > p.getTireur().getY() - 150 && adversaire.getY() < p.getTireur().getY()) {
 				p.getTireur().soustrairedelenergie(2);
@@ -43,7 +43,7 @@ public class AttaqueCourte implements IAttaque {
 				if(p.getAdversaire().estTouche(p.getX(), p.getY(), p.getX(), p.getY() - p.getTaille(), direction))
 				{
 					touche(p);
-					System.out.println("Robot touché dans la direction "+ direction +" { nom : "+ p.getAdversaire().getNom() +" vie : " + p.getAdversaire().getV() + " energie : " + p.getAdversaire().getE());
+					System.out.println("Robot touche dans la direction "+ direction +" { nom : "+ p.getAdversaire().getNom() +" vie : " + p.getAdversaire().getV() + " energie : " + p.getAdversaire().getE());
 				}
 			}
 		} else if(adversaire.getY() >= p.getTireur().getY() - 50 && adversaire.getY() < p.getTireur().getY() + 50&& (p.getTireur().getE()-3)>=0) {
@@ -56,7 +56,7 @@ public class AttaqueCourte implements IAttaque {
 				if(p.getAdversaire().estTouche(p.getX(), p.getY(), p.getX() + p.getTaille(), p.getY(), direction))
 				{
 					touche(p);
-					System.out.println("Robot touché dans la direction "+ direction +" { nom : "+ p.getAdversaire().getNom() +" vie : " + p.getAdversaire().getV() + " energie : " + p.getAdversaire().getE());
+					System.out.println("Robot touche dans la direction "+ direction +" { nom : "+ p.getAdversaire().getNom() +" vie : " + p.getAdversaire().getV() + " energie : " + p.getAdversaire().getE());
 				}
 			} else if(adversaire.getX() > p.getTireur().getX() - 150 && adversaire.getX() < p.getTireur().getX()) {
 				p.getTireur().soustrairedelenergie(2);
@@ -67,7 +67,7 @@ public class AttaqueCourte implements IAttaque {
 				if(p.getAdversaire().estTouche(p.getX(), p.getY(), p.getX() - p.getTaille(), p.getY(), direction))
 				{
 					touche(p);
-					System.out.println("Robot touché dans la direction "+ direction +" { nom : "+ p.getAdversaire().getNom() +" vie : " + p.getAdversaire().getV() + " energie : " + p.getAdversaire().getE());
+					System.out.println("Robot touche dans la direction "+ direction +" { nom : "+ p.getAdversaire().getNom() +" vie : " + p.getAdversaire().getV() + " energie : " + p.getAdversaire().getE());
 				}
 			}
 		}
@@ -79,6 +79,7 @@ public class AttaqueCourte implements IAttaque {
 	 */
 	public void touche(IProjectile p) {
 		// TODO Auto-generated method stub
+
 		p.getAdversaire().soustrairedelavie((int)(Math.random() * (5-3)) + 3);
 	}
 }

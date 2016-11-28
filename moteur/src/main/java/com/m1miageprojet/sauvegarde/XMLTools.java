@@ -18,7 +18,7 @@ public class XMLTools
 {	
     /**
      * Serialisation d'une partie dans un fichier
-     * @param partie Liste de robots comprenant l'état de la partie en cours a serialiser
+     * @param partie Liste de robots comprenant l'etat de la partie en cours a serialiser
      * @param filename chemin du fichier
      */
     public static void encodeToFile(ArrayList<Robot> partie, String fileName) {
