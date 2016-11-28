@@ -15,12 +15,20 @@ import java.awt.geom.Line2D;
 
 import com.m1miageprojet.interfacesplugins.IAttaque;
 import com.m1miageprojet.interfacesplugins.IGraphisme;
+import com.m1miageprojet.interfacesplugins.IGraphismeAttaque;
 import com.m1miageprojet.interfacesplugins.IProjectile;
 import com.m1miageprojet.interfacesplugins.IRobot;
+import com.m1miageprojet.plugingraphisme.attaque.GraphismeAttaque;
 
 public class AttaqueCourte implements IAttaque {
+	
+	private IGraphismeAttaque graphismeAttaque;
+	
+	public AttaqueCourte() {
+		graphismeAttaque = new GraphismeAttaque();
+	}
 
-	public void attaque(Graphics gr, IGraphisme g, IRobot adversaire, IProjectile p) {
+	public void attaque(Graphics gr, IRobot adversaire, IProjectile p) {
 		int direction;
 		if(adversaire.getX() >= p.getTireur().getX() - 50 && adversaire.getX() < p.getTireur().getX() + 50 && (p.getTireur().getE()-3)>=0) {
 			if(adversaire.getY() <= p.getTireur().getY() + 200 && adversaire.getY() > p.getTireur().getY() - 50) {
@@ -28,7 +36,7 @@ public class AttaqueCourte implements IAttaque {
 				direction = 1;
 				p.setX(p.getTireur().getX() + 25);
 				p.setY(p.getTireur().getY() + 50);
-				g.drawWeapon(p, gr, direction);
+				graphismeAttaque.drawWeapon(p, gr, direction);
 				if(p.getAdversaire().estTouche(p.getX(), p.getY(), p.getX(), p.getY() + p.getTaille(), direction))
 				{
 					touche(p);
@@ -39,7 +47,7 @@ public class AttaqueCourte implements IAttaque {
 				direction = 3;
 				p.setX(p.getTireur().getX() + 25);
 				p.setY(p.getTireur().getY());
-				g.drawWeapon(p, gr, direction);
+				graphismeAttaque.drawWeapon(p, gr, direction);
 				if(p.getAdversaire().estTouche(p.getX(), p.getY(), p.getX(), p.getY() - p.getTaille(), direction))
 				{
 					touche(p);
@@ -52,7 +60,7 @@ public class AttaqueCourte implements IAttaque {
 				direction = 0;
 				p.setX(p.getTireur().getX() + 50);
 				p.setY(p.getTireur().getY() + 25);
-				g.drawWeapon(p, gr, direction);
+				graphismeAttaque.drawWeapon(p, gr, direction);
 				if(p.getAdversaire().estTouche(p.getX(), p.getY(), p.getX() + p.getTaille(), p.getY(), direction))
 				{
 					touche(p);
@@ -63,7 +71,7 @@ public class AttaqueCourte implements IAttaque {
 				direction = 2;
 				p.setX(p.getTireur().getX());
 				p.setY(p.getTireur().getY() + 25);
-				g.drawWeapon(p, gr, direction);
+				graphismeAttaque.drawWeapon(p, gr, direction);
 				if(p.getAdversaire().estTouche(p.getX(), p.getY(), p.getX() - p.getTaille(), p.getY(), direction))
 				{
 					touche(p);

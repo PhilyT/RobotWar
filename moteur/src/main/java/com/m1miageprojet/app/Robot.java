@@ -63,7 +63,7 @@ public class Robot implements IRobot {
 				}, new IAttaque() {
 
 					@Override
-					public void attaque(Graphics gr, IGraphisme g, IRobot adversaire, IProjectile p) {
+					public void attaque(Graphics gr, IRobot adversaire, IProjectile p) {
 						// TODO Auto-generated method stub
 						
 					}
@@ -115,7 +115,7 @@ public class Robot implements IRobot {
 	public void tirer(Graphics g, Robot adversaire) {
 
 		projectile = new Projectile(adversaire, this);
-		projectile.attaque(g, adversaire, graphisme, attaque);
+		projectile.attaque(g, adversaire, attaque);
 	}
 	
 	/**
