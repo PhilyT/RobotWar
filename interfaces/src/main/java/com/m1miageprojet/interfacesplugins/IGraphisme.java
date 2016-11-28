@@ -16,5 +16,4 @@ import java.awt.Graphics;
  */
 public interface IGraphisme {
 	public void draw(IRobot r, Graphics g);
-	public void drawWeapon(IProjectile p, Graphics g, int direction);
 }
