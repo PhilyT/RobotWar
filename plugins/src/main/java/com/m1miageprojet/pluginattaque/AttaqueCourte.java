@@ -19,14 +19,6 @@ import com.m1miageprojet.interfacesplugins.IProjectile;
 import com.m1miageprojet.interfacesplugins.IRobot;
 
 public class AttaqueCourte implements IAttaque {
-	
-	/**
-	 * Necessaire pour la serialisation
-	 */
-	public AttaqueCourte()
-	{
-		
-	}
 
 	public void attaque(Graphics gr, IGraphisme g, IRobot adversaire, IProjectile p) {
 		int direction;

@@ -9,14 +9,6 @@ import com.m1miageprojet.interfacesplugins.IProjectile;
 import com.m1miageprojet.interfacesplugins.IRobot;
 
 public class GraphismeBase implements IGraphisme {
-
-	/**
-	 * Necessaire pour la serialisation
-	 */
-	public GraphismeBase()
-	{
-		
-	}
 	
 	public void draw(IRobot r, Graphics g) {		
 		g.setColor(r.getColor());
