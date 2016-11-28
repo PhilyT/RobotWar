@@ -1,9 +1,12 @@
 package com.m1miageprojet.gestionplugins;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 import javax.swing.AbstractAction;
@@ -20,6 +23,8 @@ import com.m1miageprojet.app.MySwingApp;
 import com.m1miageprojet.interfacesplugins.IAttaque;
 import com.m1miageprojet.interfacesplugins.IDeplacement;
 import com.m1miageprojet.interfacesplugins.IGraphisme;
+import com.m1miageprojet.interfacesplugins.IProjectile;
+import com.m1miageprojet.interfacesplugins.IRobot;
 /**
  * Created by deptinfo on 12/11/2016.
  */
@@ -80,7 +85,22 @@ public class SwingRepository {
         try {
         	PluginRepository repo = new PluginRepository(new File(selectedpath)); //
             ArrayList<Class<?>> resultat = (ArrayList<Class<?>>) repo.load();
-            IGraphisme g = (IGraphisme)repo.getPluginsGraphisme().get(0).newInstance();
+            Constructor gconstruct = repo.getPluginsGraphisme().get(0).getConstructors()[0];
+            IGraphisme g = (IGraphisme) gconstruct.newInstance(new IGraphisme(){
+
+				@Override
+				public void draw(IRobot r, Graphics g) {
+					// TODO Auto-generated method stub
+					
+				}
+
+				@Override
+				public void drawWeapon(IProjectile p, Graphics g, int direction) {
+					// TODO Auto-generated method stub
+					
+				}
+            	
+            });
             IDeplacement d = (IDeplacement)repo.getPluginsDeplacment().get(0).newInstance();
             IAttaque a = (IAttaque)repo.getPluginsAttaque().get(0).newInstance();
             MySwingApp app = new MySwingApp(frame,g,d,a);
@@ -106,6 +126,15 @@ public class SwingRepository {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  catch (SecurityException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

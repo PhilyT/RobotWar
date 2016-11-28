@@ -9,18 +9,21 @@ import com.m1miageprojet.interfacesplugins.IProjectile;
 import com.m1miageprojet.interfacesplugins.IRobot;
 
 public class GraphismeBase implements IGraphisme {
-
-	/**
-	 * Necessaire pour la serialisation
-	 */
-	public GraphismeBase()
+	
+	public IGraphisme graphisme;
+	
+	public GraphismeBase(IGraphisme graphisme)
 	{
-		
+		this.graphisme = graphisme;
 	}
 	
-	public void draw(IRobot r, Graphics g) {		
+	public void draw(IRobot r, Graphics g) {
 		g.setColor(r.getColor());
 		g.fillRect(r.getX(), r.getY(), 50, 50);
+		if(graphisme!=null)
+		{
+			graphisme.draw(r, g);
+		}
 	}
 
 	public void drawWeapon(IProjectile p, Graphics g, int direction) {

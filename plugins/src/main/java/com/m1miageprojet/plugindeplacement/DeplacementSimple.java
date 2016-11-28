@@ -8,6 +8,7 @@ import com.m1miageprojet.interfacesplugins.IRobot;
 
 public class DeplacementSimple implements IDeplacement {
 	
+
 	/**
 	 * Necessaire pour la serialisation
 	 */
@@ -17,6 +18,7 @@ public class DeplacementSimple implements IDeplacement {
 	}
 	
 	public void move(IRobot r, List<IRobot> adversaires) {
+
 		Random rnd = new Random();
 		int moveX = rnd.nextInt(50);
 		int moveY = rnd.nextInt(50);
