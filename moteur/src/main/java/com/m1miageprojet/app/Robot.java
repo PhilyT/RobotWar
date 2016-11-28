@@ -50,7 +50,7 @@ public class Robot implements IRobot {
 				}, new IDeplacement() {
 
 					@Override
-					public void move(IRobot r,ArrayList<IRobot>adversaires) {
+					public void move(IRobot r,ArrayList<IRobot> adversaires) {
 						// TODO Auto-generated method stub
 						
 					}
