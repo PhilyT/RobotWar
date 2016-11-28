@@ -20,10 +20,10 @@ import javax.swing.JMenuBar;
 import javax.swing.KeyStroke;
 
 import com.m1miageprojet.app.MySwingApp;
+import com.m1miageprojet.app.Robot;
 import com.m1miageprojet.interfacesplugins.IAttaque;
 import com.m1miageprojet.interfacesplugins.IDeplacement;
 import com.m1miageprojet.interfacesplugins.IGraphisme;
-import com.m1miageprojet.interfacesplugins.IProjectile;
 import com.m1miageprojet.interfacesplugins.IRobot;
 import com.m1miageprojet.sauvegarde.XMLTools;
 /**
@@ -32,6 +32,7 @@ import com.m1miageprojet.sauvegarde.XMLTools;
 
 public class SwingRepository {
     String selectedpath="";
+    PluginRepository repo;
     private XMLTools outils = new XMLTools();
     private MySwingApp app;
     private String nomPluginAttaqueSelectionne = "com.m1miageprojet.pluginattaque.AttaqueCourte";
@@ -41,7 +42,7 @@ public class SwingRepository {
     public SwingRepository()
     {
     	nomPluginsGraphismesSelectionne.add("com.m1miageprojet.plugingraphisme.GraphismeBase");
-    	nomPluginsGraphismesSelectionne.add("com.m1miageprojet.plugingraphisme.BarreDeVie");
+    	//nomPluginsGraphismesSelectionne.add("com.m1miageprojet.plugingraphisme.BarreDeVie");
     }
 
     public void showFrame() {
@@ -88,6 +89,17 @@ public class SwingRepository {
                 return super.getValue(arg0);
             }
         });
+        fileM.add(new AbstractAction("Charge") {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+
+                ArrayList<Robot> robots  = outils.decodeFromFile("Sauvegarde.xml");
+                nomPluginAttaqueSelectionne = robots.get(0).getNomAttaque();
+                nomPluginDeplacementSelectionne = robots.get(0).getNomDeplacement();
+                nomPluginsGraphismesSelectionne = robots.get(0).getNomsGraphismes();
+                chargement(repo);
+            }
+        });
         JMenu Attaque = new JMenu("Attaques");
         JMenu graphisme= new JMenu("Graphismes");
         JMenu deplacement= new JMenu("Deplacements");
@@ -95,40 +107,9 @@ public class SwingRepository {
         bar.add(graphisme);
         bar.add(deplacement);
         try {
-        	PluginRepository repo = new PluginRepository(new File(selectedpath)); //
-            ArrayList<Class<?>> resultat = (ArrayList<Class<?>>) repo.load();
-            IGraphisme g = new IGraphisme(){
-            	
-            	ArrayList<String> result = new ArrayList<String>();
-
-				@Override
-				public void draw(IRobot r, Graphics g) {
-					// TODO Auto-generated method stub
-					
-				}
-            	
-				@Override
-				public void addNameIGraphisme(String name) {
-					getListeNames().add(name);
-					
-				}
-
-				@Override
-				public ArrayList<String> getListeNames() {
-					// TODO Auto-generated method stub
-					
-					return result;
-				}
-            };
-            IDeplacement d = (IDeplacement)repo.getPluginsDeplacementbyName(nomPluginDeplacementSelectionne).newInstance();
-            IAttaque a = (IAttaque)repo.getPluginsAttaquebyName(nomPluginAttaqueSelectionne).newInstance();
-            for(String s : nomPluginsGraphismesSelectionne)
-            {
-            	Constructor gconstruct = repo.getPluginsGraphismebyName(s).getConstructors()[0];
-            	g = (IGraphisme) gconstruct.newInstance(g);
-            }
-            app = new MySwingApp(frame,g,d,a);
-
+        	repo = new PluginRepository(new File(selectedpath)); //
+            repo.load();
+            chargement(repo);
             for (Class<?> c : repo.getPluginsDeplacment()) {
 
                 deplacement.add(c.getName());
@@ -141,24 +122,13 @@ public class SwingRepository {
 
                 graphisme.add(c.getName());
             }
-
-            app.run();
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        } catch (InstantiationException e) {
+        }  catch (IllegalArgumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}  catch (SecurityException e) {
+		}   catch (SecurityException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (Exception e) {
@@ -166,6 +136,59 @@ public class SwingRepository {
 			e.printStackTrace();
 		}
 
+    }
+    
+    /**
+     * Instancie MySwingApp avec les plugins selectionnes.
+     * @param repo
+     */
+    public void chargement(PluginRepository repo)
+    {
+    	try
+    	{
+    		IGraphisme g = new IGraphisme(){    	
+            	ArrayList<String> result = new ArrayList<String>();
+            	
+				@Override
+				public void draw(IRobot r, Graphics g) {
+					
+				}
+				
+				@Override
+				public void addNameIGraphisme(String name) {
+					getListeNames().add(name);				
+				}
+
+				@Override
+				public ArrayList<String> getListeNames() {
+					return result;
+				}
+            };
+            IDeplacement d = (IDeplacement)repo.getPluginsDeplacementbyName(nomPluginDeplacementSelectionne).newInstance();
+            IAttaque a = (IAttaque)repo.getPluginsAttaquebyName(nomPluginAttaqueSelectionne).newInstance();
+            for(String s : nomPluginsGraphismesSelectionne)
+            {
+            	Constructor gconstruct = repo.getPluginsGraphismebyName(s).getConstructors()[0];
+            	g = (IGraphisme) gconstruct.newInstance(g);
+            }
+            app = new MySwingApp(frame,g,d,a);
+            app.run();
+    	}catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
     public static void main(String[] args) {
