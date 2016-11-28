@@ -9,6 +9,7 @@ package com.m1miageprojet.app;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.List;
 //import java.util.ArrayList;
 import com.m1miageprojet.interfacesplugins.IAttaque;
 import com.m1miageprojet.interfacesplugins.IDeplacement;
@@ -55,7 +56,7 @@ public class Robot implements IRobot {
 				}, new IDeplacement() {
 
 					@Override
-					public void move(IRobot r) {
+					public void move(IRobot r,List<IRobot>adversaires) {
 						// TODO Auto-generated method stub
 						
 					}
@@ -100,8 +101,8 @@ public class Robot implements IRobot {
 		graphisme.draw(this, g);
 	}
 	
-	public void moveRobot() {
-		deplacement.move(this);
+	public void moveRobot(List<IRobot> adversaires) {
+		deplacement.move(this,adversaires);
 		if(getE() <10){
 			setE(getE()+1);
 		}

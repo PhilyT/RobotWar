@@ -28,7 +28,8 @@ public interface IRobot {
 	public void soustrairedelenergie(int consum);
 	public boolean estTouche(double posXProjectil, double posYProjectil);
 	public boolean estTouche(double posXProjectilInit, double posYProjectilInit, double posXProjectilFin, double posYProjctilFin, int direction);
-
+	public int getHeight();
+	public int getWidth();
 
 	public String getNom();
 }

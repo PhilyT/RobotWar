@@ -3,9 +3,11 @@ package com.m1miageprojet.plugindeplacement;
 import com.m1miageprojet.interfacesplugins.IDeplacement;
 import com.m1miageprojet.interfacesplugins.IRobot;
 
+import java.util.List;
+
 
 public class DisplacementVeersAvaunt implements IDeplacement {
-    public void move(IRobot b) {
+    public void move(IRobot b,List<IRobot> adversaires) {
 /*
         double x = b.getX();
         double y = b.getY();

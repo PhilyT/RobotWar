@@ -7,10 +7,13 @@
  */
 package com.m1miageprojet.interfacesplugins;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author Nicolas Kircun
  *
  */
 public interface IDeplacement {
-	public void move(IRobot r);
+	public void move(IRobot r, List<IRobot> adversaires);
 }
