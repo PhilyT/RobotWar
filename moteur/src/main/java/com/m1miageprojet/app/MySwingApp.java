@@ -57,13 +57,13 @@ public class MySwingApp
 		{
 			System.out.println("execo");
 		}
-		else if(panel.getR1().getV() > 0)
+		else if(panel.getR1().getV() <= 0)
 		{
-			System.out.println("Robot r1 win !");
+			System.out.println("Robot r2 win !");
 		}
 		else
 		{
-			System.out.println("Robot r2 win !");
+			System.out.println("Robot r1 win !");
 		}
 	}
 }

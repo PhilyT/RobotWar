@@ -98,6 +98,8 @@ public class SwingRepository {
         	PluginRepository repo = new PluginRepository(new File(selectedpath)); //
             ArrayList<Class<?>> resultat = (ArrayList<Class<?>>) repo.load();
             IGraphisme g = new IGraphisme(){
+            	
+            	ArrayList<String> result = new ArrayList<String>();
 
 				@Override
 				public void draw(IRobot r, Graphics g) {
@@ -105,6 +107,18 @@ public class SwingRepository {
 					
 				}
             	
+				@Override
+				public void addNameIGraphisme(String name) {
+					getListeNames().add(name);
+					
+				}
+
+				@Override
+				public ArrayList<String> getListeNames() {
+					// TODO Auto-generated method stub
+					
+					return result;
+				}
             };
             IDeplacement d = (IDeplacement)repo.getPluginsDeplacementbyName(nomPluginDeplacementSelectionne).newInstance();
             IAttaque a = (IAttaque)repo.getPluginsAttaquebyName(nomPluginAttaqueSelectionne).newInstance();

@@ -9,6 +9,7 @@ package com.m1miageprojet.plugingraphisme;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 import com.m1miageprojet.interfacesplugins.IGraphisme;
 import com.m1miageprojet.interfacesplugins.IRobot;
@@ -19,6 +20,8 @@ public class BarreDeVie implements IGraphisme {
 	
 	public BarreDeVie(IGraphisme graphisme) {
 		this.graphisme = graphisme;
+		addNameIGraphisme(getClass().getName());
+		System.out.println("Graphismes charges : " + graphisme.getListeNames());
 	}
 
 	@Override
@@ -80,6 +83,18 @@ public class BarreDeVie implements IGraphisme {
 		if(graphisme!=null) {
 			graphisme.draw(r, g);
 		}
+	}
+
+	@Override
+	public void addNameIGraphisme(String name) {
+		// TODO Auto-generated method stub
+		graphisme.addNameIGraphisme(name);
+	}
+
+	@Override
+	public ArrayList<String> getListeNames() {
+		// TODO Auto-generated method stub
+		return graphisme.getListeNames();
 	}
 
 }

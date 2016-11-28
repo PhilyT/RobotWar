@@ -29,7 +29,7 @@ public class Robot implements IRobot {
 //	private ArrayList<IProjectile> projectiles;
 	private IProjectile projectile;
 	private String nom;	//pour test
-	private String nomGraphisme;
+	private ArrayList<String> nomsGraphismes;
 	private String nomAttaque;
 	private String nomDeplacement;
 
@@ -39,11 +39,25 @@ public class Robot implements IRobot {
 	public Robot()
 	{
 		this(50, 50, 10, 10, Color.BLACK, new IGraphisme() {
+					ArrayList<String> result = new ArrayList<String>();
 
 					@Override
 					public void draw(IRobot r, Graphics g) {
 						// TODO Auto-generated method stub
 						
+					}
+
+					@Override
+					public void addNameIGraphisme(String name) {
+						getListeNames().add(name);
+						
+					}
+
+					@Override
+					public ArrayList<String> getListeNames() {
+						// TODO Auto-generated method stub
+						
+						return result;
 					}
  
 			
@@ -73,6 +87,7 @@ public class Robot implements IRobot {
 	}
 	
 	public Robot(int x, int y, int v, int e, Color c, IGraphisme graphisme, IDeplacement deplacement, IAttaque attaque, String nom) {
+		
 		this.graphisme = graphisme;
 		this.deplacement = deplacement;
 		this.attaque = attaque;
@@ -84,7 +99,7 @@ public class Robot implements IRobot {
 		this.setWidth(50); this.setHeight(50);
 		nomAttaque = attaque.getClass().getName();
 		nomDeplacement = deplacement.getClass().getName();
-		nomGraphisme = graphisme.getClass().getName();
+		nomsGraphismes = graphisme.getListeNames();
 		this.nom = nom;
 	}
 
@@ -158,13 +173,13 @@ public class Robot implements IRobot {
 		setE(getE() - consum);
 	}
 	
-	public String getNomGraphisme()
+	public ArrayList<String> getNomsGraphismes()
 	{
-		return nomGraphisme;
+		return nomsGraphismes;
 	}
 	
-	public void setNomGraphisme(String graphisme) {
-		this.nomGraphisme = graphisme;
+	public void setNomsGraphismes(ArrayList<String> graphisme) {
+		this.nomsGraphismes = graphisme;
 	}
 	
 	public String getNomDeplacement() {
