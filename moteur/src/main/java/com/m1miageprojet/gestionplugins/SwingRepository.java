@@ -96,12 +96,6 @@ public class SwingRepository {
 					// TODO Auto-generated method stub
 					
 				}
-
-				@Override
-				public void drawWeapon(IProjectile p, Graphics g, int direction) {
-					// TODO Auto-generated method stub
-					
-				}
             	
             });
             IDeplacement d = (IDeplacement)repo.getPluginsDeplacment().get(1).newInstance();

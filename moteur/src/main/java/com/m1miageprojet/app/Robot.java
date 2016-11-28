@@ -45,12 +45,7 @@ public class Robot implements IRobot {
 						// TODO Auto-generated method stub
 						
 					}
-
-					@Override
-					public void drawWeapon(IProjectile p, Graphics g, int direction) {
-						// TODO Auto-generated method stub
-						
-					} 
+ 
 			
 				}, new IDeplacement() {
 
