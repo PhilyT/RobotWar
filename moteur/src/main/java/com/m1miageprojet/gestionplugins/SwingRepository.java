@@ -34,6 +34,14 @@ public class SwingRepository {
     String selectedpath="";
     private XMLTools outils = new XMLTools();
     private MySwingApp app;
+    private String nomPluginAttaqueSelectionne = "com.m1miageprojet.pluginattaque.AttaqueCourte";
+    private String nomPluginDeplacementSelectionne = "com.m1miageprojet.plugindeplacement.DeplacementSimple";
+    private ArrayList<String> nomPluginsGraphismesSelectionne = new ArrayList<String>();
+    
+    public SwingRepository()
+    {
+    	nomPluginsGraphismesSelectionne.add("com.m1miageprojet.plugingraphisme.GraphismeBase");
+    }
 
     public void showFrame() {
         if (frame == null) {
@@ -88,8 +96,7 @@ public class SwingRepository {
         try {
         	PluginRepository repo = new PluginRepository(new File(selectedpath)); //
             ArrayList<Class<?>> resultat = (ArrayList<Class<?>>) repo.load();
-            Constructor gconstruct = repo.getPluginsGraphisme().get(0).getConstructors()[0];
-            IGraphisme g = (IGraphisme) gconstruct.newInstance(new IGraphisme(){
+            IGraphisme g = new IGraphisme(){
 
 				@Override
 				public void draw(IRobot r, Graphics g) {
@@ -97,9 +104,14 @@ public class SwingRepository {
 					
 				}
             	
-            });
-            IDeplacement d = (IDeplacement)repo.getPluginsDeplacment().get(1).newInstance();
-            IAttaque a = (IAttaque)repo.getPluginsAttaque().get(0).newInstance();
+            };
+            IDeplacement d = (IDeplacement)repo.getPluginsDeplacementbyName(nomPluginDeplacementSelectionne).newInstance();
+            IAttaque a = (IAttaque)repo.getPluginsAttaquebyName(nomPluginAttaqueSelectionne).newInstance();
+            for(String s : nomPluginsGraphismesSelectionne)
+            {
+            	Constructor gconstruct = repo.getPluginsGraphisme().get(0).getConstructors()[0];
+            	g = (IGraphisme) gconstruct.newInstance(g);
+            }
             app = new MySwingApp(frame,g,d,a);
 
             for (Class<?> c : repo.getPluginsDeplacment()) {
@@ -132,6 +144,9 @@ public class SwingRepository {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}  catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

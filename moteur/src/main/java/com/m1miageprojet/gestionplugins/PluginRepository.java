@@ -107,5 +107,59 @@ public class PluginRepository {
     public List<Class<?>> getPluginsAttaque() {
         return pluginsAttaque;
     }
+    
+    /**
+     * 
+     * @param name nom du plugin a recuperer
+     * @return un plugin attaque
+     * @throws Exception
+     */
+    public Class<?> getPluginsAttaquebyName(String name) throws Exception
+    {
+    	for(Class<?> c : pluginsAttaque)
+    	{
+    		if(c.getName().equals(name))
+    		{
+    			return c;
+    		}
+    	}
+    	throw new Exception("Pas de plugin attaque chargé");
+    }
+    
+    /**
+     * 
+     * @param name name nom du plugin a recuperer
+     * @return un plugin deplacement
+     * @throws Exception
+     */
+    public Class<?> getPluginsDeplacementbyName(String name)throws Exception
+    {
+    	for(Class<?> c : pluginsDeplacment)
+    	{
+    		if(c.getName().equals(name))
+    		{
+    			return c;
+    		}
+    	}
+    	throw new Exception("Pas de plugin attaque chargé");
+    }
+    
+    /**
+     * 
+     * @param name name nom du plugin a recuperer
+     * @return un plugin graphisme
+     * @throws Exception
+     */
+    public Class<?> getPluginsGraphismebyName(String name)throws Exception
+    {
+    	for(Class<?> c : pluginsGraphisme)
+    	{
+    		if(c.getName().equals(name))
+    		{
+    			return c;
+    		}
+    	}
+    	throw new Exception("Pas de plugin attaque chargé");
+    }
 }
 
