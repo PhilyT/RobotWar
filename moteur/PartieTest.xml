@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.7.0_45" class="java.beans.XMLDecoder">
+ <object class="java.util.ArrayList">
+  <void method="add">
+   <object class="com.m1miageprojet.app.Robot">
+    <void property="color">
+     <object class="java.awt.Color">
+      <int>0</int>
+      <int>0</int>
+      <int>255</int>
+      <int>255</int>
+     </object>
+    </void>
+    <void property="nom">
+     <string>r1</string>
+    </void>
+    <void property="nomAttaque">
+     <string>com.m1miageprojet.pluginattaque.AttaqueCourte</string>
+    </void>
+    <void property="nomDeplacement">
+     <string>com.m1miageprojet.plugindeplacement.DeplacementSimple</string>
+    </void>
+    <void property="nomGraphisme">
+     <string>com.m1miageprojet.plugingraphisme.GraphismeBase</string>
+    </void>
+    <void property="x">
+     <int>150</int>
+    </void>
+    <void property="y">
+     <int>150</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="com.m1miageprojet.app.Robot">
+    <void property="color">
+     <object class="java.awt.Color">
+      <int>255</int>
+      <int>0</int>
+      <int>0</int>
+      <int>255</int>
+     </object>
+    </void>
+    <void property="nom">
+     <string>r2</string>
+    </void>
+    <void property="nomAttaque">
+     <string>com.m1miageprojet.pluginattaque.AttaqueCourte</string>
+    </void>
+    <void property="nomDeplacement">
+     <string>com.m1miageprojet.plugindeplacement.DeplacementSimple</string>
+    </void>
+    <void property="nomGraphisme">
+     <string>com.m1miageprojet.plugingraphisme.GraphismeBase</string>
+    </void>
+    <void property="x">
+     <int>350</int>
+    </void>
+    <void property="y">
+     <int>350</int>
+    </void>
+   </object>
+  </void>
+ </object>
+</java>

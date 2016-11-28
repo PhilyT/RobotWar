@@ -9,5 +9,10 @@ public interface IAttaque {
 //    public int degats();
 //    public int getNbrArme();
 	public void attaque(Graphics gr, IGraphisme g, IRobot adversaire, IProjectile p);
+	
+	/**
+	 * Action lorsque un projectile touche un adversaire.
+	 * @param p projectile touchant un adversaire
+	 */
 	public void touche(IProjectile p);
 }

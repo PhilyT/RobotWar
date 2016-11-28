@@ -9,31 +9,36 @@ import com.m1miageprojet.interfacesplugins.IAttaque;
 import com.m1miageprojet.interfacesplugins.IDeplacement;
 import com.m1miageprojet.interfacesplugins.IGraphisme;
 
-public class MySwingApp extends JFrame 
+public class MySwingApp 
 {
 	private MonPanel panel;
+	private JFrame parent;
 	
-	public MySwingApp(IGraphisme graphisme, IDeplacement deplacement, IAttaque attaque) 
+	public MySwingApp(JFrame parent, IGraphisme graphisme, IDeplacement deplacement, IAttaque attaque) 
 	{
+		this.parent = parent;
 		panel = new MonPanel(graphisme, deplacement, attaque);
 		panel.setSize(new Dimension(500, 500));
 		// Creation de la fenetre
-		this.setTitle("Robot War");
-		this.setSize(500, 500);
-		this.setLocationRelativeTo(null);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setResizable(false);
+		parent.setTitle("Robot War");
+		parent.setSize(500, 500);
+		parent.setLocationRelativeTo(null);
+		parent.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		parent.setResizable(false);
 
-		this.setContentPane(panel);
+		parent.setContentPane(panel);
 
 
-		this.setVisible(true);
+		parent.setVisible(true);
 	}
 	
+	/**
+	 * Lance la partie.
+	 */
 	public void run()
 	{
-		while(panel.getR1().getVie() > 0 && panel.getR2().getVie() > 0) {
-			this.repaint();
+		while(panel.getR1().getV() > 0 && panel.getR2().getV() > 0) {
+			parent.repaint();
 			try {
 				// TODO A modifier
 				Thread.sleep(1000);
@@ -42,7 +47,7 @@ public class MySwingApp extends JFrame
 				e.printStackTrace();
 			}
 		}
-		if(panel.getR1().getVie() > 0)
+		if(panel.getR1().getV() > 0)
 		{
 			System.out.println("Robot r1 win !");
 		}

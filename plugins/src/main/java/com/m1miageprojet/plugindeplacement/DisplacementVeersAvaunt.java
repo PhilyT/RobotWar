@@ -6,7 +6,7 @@ import com.m1miageprojet.interfacesplugins.IRobot;
 
 public class DisplacementVeersAvaunt implements IDeplacement {
     public void move(IRobot b) {
-
+/*
         double x = b.getX();
         double y = b.getY();
         x += (double)((int)(10000 * Math.cos(Math.PI)));
@@ -20,7 +20,7 @@ public class DisplacementVeersAvaunt implements IDeplacement {
             y += (double)10;
         }
         b.setX((int)x);
-        b.setY((int)y);
+        b.setY((int)y);*/
     }
 }
 

@@ -9,7 +9,7 @@ package com.m1miageprojet.app;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import com.m1miageprojet.interfacesplugins.IAttaque;
 import com.m1miageprojet.interfacesplugins.IDeplacement;
 import com.m1miageprojet.interfacesplugins.IGraphisme;
@@ -21,26 +21,76 @@ import com.m1miageprojet.interfacesplugins.IRobot;
  *
  */
 public class Robot implements IRobot {
-	private int x, y, width, height;
+	private int x, y,v, e, width, height ;
 	private Color color;
 	private IGraphisme graphisme;
 	private IDeplacement deplacement;
 	private IAttaque attaque;
 //	private ArrayList<IProjectile> projectiles;
 	private IProjectile projectile;
-	private int vie, energie;
-	private Robot adversaire;
+	private String nom;	//pour test
+	private String nomGraphisme;
+	private String nomAttaque;
+	private String nomDeplacement;
+
+	/**
+	 * Constructeur par default pour la serialization
+	 */
+	public Robot()
+	{
+		this(50, 50, 10, 10, Color.BLACK, new IGraphisme() {
+
+					@Override
+					public void draw(IRobot r, Graphics g) {
+						// TODO Auto-generated method stub
+						
+					}
+
+					@Override
+					public void drawWeapon(IProjectile p, Graphics g, int direction) {
+						// TODO Auto-generated method stub
+						
+					} 
+			
+				}, new IDeplacement() {
+
+					@Override
+					public void move(IRobot r) {
+						// TODO Auto-generated method stub
+						
+					}
+					
+				}, new IAttaque() {
+
+					@Override
+					public void attaque(Graphics gr, IGraphisme g, IRobot adversaire, IProjectile p) {
+						// TODO Auto-generated method stub
+						
+					}
+
+					@Override
+					public void touche(IProjectile p) {
+						// TODO Auto-generated method stub
+						
+					}
+					
+				}, "serialisation");
+	}
 	
-	public Robot(int x, int y, Color c, IGraphisme graphisme, IDeplacement deplacement, IAttaque attaque) {
+	public Robot(int x, int y, int v, int e, Color c, IGraphisme graphisme, IDeplacement deplacement, IAttaque attaque, String nom) {
 		this.graphisme = graphisme;
 		this.deplacement = deplacement;
 		this.attaque = attaque;
 		this.color = c;
 		this.x = x;
 		this.y = y;
-		this.width = 50; this.height = 50;
-		vie = 10;
-		energie = 10;
+		setV(v);
+		setE(e);
+		this.setWidth(50); this.setHeight(50);
+		nomAttaque = attaque.getClass().getName();
+		nomDeplacement = deplacement.getClass().getName();
+		nomGraphisme = graphisme.getClass().getName();
+		this.nom = nom;
 	}
 
 	/**
@@ -52,13 +102,13 @@ public class Robot implements IRobot {
 	
 	public void moveRobot() {
 		deplacement.move(this);
-		if(energie <10){
-			energie++;
+		if(getE() <10){
+			setE(getE()+1);
 		}
 	}
 	
 	public void tirer(Graphics g, Robot adversaire) {
-		this.adversaire=adversaire;
+
 		projectile = new Projectile(adversaire, this);
 		projectile.attaque(g, adversaire, graphisme, attaque);
 	}
@@ -83,26 +133,55 @@ public class Robot implements IRobot {
 				// attaque vers la droite
 				case 0:
 					result = (((x+50) <= posXProjectilFin) && (x >= posXProjectilInit)) && ((y <= posYProjctilFin) && ((y+50) >= posYProjctilFin));
+					break;
 				// attaque vers le bas
 				case 1:
 					result = ((posXProjectilFin <= (x + 50)) && (posXProjectilFin >= (x))) && (((y+50) <= posYProjctilFin) && (y >= posYProjectilInit));
+					break;
 				// attaque vers la gauche	
 				case 2:
 					result = (((x+50) <= posXProjectilInit) && (x >= posXProjectilFin)) && ((y <= posYProjctilFin) && ((y+50) >= posYProjctilFin));
+					break;
 				// attaque vers le haut
 				case 3:
 					result = ((posXProjectilFin <= (x + 50)) && (posXProjectilFin >= (x))) && ((y >= posYProjctilFin) && ((y+50) <= posYProjectilInit));
+					break;
 			}
 			return result;
 	}
 	
-	public int getVie(){
-		return vie;
+	public void soustrairedelavie(int degas) {
+		setV(getV() - degas);
 	}
 	
-	public int getEnergie(){
-		return energie;
+	public void soustrairedelenergie(int consum){
+		setE(getE() - consum);
 	}
+	
+	public String getNomGraphisme()
+	{
+		return nomGraphisme;
+	}
+	
+	public void setNomGraphisme(String graphisme) {
+		this.nomGraphisme = graphisme;
+	}
+	
+	public String getNomDeplacement() {
+		return nomDeplacement;
+	}
+
+	public void setNomDeplacement(String deplacement) {
+		this.nomDeplacement = deplacement;
+	}
+
+	public String getNomAttaque() {
+		return nomAttaque;
+	}
+
+	public void setNomAttaque(String attaque) {
+		this.nomAttaque = attaque;
+	}	
 	
 	public int getX() {
 		return x;
@@ -110,14 +189,43 @@ public class Robot implements IRobot {
 
 	public int getY() {
 		return y;
-	}	
-	
-	public void subVie(int degas) {
-		vie = vie - degas;
 	}
 	
-	public void subEnergie(int consum){
-		energie = energie - consum;
+	public int getV(){
+		return v;
+	}
+	
+	public int getE(){
+		return e;
+	}
+	
+	public String getNom(){
+		return nom;
+	}
+	
+	public Color getColor() {
+		return color;
+	}
+	
+	public int getWidth() {
+		return width;
+	}
+	
+	public int getHeight() {
+		return height;
+	}
+	
+	public void setNom(String nom)
+	{
+		this.nom = nom;
+	}
+	
+	public void setV(int v){
+		this.v = v;
+	}
+	
+	public void setE(int e){
+		this.e = e;
 	}
 	
 	public void setX(int x) {
@@ -128,10 +236,16 @@ public class Robot implements IRobot {
 		this.y = y;
 	}
 
-	public Color getColor() {
-		return color;
+	public void setColor(Color c) {
+		color = c;
 	}
 
+	public void setWidth(int width) {
+		this.width = width;
+	}
 
-	
+	public void setHeight(int height) {
+		this.height = height;
+	}
+
 }

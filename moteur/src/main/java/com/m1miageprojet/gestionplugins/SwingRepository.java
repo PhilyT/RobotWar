@@ -1,17 +1,25 @@
 package com.m1miageprojet.gestionplugins;
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import javax.swing.*;
-import java.awt.event.*;
-import java.awt.*;
-import java.util.*;
+
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.KeyStroke;
+
+import com.m1miageprojet.app.MySwingApp;
+import com.m1miageprojet.interfacesplugins.IAttaque;
+import com.m1miageprojet.interfacesplugins.IDeplacement;
+import com.m1miageprojet.interfacesplugins.IGraphisme;
 /**
  * Created by deptinfo on 12/11/2016.
  */
@@ -19,35 +27,26 @@ import java.util.*;
 public class SwingRepository {
     String selectedpath="";
 
-    void showFrame() {
+    public void showFrame() {
         if (frame == null) {
             frame = new JFrame("Test menu");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setBounds(100, 100, 450, 300);
-            contentPane = new JPanel();
             JButton button = new JButton("charger");
             JFileChooser fc = new JFileChooser();
             fc.setCurrentDirectory(new File("."));
             fc.setDialogTitle("charger plugins");
             fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-            if(fc.showOpenDialog(button)==JFileChooser.APPROVE_OPTION){
-
+            while(fc.showOpenDialog(button)!=JFileChooser.APPROVE_OPTION){
+            	
             }
-            JTable tableau= new JTable();
             selectedpath=fc.getSelectedFile().getAbsolutePath();
-            System.out.println("12 "+ selectedpath);
-            tableau.setSize(300,300);
-            contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-            contentPane.setLayout(new BorderLayout(0, 0));
-            frame.setContentPane(contentPane);
-            frame.add(tableau);
         }
         buildMenu();
         frame.setVisible(true);
     }
 
     JFrame frame;
-    private JPanel contentPane;
 
     @SuppressWarnings("serial")
     void buildMenu() {
@@ -72,26 +71,44 @@ public class SwingRepository {
                 return super.getValue(arg0);
             }
         });
-        JMenu dynamicM = new JMenu("Dynamic");
-        bar.add(dynamicM);
+        JMenu Attaque = new JMenu("Attaque");
+        JMenu graphisme= new JMenu("graphisme");
+        JMenu deplacement= new JMenu("deplacement");
+        bar.add(Attaque);
+        bar.add(graphisme);
+        bar.add(deplacement);
         try {
+        	PluginRepository repo = new PluginRepository(new File(selectedpath)); //
+            ArrayList<Class<?>> resultat = (ArrayList<Class<?>>) repo.load();
+            IGraphisme g = (IGraphisme)repo.getPluginsGraphisme().get(0).newInstance();
+            IDeplacement d = (IDeplacement)repo.getPluginsDeplacment().get(0).newInstance();
+            IAttaque a = (IAttaque)repo.getPluginsAttaque().get(0).newInstance();
+            MySwingApp app = new MySwingApp(frame,g,d,a);
 
-             System.out.println("swing repository : " +selectedpath);
-             PluginRepository repo = new PluginRepository(new File(selectedpath)); //
+            for (Class<?> c : repo.getPluginsDeplacment()) {
 
-          ArrayList<Class<?>> resultat = (ArrayList<Class<?>>) repo.load();
-          System.out.println("Teeeeest "+repo.getPluginsDeplacment().get(1).getName());
-          //  System.out.println(resultat.isEmpty());
-
-
-            for (Class<?> c : resultat) {
-                // System.out.println(c.getName());
-                dynamicM.add(c.getName());
+                deplacement.add(c.getName());
             }
+            for (Class<?> c : repo.getPluginsAttaque()) {
+
+                Attaque.add(c.getName());
+            }
+            for (Class<?> c : repo.getPluginsGraphisme()) {
+
+                graphisme.add(c.getName());
+            }
+
+            app.run();
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        }
+        } catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
     }
 
