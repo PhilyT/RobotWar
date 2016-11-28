@@ -69,7 +69,7 @@ public class SwingRepository {
             @Override
             public void actionPerformed(ActionEvent arg0) {
 
-                //outils.encodeToFile(partie, "Sauvegarde.xml");
+                outils.encodeToFile(app.getRobots(), "Sauvegarde.xml");
             }
 
             @Override
@@ -104,7 +104,7 @@ public class SwingRepository {
 				}
             	
             });
-            IDeplacement d = (IDeplacement)repo.getPluginsDeplacment().get(0).newInstance();
+            IDeplacement d = (IDeplacement)repo.getPluginsDeplacment().get(1).newInstance();
             IAttaque a = (IAttaque)repo.getPluginsAttaque().get(0).newInstance();
             app = new MySwingApp(frame,g,d,a);
 

@@ -17,7 +17,7 @@ public class DepalcementCollision implements IDeplacement {
 
 
     @Override
-    public void move(IRobot robot, List<IRobot> robots) {
+    public void move(IRobot robot, ArrayList<IRobot> robots) {
         Random random1 = new Random();
         Random random2 = new Random();
         int newY;
