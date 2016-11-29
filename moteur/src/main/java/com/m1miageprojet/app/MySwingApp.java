@@ -71,6 +71,7 @@ public class MySwingApp
 					if (panel.getR1().getV() <= 0 || panel.getR2().getV() <= 0)
 					{
 						running = false;
+						break;
 					}
 					parent.repaint();
 					try {

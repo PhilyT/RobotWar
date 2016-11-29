@@ -21,6 +21,9 @@ import javax.swing.KeyStroke;
 
 import com.m1miageprojet.app.MySwingApp;
 import com.m1miageprojet.app.Robot;
+import com.m1miageprojet.gestionplugins.actionsswing.ActionAttaque;
+import com.m1miageprojet.gestionplugins.actionsswing.ActionDeplacement;
+import com.m1miageprojet.gestionplugins.actionsswing.ActionGraphismes;
 import com.m1miageprojet.interfacesplugins.IAttaque;
 import com.m1miageprojet.interfacesplugins.IDeplacement;
 import com.m1miageprojet.interfacesplugins.IGraphisme;
@@ -32,7 +35,7 @@ import com.m1miageprojet.sauvegarde.XMLTools;
 
 public class SwingRepository {
     String selectedpath="";
-    PluginRepository repo;
+    private PluginRepository repo;
     private XMLTools outils = new XMLTools();
     private MySwingApp app;
     private String nomPluginAttaqueSelectionne = "com.m1miageprojet.pluginattaque.AttaqueCourte";
@@ -41,7 +44,7 @@ public class SwingRepository {
     
     public SwingRepository()
     {
-    	nomPluginsGraphismesSelectionne.add("com.m1miageprojet.plugingraphisme.GraphismeBase");
+    	getNomPluginsGraphismesSelectionne().add("com.m1miageprojet.plugingraphisme.GraphismeBase");
     	//nomPluginsGraphismesSelectionne.add("com.m1miageprojet.plugingraphisme.BarreDeVie");
     }
 
@@ -78,7 +81,7 @@ public class SwingRepository {
             @Override
             public void actionPerformed(ActionEvent arg0) {
 
-                outils.encodeToFile(app.getRobots(), "Sauvegarde.xml");
+                getOutils().encodeToFile(getApp().getRobots(), "Sauvegarde.xml");
             }
 
             @Override
@@ -92,11 +95,11 @@ public class SwingRepository {
             @Override
             public void actionPerformed(ActionEvent arg0) {
 
-                ArrayList<Robot> robots  = outils.decodeFromFile("Sauvegarde.xml");
-                nomPluginAttaqueSelectionne = robots.get(0).getNomAttaque();
-                nomPluginDeplacementSelectionne = robots.get(0).getNomDeplacement();
-                nomPluginsGraphismesSelectionne = robots.get(0).getNomsGraphismes();
-                chargement(repo);
+                ArrayList<Robot> robots  = getOutils().decodeFromFile("Sauvegarde.xml");
+                setNomPluginAttaqueSelectionne(robots.get(0).getNomAttaque());
+                setNomPluginDeplacementSelectionne(robots.get(0).getNomDeplacement());
+                setNomPluginsGraphismesSelectionne(robots.get(0).getNomsGraphismes());
+                chargement(getRepo());
             }
         });
         JMenu Attaque = new JMenu("Attaques");
@@ -106,20 +109,20 @@ public class SwingRepository {
         bar.add(graphisme);
         bar.add(deplacement);
         try {
-        	repo = new PluginRepository(new File(selectedpath)); //
-            repo.load();
-            chargement(repo);
-            for (Class<?> c : repo.getPluginsDeplacment()) {
+        	setRepo(new PluginRepository(new File(selectedpath))); //
+            getRepo().load();
+            chargement(getRepo());
+            for (Class<?> c : getRepo().getPluginsDeplacment()) {
 
-                deplacement.add(c.getName());
+                deplacement.add(new ActionDeplacement(c.getName(), this));
             }
-            for (Class<?> c : repo.getPluginsAttaque()) {
+            for (Class<?> c : getRepo().getPluginsAttaque()) {
 
-                Attaque.add(c.getName());
+                Attaque.add(new ActionAttaque(c.getName(), this));
             }
-            for (Class<?> c : repo.getPluginsGraphisme()) {
+            for (Class<?> c : getRepo().getPluginsGraphisme()) {
 
-                graphisme.add(c.getName());
+                graphisme.add(new ActionGraphismes(c.getName(), this));
             }
         } catch (IOException e) {
             // TODO Auto-generated catch block
@@ -163,21 +166,21 @@ public class SwingRepository {
 					return result;
 				}
             };
-            IDeplacement d = (IDeplacement)repo.getPluginsDeplacementbyName(nomPluginDeplacementSelectionne).newInstance();
-            IAttaque a = (IAttaque)repo.getPluginsAttaquebyName(nomPluginAttaqueSelectionne).newInstance();
-            for(String s : nomPluginsGraphismesSelectionne)
+            IDeplacement d = (IDeplacement)repo.getPluginsDeplacementbyName(getNomPluginDeplacementSelectionne()).newInstance();
+            IAttaque a = (IAttaque)repo.getPluginsAttaquebyName(getNomPluginAttaqueSelectionne()).newInstance();
+            for(String s : getNomPluginsGraphismesSelectionne())
             {
             	Constructor gconstruct = repo.getPluginsGraphismebyName(s).getConstructors()[0];
             	g = (IGraphisme) gconstruct.newInstance(g);
             }
-            if(app == null)
+            if(getApp() == null)
             {
-            	app = new MySwingApp(frame,g,d,a);
-                app.run();
+            	setApp(new MySwingApp(frame,g,d,a));
+                getApp().run();
             }
             else
             {
-            	app.setPanel(g, d, a);
+            	getApp().setPanel(g, d, a);
             }
     	}catch (InstantiationException e) {
 			// TODO Auto-generated catch block
@@ -197,15 +200,56 @@ public class SwingRepository {
 		}
     }
 
-    public static void main(String[] args) {
+    public String getNomPluginAttaqueSelectionne() {
+		return nomPluginAttaqueSelectionne;
+	}
+
+	public void setNomPluginAttaqueSelectionne(String nomPluginAttaqueSelectionne) {
+		this.nomPluginAttaqueSelectionne = nomPluginAttaqueSelectionne;
+	}
+
+	public static void main(String[] args) {
         SwingRepository f = new SwingRepository();
         f.showFrame();
     }
+
+	public String getNomPluginDeplacementSelectionne() {
+		return nomPluginDeplacementSelectionne;
+	}
+
+	public void setNomPluginDeplacementSelectionne(String nomPluginDeplacementSelectionne) {
+		this.nomPluginDeplacementSelectionne = nomPluginDeplacementSelectionne;
+	}
+
+	public ArrayList<String> getNomPluginsGraphismesSelectionne() {
+		return nomPluginsGraphismesSelectionne;
+	}
+
+	public void setNomPluginsGraphismesSelectionne(ArrayList<String> nomPluginsGraphismesSelectionne) {
+		this.nomPluginsGraphismesSelectionne = nomPluginsGraphismesSelectionne;
+	}
+
+	public PluginRepository getRepo() {
+		return repo;
+	}
+
+	public void setRepo(PluginRepository repo) {
+		this.repo = repo;
+	}
+
+	public XMLTools getOutils() {
+		return outils;
+	}
+
+	public void setOutils(XMLTools outils) {
+		this.outils = outils;
+	}
+
+	public MySwingApp getApp() {
+		return app;
+	}
+
+	public void setApp(MySwingApp app) {
+		this.app = app;
+	}
 }
-
-
-
-
-
-
-
