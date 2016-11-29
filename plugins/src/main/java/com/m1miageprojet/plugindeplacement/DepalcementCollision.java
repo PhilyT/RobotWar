@@ -11,48 +11,70 @@ import java.util.Random;
  * Created by deptinfo on 28/11/2016.
  */
 public class DepalcementCollision implements IDeplacement {
-
     List<IRobot> adversaires = new ArrayList<IRobot>();
     public Random rand = new Random();
 
 
     @Override
     public void move(IRobot robot, List<IRobot> robots) {
+        System.out.println("__________________________________________ok");
         Random random1 = new Random();
-        Random random2 = new Random();
-        int newY;
-        int newX;
+        int addY;
+        int addX;
         boolean collision = false;
-        ArrayList<Integer> cordonnes = new ArrayList<Integer>();
+        //ArrayList<Integer> cordonnes = new ArrayList<Integer>();
         for (int i = 0; i < robots.size(); i++) {
             if (!robots.get(i).equals(robot)) {
                 this.adversaires.add(robots.get(i));
             }
         }
         int nombreInitial = 1;
-        int nbRandom = random1.nextInt(20);
+        int nbRandom = random1.nextInt(50);
         if (nbRandom == 0) {
-            newX = -10;
+            addX = -10;
         } else {
-            newX = 10;
+            addX = nbRandom;
         }
 
-        int nouveauX = robot.getX() + newX;
-        int nbRandom1 = random2.nextInt(20);
+        int nouveauX = robot.getX() + addX;
+        int nbRandom1 = random1.nextInt(50);
 
         if (nbRandom1 == 0) {
-            newY = -10;
+            addY = -10;
         } else {
-            newY = 10;
+            addY = nbRandom1;
         }
-        int nouveauY = robot.getY() + newY;
+        int nouveauY = robot.getY() + addY;
         int nbr = 1;
 
-        if (((nouveauX <= adversaires.get(0).getX()) && (nouveauX + robot.getWidth() >= adversaires.get(0).getX())) && ((nouveauY <= adversaires.get(0).getY()) && (nouveauY + robot.getHeight() >= adversaires.get(0).getY()))) {
+        if (((nouveauX <= adversaires.get(1).getX()) && (nouveauX + robot.getWidth() >= adversaires.get(1).getX())) && ((nouveauY <= adversaires.get(1).getY()) && (nouveauY + robot.getHeight() >= adversaires.get(1).getY()))) {
             collision = true;
+
         }
-        nbr++;
+        if(!collision ){
+            System.out.println("est la");
+            int mouvX = nouveauX + robot.getWidth();
+            int mouvY = nouveauY+robot.getHeight();
+                if(mouvX>490) {
+                    nouveauX = 10;
+                }
+                if (mouvY>490){
+                    nouveauY=10;
+                }
+                    robot.setX(nouveauX);
+            robot.setY(nouveauY);
 
-    }
+            }
 
-}
+        else{
+            System.out.println(" Collision "+collision);
+            robot.setX(10);
+            robot.setY(10);
+            adversaires.get(1).setX(430);
+            adversaires.get(1).setY(10);
+        }
+
+    }}
+
+
+
