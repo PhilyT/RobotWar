@@ -14,9 +14,11 @@ public class MySwingApp
 {
 	private MonPanel panel;
 	private JFrame parent;
+	private boolean running;
 	
 	public MySwingApp(JFrame parent, IGraphisme graphisme, IDeplacement deplacement, IAttaque attaque) 
 	{
+		
 		this.parent = parent;
 		panel = new MonPanel(graphisme, deplacement, attaque);
 		panel.setSize(new Dimension(500, 500));
@@ -33,6 +35,20 @@ public class MySwingApp
 		parent.setVisible(true);
 	}
 	
+	public void setPanel(IGraphisme graphisme, IDeplacement deplacement, IAttaque attaque)
+	{
+		running = false;
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		panel = new MonPanel(graphisme, deplacement, attaque);
+		parent.setContentPane(panel);
+		run();
+	}
+	
 	public ArrayList<Robot> getRobots()
 	{
 		return panel.getRobots();
@@ -43,7 +59,13 @@ public class MySwingApp
 	 */
 	public void run()
 	{
-		while(panel.getR1().getV() > 0 && panel.getR2().getV() > 0) {
+		running = true;
+		System.out.println("Lancement de la partie");
+		while(running) {
+			if (panel.getR1().getV() <= 0 || panel.getR2().getV() <= 0)
+			{
+				running = false;
+			}
 			parent.repaint();
 			try {
 				// TODO A modifier
@@ -61,7 +83,7 @@ public class MySwingApp
 		{
 			System.out.println("Robot r2 win !");
 		}
-		else
+		else if(panel.getR2().getV() <= 0)
 		{
 			System.out.println("Robot r1 win !");
 		}

@@ -42,7 +42,7 @@ public class SwingRepository {
     public SwingRepository()
     {
     	nomPluginsGraphismesSelectionne.add("com.m1miageprojet.plugingraphisme.GraphismeBase");
-    	//nomPluginsGraphismesSelectionne.add("com.m1miageprojet.plugingraphisme.BarreDeVie");
+    	nomPluginsGraphismesSelectionne.add("com.m1miageprojet.plugingraphisme.BarreDeVie");
     }
 
     public void showFrame() {
@@ -61,7 +61,6 @@ public class SwingRepository {
             selectedpath=fc.getSelectedFile().getAbsolutePath();
         }
         buildMenu();
-        frame.setVisible(true);
     }
 
     JFrame frame;
@@ -171,8 +170,15 @@ public class SwingRepository {
             	Constructor gconstruct = repo.getPluginsGraphismebyName(s).getConstructors()[0];
             	g = (IGraphisme) gconstruct.newInstance(g);
             }
-            app = new MySwingApp(frame,g,d,a);
-            app.run();
+            if(app == null)
+            {
+            	app = new MySwingApp(frame,g,d,a);
+                app.run();
+            }
+            else
+            {
+            	app.setPanel(g, d, a);
+            }
     	}catch (InstantiationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
