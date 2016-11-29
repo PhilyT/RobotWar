@@ -15,6 +15,7 @@ public class MySwingApp
 	private MonPanel panel;
 	private JFrame parent;
 	private boolean running;
+	private Thread thread;
 	
 	public MySwingApp(JFrame parent, IGraphisme graphisme, IDeplacement deplacement, IAttaque attaque) 
 	{
@@ -30,9 +31,6 @@ public class MySwingApp
 		parent.setResizable(false);
 
 		parent.setContentPane(panel);
-
-
-		parent.setVisible(true);
 	}
 	
 	public void setPanel(IGraphisme graphisme, IDeplacement deplacement, IAttaque attaque)
@@ -44,7 +42,9 @@ public class MySwingApp
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		parent.setVisible(false);
 		panel = new MonPanel(graphisme, deplacement, attaque);
+		panel.setSize(new Dimension(500, 500));
 		parent.setContentPane(panel);
 		run();
 	}
@@ -59,33 +59,42 @@ public class MySwingApp
 	 */
 	public void run()
 	{
-		running = true;
-		System.out.println("Lancement de la partie");
-		while(running) {
-			if (panel.getR1().getV() <= 0 || panel.getR2().getV() <= 0)
-			{
-				running = false;
+		thread = new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				running = true;
+				System.out.println("Lancement de la partie");
+				parent.setVisible(true);
+				while(running) {
+					if (panel.getR1().getV() <= 0 || panel.getR2().getV() <= 0)
+					{
+						running = false;
+					}
+					parent.repaint();
+					try {
+						// TODO A modifier
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				if(panel.getR1().getV() <= 0 && panel.getR2().getV() <= 0)
+				{
+					System.out.println("execo");
+				}
+				else if(panel.getR1().getV() <= 0)
+				{
+					System.out.println("Robot r2 win !");
+				}
+				else if(panel.getR2().getV() <= 0)
+				{
+					System.out.println("Robot r1 win !");
+				}
 			}
-			parent.repaint();
-			try {
-				// TODO A modifier
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		if(panel.getR1().getV() <= 0 && panel.getR2().getV() <= 0)
-		{
-			System.out.println("execo");
-		}
-		else if(panel.getR1().getV() <= 0)
-		{
-			System.out.println("Robot r2 win !");
-		}
-		else if(panel.getR2().getV() <= 0)
-		{
-			System.out.println("Robot r1 win !");
-		}
+		});
+		thread.start();
 	}
 }

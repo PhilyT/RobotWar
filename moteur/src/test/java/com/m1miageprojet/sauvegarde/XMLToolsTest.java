@@ -1,7 +1,10 @@
 package com.m1miageprojet.sauvegarde;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.io.File;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 import com.m1miageprojet.app.Robot;
@@ -9,6 +12,7 @@ import com.m1miageprojet.gestionplugins.PluginsLoader;
 import com.m1miageprojet.interfacesplugins.IAttaque;
 import com.m1miageprojet.interfacesplugins.IDeplacement;
 import com.m1miageprojet.interfacesplugins.IGraphisme;
+import com.m1miageprojet.interfacesplugins.IRobot;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -60,7 +64,25 @@ public class XMLToolsTest extends TestCase
 			Class<?> graphiqueplugin = pluginsloader.loadClass("com.m1miageprojet.plugingraphisme.GraphismeBase");
 			Class<?> attaqueplugin = pluginsloader.loadClass("com.m1miageprojet.pluginattaque.AttaqueCourte");
 			Class<?> deplacementplugin = pluginsloader.loadClass("com.m1miageprojet.plugindeplacement.DeplacementSimple");
-			IGraphisme g = (IGraphisme)graphiqueplugin.newInstance();
+			Constructor gconstruct = graphiqueplugin.getConstructors()[0];
+			IGraphisme g = (IGraphisme)gconstruct.newInstance(new IGraphisme(){    	
+            	ArrayList<String> result = new ArrayList<String>();
+            	
+				@Override
+				public void draw(IRobot r, Graphics g) {
+					
+				}
+				
+				@Override
+				public void addNameIGraphisme(String name) {
+					getListeNames().add(name);				
+				}
+
+				@Override
+				public ArrayList<String> getListeNames() {
+					return result;
+				}
+            });
 			IAttaque a = (IAttaque)attaqueplugin.newInstance();
 			IDeplacement d = (IDeplacement)deplacementplugin.newInstance();
 			ArrayList<Robot> partie = new ArrayList<Robot>();
@@ -82,6 +104,12 @@ public class XMLToolsTest extends TestCase
 		} 
     	catch (IllegalAccessException e) 
     	{
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     }

@@ -42,7 +42,7 @@ public class SwingRepository {
     public SwingRepository()
     {
     	nomPluginsGraphismesSelectionne.add("com.m1miageprojet.plugingraphisme.GraphismeBase");
-    	nomPluginsGraphismesSelectionne.add("com.m1miageprojet.plugingraphisme.BarreDeVie");
+    	//nomPluginsGraphismesSelectionne.add("com.m1miageprojet.plugingraphisme.BarreDeVie");
     }
 
     public void showFrame() {
