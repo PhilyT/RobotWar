@@ -10,7 +10,7 @@ package com.m1miageprojet.interfacesplugins;
 import java.awt.Graphics;
 
 public interface IProjectile {
-	public void attaque(Graphics gr, IRobot r, IGraphisme g, IAttaque a);
+	public void attaque(Graphics gr, IRobot r, IAttaque a);
 	public int getX();
 	public int getY();
 	public void setX(int x);

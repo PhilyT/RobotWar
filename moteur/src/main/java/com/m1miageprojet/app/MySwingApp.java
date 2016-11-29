@@ -2,8 +2,9 @@ package com.m1miageprojet.app;
 
 
 import java.awt.Dimension;
+import java.util.ArrayList;
 
-import javax.swing.*;
+import javax.swing.JFrame;
 
 import com.m1miageprojet.interfacesplugins.IAttaque;
 import com.m1miageprojet.interfacesplugins.IDeplacement;
@@ -32,6 +33,11 @@ public class MySwingApp
 		parent.setVisible(true);
 	}
 	
+	public ArrayList<Robot> getRobots()
+	{
+		return panel.getRobots();
+	}
+	
 	/**
 	 * Lance la partie.
 	 */
@@ -47,13 +53,17 @@ public class MySwingApp
 				e.printStackTrace();
 			}
 		}
-		if(panel.getR1().getV() > 0)
+		if(panel.getR1().getV() <= 0 && panel.getR2().getV() <= 0)
 		{
-			System.out.println("Robot r1 win !");
+			System.out.println("execo");
+		}
+		else if(panel.getR1().getV() <= 0)
+		{
+			System.out.println("Robot r2 win !");
 		}
 		else
 		{
-			System.out.println("Robot r2 win !");
+			System.out.println("Robot r1 win !");
 		}
 	}
 }

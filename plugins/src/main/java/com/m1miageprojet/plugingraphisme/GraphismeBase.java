@@ -2,6 +2,7 @@ package com.m1miageprojet.plugingraphisme;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.ArrayList;
 import java.util.Random;
 
 import com.m1miageprojet.interfacesplugins.IGraphisme;
@@ -15,6 +16,7 @@ public class GraphismeBase implements IGraphisme {
 	public GraphismeBase(IGraphisme graphisme)
 	{
 		this.graphisme = graphisme;
+		addNameIGraphisme(getClass().getName());
 	}
 	
 	public void draw(IRobot r, Graphics g) {
@@ -26,30 +28,15 @@ public class GraphismeBase implements IGraphisme {
 		}
 	}
 
-	public void drawWeapon(IProjectile p, Graphics g, int direction) {
-		
-		g.setColor(Color.GREEN);
-				
-		switch (direction) {
-		// attaque vers la droite
-		case 0:
-			g.drawLine(p.getX(), p.getY(), p.getX() + p.getTaille(), p.getY());
-			break;
-		// attaque vers le bas
-		case 1:
-			g.drawLine(p.getX(), p.getY(), p.getX(), p.getY() + p.getTaille());
-			break;
-		// attaque vers la gauche	
-		case 2:
-			g.drawLine(p.getX(), p.getY(), p.getX() - p.getTaille(), p.getY());
-			break;
-		// attaque vers le haut
-		case 3:
-			g.drawLine(p.getX(), p.getY(), p.getX(), p.getY() - p.getTaille());
-			break;
-		default:
-			break;
-		}
+	@Override
+	public void addNameIGraphisme(String name) {
+		// TODO Auto-generated method stub
+		graphisme.addNameIGraphisme(name);
 	}
-	
+
+	@Override
+	public ArrayList<String> getListeNames() {
+		// TODO Auto-generated method stub
+		return graphisme.getListeNames();
+	}
 }

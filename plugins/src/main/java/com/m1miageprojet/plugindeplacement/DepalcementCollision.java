@@ -16,8 +16,9 @@ public class DepalcementCollision implements IDeplacement {
 
 
     @Override
-    public void move(IRobot robot, List<IRobot> robots) {
-        System.out.println("__________________________________________ok");
+
+    public void move(IRobot robot, ArrayList<IRobot> robots) {
+
         Random random1 = new Random();
         int addY;
         int addX;
@@ -25,8 +26,10 @@ public class DepalcementCollision implements IDeplacement {
         //ArrayList<Integer> cordonnes = new ArrayList<Integer>();
         for (int i = 0; i < robots.size(); i++) {
             if (!robots.get(i).equals(robot)) {
+                System.out.println("non");
                 this.adversaires.add(robots.get(i));
             }
+
         }
         int nombreInitial = 1;
         int nbRandom = random1.nextInt(50);
@@ -46,8 +49,11 @@ public class DepalcementCollision implements IDeplacement {
         }
         int nouveauY = robot.getY() + addY;
         int nbr = 1;
-
-        if (((nouveauX <= adversaires.get(1).getX()) && (nouveauX + robot.getWidth() >= adversaires.get(1).getX())) && ((nouveauY <= adversaires.get(1).getY()) && (nouveauY + robot.getHeight() >= adversaires.get(1).getY()))) {
+       /* if (nouveauX < rect2.x + rect2.width &&
+                rect1.x + rect1.width > rect2.x &&
+                rect1.y < rect2.y + rect2.height &&
+                rect1.height + rect1.y > rect2.y)*/
+        if (((nouveauX <= adversaires.get(1).getX()+adversaires.get(1).getWidth()) && (nouveauX + robot.getWidth() >= adversaires.get(1).getX())) && ((nouveauY <= adversaires.get(1).getY()+adversaires.get(1).getHeight()) && (nouveauY + robot.getHeight() >= adversaires.get(1).getY()))) {
             collision = true;
 
         }
@@ -62,8 +68,7 @@ public class DepalcementCollision implements IDeplacement {
                     nouveauY=10;
                 }
                     robot.setX(nouveauX);
-            robot.setY(nouveauY);
-
+                    robot.setY(nouveauY);
             }
 
         else{

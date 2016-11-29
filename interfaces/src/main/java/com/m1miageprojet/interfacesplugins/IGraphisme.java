@@ -7,8 +7,8 @@
  */
 package com.m1miageprojet.interfacesplugins;
 
-import java.awt.Color;
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 /**
  * @author Nicolas Kircun
@@ -16,5 +16,6 @@ import java.awt.Graphics;
  */
 public interface IGraphisme {
 	public void draw(IRobot r, Graphics g);
-	public void drawWeapon(IProjectile p, Graphics g, int direction);
+	public void addNameIGraphisme(String name);
+	public ArrayList<String> getListeNames();
 }

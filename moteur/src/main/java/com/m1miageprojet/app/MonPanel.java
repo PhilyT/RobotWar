@@ -26,7 +26,7 @@ import com.m1miageprojet.interfacesplugins.IRobot;
 public class MonPanel extends JPanel {
 	private Robot r1;
 	private Robot r2;
-	List<IRobot> robots = new ArrayList<IRobot>();
+	private ArrayList<Robot> robots = new ArrayList<Robot>();
 	
 	// Indice pour dire si on en est a la creation du panel ou simplement au rechargement
 	private int i;
@@ -47,6 +47,11 @@ public class MonPanel extends JPanel {
 	public Robot getR2()
 	{
 		return r2;
+	}
+	
+	public ArrayList<Robot> getRobots()
+	{
+		return robots;
 	}
 	
 	@Override

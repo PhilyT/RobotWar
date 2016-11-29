@@ -30,8 +30,8 @@ public class Projectile implements IProjectile {
 		this.tireur = tireur;
 }
 
-	public void attaque(Graphics gr, IRobot adversaire, IGraphisme g, IAttaque a) {	
-		a.attaque(gr, g, adversaire, this);
+	public void attaque(Graphics gr, IRobot adversaire, IAttaque a) {	
+		a.attaque(gr, adversaire, this);
 	}
 
 	public int getX() {

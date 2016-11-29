@@ -9,8 +9,7 @@ package com.m1miageprojet.app;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.List;
-//import java.util.ArrayList;
+import java.util.ArrayList;
 import com.m1miageprojet.interfacesplugins.IAttaque;
 import com.m1miageprojet.interfacesplugins.IDeplacement;
 import com.m1miageprojet.interfacesplugins.IGraphisme;
@@ -30,7 +29,7 @@ public class Robot implements IRobot {
 //	private ArrayList<IProjectile> projectiles;
 	private IProjectile projectile;
 	private String nom;	//pour test
-	private String nomGraphisme;
+	private ArrayList<String> nomsGraphismes;
 	private String nomAttaque;
 	private String nomDeplacement;
 
@@ -40,6 +39,7 @@ public class Robot implements IRobot {
 	public Robot()
 	{
 		this(50, 50, 10, 10, Color.BLACK, new IGraphisme() {
+					ArrayList<String> result = new ArrayList<String>();
 
 					@Override
 					public void draw(IRobot r, Graphics g) {
@@ -48,15 +48,23 @@ public class Robot implements IRobot {
 					}
 
 					@Override
-					public void drawWeapon(IProjectile p, Graphics g, int direction) {
+					public void addNameIGraphisme(String name) {
+						getListeNames().add(name);
+						
+					}
+
+					@Override
+					public ArrayList<String> getListeNames() {
 						// TODO Auto-generated method stub
 						
-					} 
+						return result;
+					}
+ 
 			
 				}, new IDeplacement() {
 
 					@Override
-					public void move(IRobot r,List<IRobot>adversaires) {
+					public void move(IRobot r,ArrayList<IRobot> adversaires) {
 						// TODO Auto-generated method stub
 						
 					}
@@ -64,7 +72,7 @@ public class Robot implements IRobot {
 				}, new IAttaque() {
 
 					@Override
-					public void attaque(Graphics gr, IGraphisme g, IRobot adversaire, IProjectile p) {
+					public void attaque(Graphics gr, IRobot adversaire, IProjectile p) {
 						// TODO Auto-generated method stub
 						
 					}
@@ -79,6 +87,7 @@ public class Robot implements IRobot {
 	}
 	
 	public Robot(int x, int y, int v, int e, Color c, IGraphisme graphisme, IDeplacement deplacement, IAttaque attaque, String nom) {
+		
 		this.graphisme = graphisme;
 		this.deplacement = deplacement;
 		this.attaque = attaque;
@@ -90,7 +99,7 @@ public class Robot implements IRobot {
 		this.setWidth(50); this.setHeight(50);
 		nomAttaque = attaque.getClass().getName();
 		nomDeplacement = deplacement.getClass().getName();
-		nomGraphisme = graphisme.getClass().getName();
+		nomsGraphismes = graphisme.getListeNames();
 		this.nom = nom;
 	}
 
@@ -101,8 +110,13 @@ public class Robot implements IRobot {
 		graphisme.draw(this, g);
 	}
 	
-	public void moveRobot(List<IRobot> adversaires) {
-		deplacement.move(this,adversaires);
+	public void moveRobot(ArrayList<Robot> adversaires) {
+		ArrayList<IRobot> iadversaires = new ArrayList<IRobot>();
+		for(IRobot r : adversaires)
+		{
+			iadversaires.add(r);
+		}
+		deplacement.move(this,iadversaires);
 		if(getE() <10){
 			setE(getE()+1);
 		}
@@ -111,7 +125,7 @@ public class Robot implements IRobot {
 	public void tirer(Graphics g, Robot adversaire) {
 
 		projectile = new Projectile(adversaire, this);
-		projectile.attaque(g, adversaire, graphisme, attaque);
+		projectile.attaque(g, adversaire, attaque);
 	}
 	
 	/**
@@ -159,13 +173,13 @@ public class Robot implements IRobot {
 		setE(getE() - consum);
 	}
 	
-	public String getNomGraphisme()
+	public ArrayList<String> getNomsGraphismes()
 	{
-		return nomGraphisme;
+		return nomsGraphismes;
 	}
 	
-	public void setNomGraphisme(String graphisme) {
-		this.nomGraphisme = graphisme;
+	public void setNomsGraphismes(ArrayList<String> graphisme) {
+		this.nomsGraphismes = graphisme;
 	}
 	
 	public String getNomDeplacement() {
