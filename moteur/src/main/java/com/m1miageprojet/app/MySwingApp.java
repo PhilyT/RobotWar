@@ -67,7 +67,30 @@ public class MySwingApp
 				running = true;
 				System.out.println("Lancement de la partie");
 				parent.setVisible(true);
-				while(running) {
+				
+				while(panel.getRobots().size() >= 2) {
+					if(panel.getRobots().size() == 2) {
+						if(panel.getRobots().get(0).getV() <= 0 && panel.getRobots().get(1).getV() <= 0) {
+							System.out.println("Execo");
+							break;
+						} else if(panel.getRobots().get(0).getV() <= 0) {
+							System.out.println(panel.getRobots().get(1).getNom() + " win !");
+						} else if(panel.getRobots().get(1).getV() <= 0){
+							System.out.println(panel.getRobots().get(0).getNom() + " win !");
+						}
+					}
+					parent.repaint();
+					try {
+						Thread.sleep(1000);
+					} catch(InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+				
+				System.out.println(panel.getRobots().get(0).getNom() + " win !");
+				
+				
+				/*while(running) {
 					if (panel.getR1().getV() <= 0 || panel.getR2().getV() <= 0)
 					{
 						running = false;
@@ -93,7 +116,7 @@ public class MySwingApp
 				else if(panel.getR2().getV() <= 0)
 				{
 					System.out.println("Robot r1 win !");
-				}
+				}*/
 			}
 		});
 		thread.start();

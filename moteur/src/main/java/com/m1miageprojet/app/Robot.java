@@ -10,6 +10,8 @@ package com.m1miageprojet.app;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.util.Random;
+
 import com.m1miageprojet.interfacesplugins.IAttaque;
 import com.m1miageprojet.interfacesplugins.IDeplacement;
 import com.m1miageprojet.interfacesplugins.IGraphisme;
@@ -32,6 +34,7 @@ public class Robot implements IRobot {
 	private ArrayList<String> nomsGraphismes;
 	private String nomAttaque;
 	private String nomDeplacement;
+	private Robot adversaire;
 
 	/**
 	 * Constructeur par default pour la serialization
@@ -122,10 +125,27 @@ public class Robot implements IRobot {
 		}
 	}
 	
-	public void tirer(Graphics g, Robot adversaire) {
+	public void tirer(Graphics g, ArrayList<Robot> adv) {
 
-		projectile = new Projectile(adversaire, this);
-		projectile.attaque(g, adversaire, attaque);
+		if(adv.size() > 2) {
+			Random rnd = new Random();
+			int advId = rnd.nextInt(adv.size());
+			
+			while(this == adv.get(advId)) {
+				advId = rnd.nextInt(adv.size());
+			}
+			
+			this.adversaire = adv.get(advId);
+		} else if(adv.size() == 2){
+			if(this == adv.get(0)) {
+				this.adversaire = adv.get(1);
+			} else {
+				this.adversaire = adv.get(0);
+			}
+		}
+		
+		projectile = new Projectile(this.adversaire, this);
+		projectile.attaque(g, this.adversaire, attaque);
 	}
 	
 	/**
@@ -262,5 +282,13 @@ public class Robot implements IRobot {
 	public void setHeight(int height) {
 		this.height = height;
 	}
+	
+	/*public IRobot getAdversaire() {
+		return this.adversaire;
+	}
+	
+	public void setAdversaire(IRobot adversaire) {
+		this.adversaire = adversaire;
+	}*/
 
 }
