@@ -68,16 +68,11 @@ public class MySwingApp
 				System.out.println("Lancement de la partie");
 				parent.setVisible(true);
 				
-				while(panel.getRobots().size() >= 2) {
-					if(panel.getRobots().size() == 2) {
-						if(panel.getRobots().get(0).getV() <= 0 && panel.getRobots().get(1).getV() <= 0) {
-							System.out.println("Execo");
-							break;
-						} else if(panel.getRobots().get(0).getV() <= 0) {
-							System.out.println(panel.getRobots().get(1).getNom() + " win !");
-						} else if(panel.getRobots().get(1).getV() <= 0){
-							System.out.println(panel.getRobots().get(0).getNom() + " win !");
-						}
+				while(running) {
+					if(panel.getRobots().size() < 2)
+					{
+						running = false;
+						break;
 					}
 					parent.repaint();
 					try {
@@ -86,37 +81,14 @@ public class MySwingApp
 						e.printStackTrace();
 					}
 				}
-				
-				System.out.println(panel.getRobots().get(0).getNom() + " win !");
-				
-				
-				/*while(running) {
-					if (panel.getR1().getV() <= 0 || panel.getR2().getV() <= 0)
-					{
-						running = false;
-						break;
-					}
-					parent.repaint();
-					try {
-						// TODO A modifier
-						Thread.sleep(1000);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-				if(panel.getR1().getV() <= 0 && panel.getR2().getV() <= 0)
+				if(panel.getRobots().size() == 0)
 				{
-					System.out.println("execo");
+					System.out.println("Execo");
 				}
-				else if(panel.getR1().getV() <= 0)
+				else
 				{
-					System.out.println("Robot r2 win !");
+					System.out.println(panel.getRobots().get(0).getNom() + " win !");
 				}
-				else if(panel.getR2().getV() <= 0)
-				{
-					System.out.println("Robot r1 win !");
-				}*/
 			}
 		});
 		thread.start();
