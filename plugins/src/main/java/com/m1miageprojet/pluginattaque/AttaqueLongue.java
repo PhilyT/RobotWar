@@ -66,7 +66,7 @@ public class AttaqueLongue implements IAttaque {
 				p.setX(p.getX() + 25);
 				p.setY(p.getY() + 25);
 			}
-			if(p.getDirection() == 9 || p.getDirection() == 8)
+			else if(p.getDirection() == 9 || p.getDirection() == 8)
 			{
 				p.setX(p.getX() - 25);
 				p.setY(p.getY() + 25);
@@ -156,7 +156,7 @@ public class AttaqueLongue implements IAttaque {
 				p.setDirection(3);
 			}
 		}
-		else if(posYCentreAdversaire >= (posYCentreTireur-25) && posXCentreAdversaire >= (posXCentreTireur+25))
+		else if(posYCentreAdversaire >= (posYCentreTireur+25) && posXCentreAdversaire >= (posXCentreTireur+25))
 		{
 			int rdm = (int)Math.random();
 			if(rdm ==0)
