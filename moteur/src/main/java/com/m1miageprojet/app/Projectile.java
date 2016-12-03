@@ -20,14 +20,18 @@ public class Projectile implements IProjectile {
 	private int x, y;
 	private IRobot adversaire;
 	private IRobot tireur;
-//	private IAttaque attaque;
 	private int taille;
+	private boolean enMouvement;
+	private boolean nouveau;
+	private int direction;
 	
 
 	public Projectile(IRobot adversaire, IRobot tireur) {
 		this.taille = 150;
 		this.adversaire = adversaire;
 		this.tireur = tireur;
+		nouveau = true;
+		enMouvement = false;
 }
 
 	public void attaque(Graphics gr, IRobot adversaire, IAttaque a) {	
@@ -60,5 +64,35 @@ public class Projectile implements IProjectile {
 
 	public void setY(int y) {
 		this.y = y;		
+	}
+
+	@Override
+	public boolean getEnMouvement() {
+		return enMouvement;
+	}
+
+	@Override
+	public boolean getNouveau() {
+		return nouveau;
+	}
+
+	@Override
+	public void setEnMouvement(boolean b) {
+		enMouvement = b;
+	}
+
+	@Override
+	public void setNouveau(boolean b) {
+		nouveau = b;
+	}
+
+	@Override
+	public int getDirection() {
+		return direction;
+	}
+
+	@Override
+	public void setDirection(int d) {
+		direction = d;
 	}
 }

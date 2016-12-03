@@ -85,7 +85,7 @@ public class MySwingApp
 				{
 					System.out.println("Execo");
 				}
-				else
+				else if (panel.getRobots().size() == 1)
 				{
 					System.out.println(panel.getRobots().get(0).getNom() + " win !");
 				}

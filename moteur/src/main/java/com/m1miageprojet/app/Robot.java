@@ -28,8 +28,7 @@ public class Robot implements IRobot {
 	private IGraphisme graphisme;
 	private IDeplacement deplacement;
 	private IAttaque attaque;
-//	private ArrayList<IProjectile> projectiles;
-	private IProjectile projectile;
+	private ArrayList<IProjectile> projectiles;
 	private String nom;	//pour test
 	private ArrayList<String> nomsGraphismes;
 	private String nomAttaque;
@@ -90,7 +89,7 @@ public class Robot implements IRobot {
 	}
 	
 	public Robot(int x, int y, int v, int e, Color c, IGraphisme graphisme, IDeplacement deplacement, IAttaque attaque, String nom) {
-		
+		projectiles = new ArrayList<IProjectile>();
 		this.graphisme = graphisme;
 		this.deplacement = deplacement;
 		this.attaque = attaque;
@@ -144,8 +143,20 @@ public class Robot implements IRobot {
 			}
 		}
 		
-		projectile = new Projectile(this.adversaire, this);
-		projectile.attaque(g, this.adversaire, attaque);
+		projectiles.add(new Projectile(this.adversaire, this));
+		ArrayList<IProjectile> projectilasupprimer = new ArrayList<IProjectile>();
+		for(IProjectile projectile : projectiles)
+		{
+			projectile.attaque(g, this.adversaire, attaque);
+			if(!projectile.getEnMouvement())
+			{
+				projectilasupprimer.add(projectile);
+			}
+		}
+		for(IProjectile projectile : projectilasupprimer)
+		{
+			projectiles.remove(projectile);
+		}
 	}
 	
 	/**

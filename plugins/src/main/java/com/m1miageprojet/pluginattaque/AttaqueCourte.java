@@ -30,9 +30,9 @@ public class AttaqueCourte implements IAttaque {
 
 	public void attaque(Graphics gr, IRobot adversaire, IProjectile p) {
 		int direction;
-		if(adversaire.getX() >= p.getTireur().getX() - 50 && adversaire.getX() < p.getTireur().getX() + 50 && (p.getTireur().getE()-3)>=0) {
+		if(adversaire.getX() >= p.getTireur().getX() - 50 && adversaire.getX() < p.getTireur().getX() + 50 && (p.getTireur().getE()-2)>=0) {
+			p.getTireur().soustrairedelenergie(2);
 			if(adversaire.getY() <= p.getTireur().getY() + 200 && adversaire.getY() > p.getTireur().getY() - 50) {
-				p.getTireur().soustrairedelenergie(2);
 				direction = 1;
 				p.setX(p.getTireur().getX() + 25);
 				p.setY(p.getTireur().getY() + 50);
@@ -43,7 +43,6 @@ public class AttaqueCourte implements IAttaque {
 					System.out.println("Robot touche dans la direction "+ direction +" { nom : "+ p.getAdversaire().getNom() +" vie : " + p.getAdversaire().getV() + " energie : " + p.getAdversaire().getE());
 				}
 			} else if(adversaire.getY() > p.getTireur().getY() - 150 && adversaire.getY() < p.getTireur().getY()) {
-				p.getTireur().soustrairedelenergie(2);
 				direction = 3;
 				p.setX(p.getTireur().getX() + 25);
 				p.setY(p.getTireur().getY());
@@ -54,9 +53,9 @@ public class AttaqueCourte implements IAttaque {
 					System.out.println("Robot touche dans la direction "+ direction +" { nom : "+ p.getAdversaire().getNom() +" vie : " + p.getAdversaire().getV() + " energie : " + p.getAdversaire().getE());
 				}
 			}
-		} else if(adversaire.getY() >= p.getTireur().getY() - 50 && adversaire.getY() < p.getTireur().getY() + 50&& (p.getTireur().getE()-3)>=0) {
+		} else if(adversaire.getY() >= p.getTireur().getY() - 50 && adversaire.getY() < p.getTireur().getY() + 50&& (p.getTireur().getE()-2)>=0) {
+			p.getTireur().soustrairedelenergie(2);
 			if(adversaire.getX() <= p.getTireur().getX() + 200 && adversaire.getX() > p.getTireur().getX() + 50) {
-				p.getTireur().soustrairedelenergie(2);
 				direction = 0;
 				p.setX(p.getTireur().getX() + 50);
 				p.setY(p.getTireur().getY() + 25);
@@ -67,7 +66,6 @@ public class AttaqueCourte implements IAttaque {
 					System.out.println("Robot touche dans la direction "+ direction +" { nom : "+ p.getAdversaire().getNom() +" vie : " + p.getAdversaire().getV() + " energie : " + p.getAdversaire().getE());
 				}
 			} else if(adversaire.getX() > p.getTireur().getX() - 150 && adversaire.getX() < p.getTireur().getX()) {
-				p.getTireur().soustrairedelenergie(2);
 				direction = 2;
 				p.setX(p.getTireur().getX());
 				p.setY(p.getTireur().getY() + 25);

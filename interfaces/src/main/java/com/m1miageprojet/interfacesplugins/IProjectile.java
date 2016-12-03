@@ -18,4 +18,10 @@ public interface IProjectile {
 	public int getTaille();
 	public IRobot getAdversaire();
 	public IRobot getTireur();
+	public boolean getEnMouvement();
+	public boolean getNouveau();
+	public void setEnMouvement(boolean b);
+	public void setNouveau(boolean b);
+	public int getDirection();
+	public void setDirection(int d);
 }
