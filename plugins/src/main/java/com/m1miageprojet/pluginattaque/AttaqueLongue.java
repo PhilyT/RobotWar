@@ -53,23 +53,23 @@ public class AttaqueLongue implements IAttaque {
 		{
 			if(p.getDirection() == 0 || p.getDirection() == 11)
 			{
-				p.setX(p.getX() - 25);
-				p.setY(p.getY() - 25);
+				p.setX(p.getX() - 18);
+				p.setY(p.getY() - 18);
 			}
 			else if(p.getDirection() == 3 || p.getDirection() == 2)
 			{
-				p.setX(p.getX() + 25);
-				p.setY(p.getY() - 25);
+				p.setX(p.getX() + 18);
+				p.setY(p.getY() - 18);
 			}
 			else if(p.getDirection() == 6 || p.getDirection() == 5)
 			{
-				p.setX(p.getX() + 25);
-				p.setY(p.getY() + 25);
+				p.setX(p.getX() + 18);
+				p.setY(p.getY() + 18);
 			}
 			else if(p.getDirection() == 9 || p.getDirection() == 8)
 			{
-				p.setX(p.getX() - 25);
-				p.setY(p.getY() + 25);
+				p.setX(p.getX() - 18);
+				p.setY(p.getY() + 18);
 			}
 			else if(p.getDirection() == 1)
 			{
@@ -134,8 +134,9 @@ public class AttaqueLongue implements IAttaque {
 		}
 		else if(posYCentreAdversaire <= (posYCentreTireur-25) && posXCentreAdversaire <= (posXCentreTireur-25))
 		{
-			int rdm = (int)Math.random();
-			if(rdm ==0)
+			int x = posXCentreAdversaire - posXCentreTireur;
+			int y = posYCentreAdversaire - posYCentreTireur;
+			if(y<x)
 			{
 				p.setDirection(0);
 			}
@@ -146,8 +147,9 @@ public class AttaqueLongue implements IAttaque {
 		}
 		else if(posYCentreAdversaire <= (posYCentreTireur-25) && posXCentreAdversaire >= (posXCentreTireur+25))
 		{
-			int rdm = (int)Math.random();
-			if(rdm ==0)
+			int x = posXCentreAdversaire - posXCentreTireur;
+			int y = -(posYCentreAdversaire - posYCentreTireur);
+			if(y>x)
 			{
 				p.setDirection(2);
 			}
@@ -158,8 +160,9 @@ public class AttaqueLongue implements IAttaque {
 		}
 		else if(posYCentreAdversaire >= (posYCentreTireur+25) && posXCentreAdversaire >= (posXCentreTireur+25))
 		{
-			int rdm = (int)Math.random();
-			if(rdm ==0)
+			int x = posXCentreAdversaire - posXCentreTireur;
+			int y = posYCentreAdversaire - posYCentreTireur;
+			if(y<x)
 			{
 				p.setDirection(5);
 			}
@@ -170,8 +173,9 @@ public class AttaqueLongue implements IAttaque {
 		}
 		else
 		{
-			int rdm = (int)Math.random();
-			if(rdm ==0)
+			int x = -(posXCentreAdversaire - posXCentreTireur);
+			int y = posYCentreAdversaire - posYCentreTireur;
+			if(y>x)
 			{
 				p.setDirection(8);
 			}
