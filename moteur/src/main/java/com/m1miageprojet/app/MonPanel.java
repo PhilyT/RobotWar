@@ -32,10 +32,10 @@ public class MonPanel extends JPanel {
 	
 	public MonPanel(IGraphisme graphisme, IDeplacement deplacement, IAttaque attaque) {
 			
-		r1 = new Robot(10, 10, 10, 10, Color.BLUE, graphisme, deplacement, attaque, "r1");
-		r2 = new Robot(100, 100, 10, 10, Color.RED, graphisme, deplacement, attaque, "r2");
-		r3 = new Robot(300, 300, 10, 10, Color.GREEN, graphisme, deplacement, attaque, "r3");
-		r4 = new Robot(300, 100, 10, 10, Color.YELLOW, graphisme, deplacement, attaque, "r4");
+		r1 = new Robot(10, 10, 10, 10, Color.BLUE, graphisme, deplacement, attaque, "Robot Bleu");
+		r2 = new Robot(100, 100, 10, 10, Color.RED, graphisme, deplacement, attaque, "Robot Rouge");
+		r3 = new Robot(300, 300, 10, 10, Color.DARK_GRAY, graphisme, deplacement, attaque, "Robot Gris Sombre");
+		r4 = new Robot(300, 100, 10, 10, Color.ORANGE, graphisme, deplacement, attaque, "Robot Orange");
 		
 		i = 0;
 		robots.add(r1);
