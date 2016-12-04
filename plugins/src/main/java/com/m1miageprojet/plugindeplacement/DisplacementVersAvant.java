@@ -7,7 +7,7 @@ import com.m1miageprojet.interfacesplugins.IRobot;
 
 
 
-public class DisplacementVeersAvaunt implements IDeplacement {
+public class DisplacementVersAvant implements IDeplacement {
     public void move(IRobot b,ArrayList<IRobot> adversaires) {
 /*
         double x = b.getX();
