@@ -52,6 +52,9 @@ public class GraphismeFleur implements IGraphisme {
         g.fillOval(x5+10,y5-23,rayon, rayon);
         g.setColor(Color.green);
         g.fillOval(x5+30,y5-16,rayon, rayon);
+        if(graphisme!=null) {
+			graphisme.draw(r, g);
+		}
     }
 
     @Override

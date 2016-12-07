@@ -55,6 +55,9 @@ public class GraphismePictureLoaded implements IGraphisme {
         g.setFont(new Font("SansSerif", Font.PLAIN, 10));
         g.setColor(r.getColor());
         g.drawString(r.getNom(),r.getX(),r.getY());
+        if(graphisme!=null) {
+			graphisme.draw(r, g);
+		}
     }
 
     @Override
