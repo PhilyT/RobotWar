@@ -123,6 +123,11 @@ public class PluginRepository {
     			return c;
     		}
     	}
+    	if(pluginsAttaque.size()>0)
+    	{
+    		System.out.println("Plugin " + name + " n'existe pas.");
+    		return pluginsAttaque.get(0);
+    	}
     	throw new Exception("Pas de plugin attaque charge");
     }
     
@@ -141,6 +146,11 @@ public class PluginRepository {
     			return c;
     		}
     	}
+    	if(pluginsDeplacment.size()>0)
+    	{
+    		System.out.println("Plugin " + name + " n'existe pas.");
+    		return pluginsDeplacment.get(0);
+    	}
     	throw new Exception("Pas de plugin attaque charge");
     }
     
@@ -158,6 +168,11 @@ public class PluginRepository {
     		{
     			return c;
     		}
+    	}
+    	if(pluginsGraphisme.size()>0)
+    	{
+    		System.out.println("Plugin " + name + " n'existe pas.");
+    		return pluginsGraphisme.get(0);
     	}
     	throw new Exception("Pas de plugin attaque charge");
     }
