@@ -26,7 +26,9 @@ public class BarreDeVie implements IGraphisme {
 
 	@Override
 	public void draw(IRobot r, Graphics g) {
-
+		if(graphisme!=null) {
+			graphisme.draw(r, g);
+		}
 		if(r.getV() > 5) {
 			g.setColor(Color.GREEN);
 			switch(r.getV()) {
@@ -78,10 +80,6 @@ public class BarreDeVie implements IGraphisme {
 			default:
 				break;
 			}
-		}
-		
-		if(graphisme!=null) {
-			graphisme.draw(r, g);
 		}
 	}
 

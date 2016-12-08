@@ -51,13 +51,13 @@ public class GraphismePictureLoaded implements IGraphisme {
 
     @Override
     public void draw(IRobot r, Graphics g) {
+    	if(graphisme!=null) {
+			graphisme.draw(r, g);
+		}
         g.drawImage(pic, r.getX(), r.getY(), r.getHeight(), r.getWidth(), null);
         g.setFont(new Font("SansSerif", Font.PLAIN, 10));
         g.setColor(r.getColor());
         g.drawString(r.getNom(),r.getX(),r.getY());
-        if(graphisme!=null) {
-			graphisme.draw(r, g);
-		}
     }
 
     @Override
